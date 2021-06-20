@@ -26,12 +26,13 @@ namespace VirtualClinic.ViewModels
 
         [Required]
         [PersonalData]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
+        //[Remote("BirthDateInRage", "Account", ErrorMessage = "Age must be between 26 and 60")]
         public DateTime BirthDate { get; set; }
 
         [PersonalData]
         [Column(TypeName = "varchar(20)")]
-        [Remote("IdCardExists", "Account", ErrorMessage = "Phone Number already in use")]
+        [Remote("IdCardExists", "Account", ErrorMessage = "ID Card already in use")]
         public string IdCard { get; set; }
 
         [Required]
@@ -71,9 +72,10 @@ namespace VirtualClinic.ViewModels
         public string ConfirmPassword { get; set; }
 
         [DataType(DataType.PhoneNumber)]
+        [Required]
         [Remote("PhoneExists", "Account", ErrorMessage = "Phone Number already in use")]
-
         public string PhoneNumber { get; set; }
+
         public bool IsDoctor { get; set; }
         public string Adress { get; set; }
         public long Price { get; set; }

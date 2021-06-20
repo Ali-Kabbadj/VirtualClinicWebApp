@@ -50,8 +50,8 @@
                         </span>
                     </div>
                     <div class="form-row form-row-1">
-                        <input asp-for="BirthDate" type="date" placeholder="MM/DD/YYYY">
-                        <span asp-validation-for="BirthDate" class="text-danger"></span>
+                        <input asp-for="BirthDate" type="date" name="dob" id="Birthday" placeholder="MM/DD/YYYY">
+                        <span asp-validation-for="BirthDate"  class="text-danger"></span>
                     </div>
 
                     <div class="form-row">
@@ -145,152 +145,6 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 
-@*<section class="regist">
-    <div class="container margin bg-white text-center">
-        <h1 class="mt-5 overflow-hidden">Register</h1>
-        <div class="d-flex align-items-start  py-2">
-            <img id="Image" src="~/Images/img/NoImage.jpg" class="img" alt="">
-            <div class="pl-sm-4 pl-2" id="img-section">
-                <b>Profile Photo</b><br />
-                <button id="ImageButton" class="btn button border mt-5"><b>Upload</b></button>
-            </div>
-        </div>
-        <form method="post" enctype="multipart/form-data">
-            <input asp-for="Image" type='file' id="imgInp" hidden required />
-            <div class="py-2">
-                <div class="row py-2">
-                    <div class="col-md-6">
-                        <input asp-for="FirstName" type="text" class="bg-light form-control" placeholder="first name">
-                        <span asp-validation-for="FirstName" class="text-danger"></span>
-                    </div>
-
-                    <div class="col-md-6 pt-md-0 pt-3">
-                        <input asp-for="LastName" type="text" class="bg-light form-control" placeholder="last name">
-                        <span asp-validation-for="LastName" class="text-danger"></span>
-                    </div>
-
-                </div>
-
-                <div class="row py-2">
-
-                    <div class="col-md-6">
-                        <input asp-for="Email" type="text" class="bg-light form-control" placeholder="email@exemple.com">
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-
-                    <div class="col-md-6 pt-md-0 pt-3">
-                        <input asp-for="IdCard" class="bg-light form-control" placeholder="EE55555">
-                        <span asp-validation-for="IdCard" class="text-danger"></span>
-                    </div>
-
-                </div>
-
-                <div class="row py-2">
-                    <div class="col-md-6">
-                        <select asp-for="Country" name="country" class="countries form-control" id="countryId" data-val="true" data-val-required="The Country field is required.">
-                            <option hidden value="">Select you Country</option>
-                        </select>
-                        <span asp-validation-for="Country" class="text-danger"></span>
-                    </div>
-
-                    <div class="col-md-6 pt-md-0 pt-3" id="lang">
-                        <div class="arrow">
-                            <select asp-for="State" name="state" class="states form-control" id="stateId" data-val="true" data-val-required="The State field is required.">
-                                <option hidden value="">Select your State</option>
-                            </select>
-                            <span asp-validation-for="State" class="text-danger"></span>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-6 pt-md-0 pt-3" id="lang">
-                        <select asp-for="City" name="city" class="cities form-control" id="cityId" data-val="true" data-val-required="The City field is required.">
-                            <option hidden value="">Select your City</option>
-                        </select>
-                        <span asp-validation-for="City" class="text-danger"></span>
-                    </div>
-
-                    <div class="col-md-6 pt-md-0 pt-3">
-                        <input asp-for="Adress" type="text" class="bg-light form-control" placeholder="Adress">
-                        <span asp-validation-for="Adress" class="text-danger"></span>
-                    </div>
-
-                </div>
-                <div class="row py-2">
-                    <div class="col-md-6 pt-md-0 pt-3">
-                        <input asp-for="PhoneNumber" type="tel" class="bg-light form-control" placeholder="+2126 000-000-00">
-                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="row py-2">
-
-                    <div class="col-md-6">
-                        <select name="gender" class="form-control" data-val="true" data-val-required="The Gender field is required">
-                            <option hidden>Select Your Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                        <span asp-validation-for="Gender" class="text-danger"></span>
-                    </div>
-
-                    <div class="col-md-6 pt-md-0 pt-3" id="lang">
-                        <div class="arrow">
-                            <input asp-for="BirthDate" type="date" class="bg-light form-control" placeholder="0700460776">
-                            <span asp-validation-for="BirthDate" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-
-                @if (ViewBag.IsDoctor)
-                {
-                    <div class="row py-2">
-                        <div class="col-md-6 pt-md-0 pt-3" id="lang">
-                            <div class="arrow">
-                                <input asp-for="Specialist" type="text" class="bg-light form-control" placeholder="Your Medical speciality" required>
-                                <span asp-validation-for="Specialist" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 pt-md-0 pt-3" id="lang">
-                            <div class="arrow">
-                                <input asp-for="Price" type="text" class="bg-light form-control" placeholder="The amount you charge" required>
-                                <span asp-validation-for="Price" class="text-danger"></span>
-                            </div>
-                        </div>
-
-                    </div>
-                }
-
-
-                <div class="row py-2">
-                    <div class="col-md-6 pt-md-0 pt-3" id="lang">
-                        <div class="arrow">
-                            <input asp-for="Password" type="password" class="bg-light form-control" placeholder="***********">
-                            <span asp-validation-for="Password" class="text-danger"></span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 pt-md-0 pt-3" id="lang">
-                        <div class="arrow">
-                            <input asp-for="ConfirmPassword" type="password" class="bg-light form-control" placeholder="***********">
-                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-            <input type="submit" value="Register" class="btn btn-primary mr-3" />
-        </form>
-
-        <p style="color:black;"> You have An Account ? <a asp-action="Login" asp-controller="Account" class="btn btn-link">Login</a> </p>
-
-
-
-    </div>
-</section>*@
-
 
 
 
@@ -320,4 +174,6 @@
             readURL(this);
         });
     });
+
+
 </script>
