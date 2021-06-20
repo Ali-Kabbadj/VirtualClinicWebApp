@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model VirtualClinic.ViewModels.DoctorViewModel
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+<div class="container">
+    <div class="text-center">
+        @*<img class="card-img-top" style="width:18rem;height:18rem" src="~/Profiles/@Model.ImageName" alt="">*@
+    </div>
+    <table class="table table-sm table-light">
+        <tr>
+            <th scope="row">First Name :</th>
+            <td scope="col"><h5>@Model.FirstName</h5></td>
+        </tr>
+        <tr>
+            <th scope="row">Last Name :</th>
+            <td scope="col"><h5>@Model.LastName</h5></td>
+        </tr>
+        <tr>
+            <th scope="row">Speciality :</th>
+            <td scope="col"><h5>@Model.Speciality</h5></td>
+        </tr>
+        <tr>
+            <th scope="row">Country :</th>
+            <td scope="col"><h5>@Model.Country</h5></td>
+        </tr>
+        <tr>
+            <th scope="row">City :</th>
+            <td scope="col"><h5>@Model.City</h5></td>
+        </tr>
+        <tr>
+            <th scope="row">Adress :</th>
+            <td scope="col"><h5>@Model.Adress</h5></td>
+        </tr>
+        <tr>
+            <th scope="row">Price :</th>
+            <td scope="col"><h5>@Model.Price</h5></td>
+        </tr>
+        <tr>
+            <th scope="row">Total Appointement :</th>
+            <td scope="col"><h5>@ViewBag.Totalappointement</h5></td>
+        </tr>
+    </table>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @if (!UserManager.GetUserAsync(User).Result.IsDoctor)
+        {
+            <a class="btn btn-primary text-uppercase" asp-route-doctorid="@Model.Id"  asp-controller="Appointement" asp-action="MakeAppointement">Make Appointement</a>
+        }
+    }
+    else
+    {
+        <a class="btn btn-primary text-uppercase" asp-controller="Account" asp-action="Login">Login To Make An Appointment</a>
+    }
+
+
+</div>

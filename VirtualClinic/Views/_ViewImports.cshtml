@@ -1,0 +1,13 @@
+﻿@using VirtualClinic
+@using VirtualClinic.Models
+@using VirtualClinic.ViewModels
+@using VirtualClinic.Models.Identity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Kendo.Mvc
+@using Kendo.Mvc.UI
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManage
+
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessorsss

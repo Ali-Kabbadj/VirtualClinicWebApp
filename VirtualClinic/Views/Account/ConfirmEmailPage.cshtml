@@ -1,0 +1,16 @@
+﻿@model VirtualClinic.ViewModels.RegisterViewModel
+
+@{
+    ViewBag.Title = "Confirm Email Address Sent";
+}
+<h2>@ViewBag.Title.</h2>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-8">
+            @Model.FirstName  @Model.LastName You just created an account in our website
+        </div>
+        <div class="col-md-8">
+            Please check your Email Inbox, a confirm Email is Sent to @Model.Email
+        </div>
+    </div>
+</div>

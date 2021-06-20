@@ -1,0 +1,113 @@
+﻿<link href="/Home/css/HomeStyle.css" rel="stylesheet" />
+
+
+
+<div id="parallax_main" class="collapsing-parallax">
+
+
+    <div id="Title1">
+        <h1>Virtual Clinic</h1>
+    </div>
+
+    <div id="Title2">
+        <h1>The website that cares about your health</h1>
+    </div>
+
+</div>
+<main id="content" class="site-main" role="main">
+    <section class="inner">
+
+        <div class="">
+            <h1  class="TitleSection2">Nos Services</h1>
+            <div class="flip">
+                <div class="front" style="background-image: url(https://images.pexels.com/photos/540518/pexels-photo-540518.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+                    <h1 class="text-shadow">MOUNTAIN</h1>
+                </div>
+                <div class="back">
+                    <h2>Angular</h2>
+                    <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+                </div>
+            </div>
+            <div class="flip">
+                <div class="front" style="background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+                    <h1 class="text-shadow">LAKE</h1>
+                </div>
+                <div class="back">
+                    <h2>Angular</h2>
+                    <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+                </div>
+            </div>
+            <div class="flip">
+                <div class="front" style="background-image: url(https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+                    <h1 class="text-shadow">OCEAN</h1>
+                </div>
+                <div class="back">
+                    <h2>Angular</h2>
+                    <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+                </div>
+            </div>
+
+            <br>
+            <br>
+        </div>
+
+    </section>
+</main>
+
+
+<script>
+   
+    (function ($) {
+        var $pMain = $("#parallax_main"),
+            $pToolbar = $pMain.find("#toolbar_main"),
+            $pTitle = $pToolbar.find("#title_main"),
+            $pNavTrigger = $pMain.find("#nav-button"),
+            alpha = 0,
+            scale = 1;
+        $(window).scroll(function () {
+            var st = $(window).scrollTop();
+            if (st <= 0) {
+                maxHeight = jQuery(window).height();
+            } else if (st > jQuery(window).height()) {
+                alpha = 1;
+                maxHeight = 70;
+                $("#Title1").css('font-size', $("#parallax_main").height() / 10 + "px");
+            } else {
+                alpha =
+                    0.0 + 1.2 * st / jQuery(window).height();
+                scale =
+                    1 - 0.20 * st / jQuery(window).height();
+                maxHeight = jQuery(window).height() - (jQuery(window).height() - 70) * ((st - 0)) / 350;
+                console.log(maxHeight);
+                $("#Title1").css('font-size', $("#parallax_main").height() / 9 + "px");
+                $("#Title2").css('font-size', $("#parallax_main").height() / 50 + "px");
+            }
+            $pToolbar.css("background", "rgba(33,14,61," + alpha + ")");
+            $pMain.css({
+                'max-height': maxHeight + "px"
+            });
+            $pTitle.css('transform', 'scale(' + scale + ')');
+
+            if ($("#parallax_main").height() < 300) {
+                $("#parallax_main").css('visibility', 'hidden');
+                $("#Title1").css('visibility', 'hidden');
+                $("#Title2").css('visibility', 'hidden');
+            }
+
+            if ($("#parallax_main").height() > 300) {
+                $("#parallax_main").css('visibility', 'visible');
+                $("#Title1").css('visibility', 'visible');
+                $("#Title2").css('visibility', 'visible');
+
+            }
+        });
+        $pNavTrigger.click(function () {
+            $(this).toggleClass('active');
+        });
+
+      
+
+
+    })(jQuery);
+
+</script>

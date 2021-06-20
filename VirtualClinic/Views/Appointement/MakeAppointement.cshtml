@@ -1,0 +1,203 @@
+﻿@model VirtualClinic.ViewModels.DoctorViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+ @{ var kendoVersion = "2021.1.330";}
+    <link href="https://kendo.cdn.telerik.com/@kendoVersion/styles/kendo.common-material.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/@kendoVersion/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/@kendoVersion/styles/kendo.material.min.css" rel="stylesheet" type="text/css" />
+    @*<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet'>*@
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet" />
+    @*<link href="https://kendo.cdn.telerik.com/2021.2.511/styles/kendo.bootstrap-v4.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2021.2.511/styles/kendo.bootstrap-v4.min.css" rel="stylesheet" type="text/css" />*@
+    @* Add the Kendo UI scripts: *@
+
+    <script defer src="https://kendo.cdn.telerik.com/@kendoVersion/js/jquery.min.js"></script>
+    <script defer src="https://kendo.cdn.telerik.com/@kendoVersion/js/jszip.min.js"></script>
+    <script defer src="https://kendo.cdn.telerik.com/@kendoVersion/js/kendo.all.min.js"></script>
+    <script defer src="https://kendo.cdn.telerik.com/@kendoVersion/js/kendo.aspnetmvc.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2021.2.511/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2021.2.511/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2021.2.511/js/kendo.aspnetmvc.min.js"></script>
+
+<div>
+    <center> <h1>Appointment</h1> </center>
+    <br />
+    <br />
+    <div class="col-md-4">
+        <img class="card-img-top" style="width:8rem;height:8rem" src="~/Profiles/@ViewData["Image"]" alt="">
+        <input type="text" name="name" value="@ViewBag.Id" />
+        <h5>@ViewData["Name"]</h5>
+    </div>
+
+
+    <br />
+    <br />
+
+
+
+    @(Html.Kendo().Scheduler<VirtualClinic.Models.TaskViewModel>()
+            .Name("scheduler")
+            .Date(DateTime.Now.Date)
+            .StartTime(DateTime.Now.Date)
+            .Height(600)
+            .AllDaySlot(false)
+            .Events(e =>
+            {
+                e.Remove("Disable");
+                e.DataBound("dataBound");
+                e.Resize("Disable");
+                e.Edit("edit");
+                e.Add("add");
+                e.Save("save");
+                e.Move("move");
+                e.MoveEnd("moveEnd");
+
+            })
+            .Views(views =>
+            {
+                views.DayView();
+                views.WorkWeekView(workWeekView => workWeekView.Selected(true));
+                views.WeekView();
+                views.MonthView();
+                views.AgendaView();
+                views.TimelineView();
+            }).Resources(resource =>
+            {
+                resource.Add(m => m.Color)
+                    .Title("Owner")
+                    .DataTextField("Text")
+                    .DataValueField("Value")
+                    .DataColorField("Color")
+                    .BindTo(new[] {
+                new { Text = "Doctor", Value = 1, Color = "#FF0000" } ,
+                new { Text = "Patient", Value = 2, Color = "#00FF7D" }
+                //new { Text = "PatientMine", Value = 3, Color = "#F4A201" }
+                    });
+            })
+                .Timezone("Etc/UTC")
+                .DataSource(d => d
+                    .Model(m =>
+                    {
+                        m.Id(f => f.TaskID);
+                        m.Field(f => f.Title).DefaultValue("No title");
+                        m.Field(f => f.Title).DefaultValue("No title");
+                        m.Field(f => f.DoctorId).DefaultValue(ViewBag.Id);
+                        m.Field(f => f.state).DefaultValue("Unconfirmed");
+                    })
+                    .Read("Read", "Appointement",new { Id =Model.Id })
+                    .Create("Create", "Appointement")
+                    .Destroy("Destroy", "Appointement")
+                    .Update("Update", "Appointement")
+
+            )
+        )
+</div>
+<div id="scheduler"></div>
+
+<script>
+
+    var UserId = "@UserManager.GetUserAsync(User).Result.Id";
+
+    function Disable(e) {
+        if (e.event.PatientId != UserId || e.event.state=="Confirmed") {
+                e.preventDefault();
+        }
+        if (!isSlotFree(e.start, e.end, e.event)) {
+            e.preventDefault();
+        }
+        }
+
+    function edit(e) {
+        if (e.event.PatientId != UserId && e.event.PatientId != "" || e.event.state == "Confirmed") {
+            // If the event date is in the past then disallow update by blocking the default behavior and showing an alert for the same
+            setTimeout(function () {
+                alert("Cannot edit the event.");
+            }, 0);
+            e.preventDefault();
+        }
+    }
+        function dataBound(e) {
+            let scheduler = e.sender;
+            $(".k-event").each(function () {
+                var uid = $(this).data("uid");
+                var event = scheduler.occurrenceByUid(uid);
+                if (event.PatientId != UserId || event.state == "Confirmed") {
+                    // use .k-event-delete,.k-resize-handle if you want to prevent also resizing
+                    $(this).find(".k-event-delete").hide();
+                    $(this).find(".k-event-edite").hide();
+                    @{ ViewBag.Id = Model.Id;}
+                }
+                if (event.PatientId == UserId) {
+                    $(this).css("background-color", "#ffa200");
+                } else if (event.PatientId != null) {
+                    $(this).css("background-color", "#00ff7d");
+                }
+            });
+        }
+
+    function move(e) {
+        if (!isSlotFree(e.start, e.end, e.event) || e.event.state == "Confirmed" || e.event.PatientId != UserId ) {
+            this.wrapper.find(".k-event-drag-hint").addClass("invalid-slot");
+        }
+    }
+
+    function moveEnd(e) {
+
+        if (!isSlotFree(e.start, e.end, e.event)) {
+            e.preventDefault();
+            alert("The slot is taken1");
+        }
+        if (e.event.PatientId != UserId || e.event.state == "Confirmed") {
+            e.preventDefault();
+        }
+    }
+
+    function add(e) {
+        var end = kendo.date.nextDay(kendo.date.getDate(e.event.end));
+
+        if (!isSlotFree(e.event.start, e.event.end, e.event)) {
+            alert("The slot is taken2");
+            e.preventDefault();
+        }
+    }
+
+    function save(e) {
+        var end = kendo.date.nextDay(kendo.date.getDate(e.event.end));
+
+        if (!isSlotFree(kendo.date.getDate(e.event.start), kendo.date.getDate(e.event.end), e.event)) {
+            alert("The slot is taken3");
+            e.preventDefault();
+        }
+    }
+    function isSlotFree(start, end, event) {
+        var scheduler = $("#scheduler").getKendoScheduler();
+        var occurrences = scheduler.occurrencesInRange(start, end);
+
+        var idx = occurrences.indexOf(event);
+        if (idx > -1) {
+            occurrences.splice(idx, 1);
+        }
+
+        return !occurrences.length;
+    }
+
+</script>
+
+<style>
+    .invalid-slot {
+        background: red !important;
+        cursor: no-drop;
+    }
+</style>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

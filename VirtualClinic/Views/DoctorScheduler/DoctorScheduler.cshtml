@@ -1,0 +1,161 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@model List<VirtualClinic.Models.TaskViewModel>
+    <script src="http://cdn.kendostatic.com/2014.1.528/js/jquery.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2014.1.528/js/kendo.all.min.js"></script>
+    @(Html.Kendo().Scheduler<VirtualClinic.Models.TaskViewModel>()
+            .Name("scheduler")
+            .Date(DateTime.Now.Date)
+            .StartTime(DateTime.Now.Date)
+            .Height(1800)
+            .AllDaySlot(false)
+              .Resources(resource =>
+              {
+                  resource.Add(m => m.Color)
+                      .Title("Room")
+                        .Name("Rooms")
+                        .DataTextField("Text")
+                        .DataValueField("Value")
+                        .DataColorField("Color")
+                        .BindTo(new[] {
+                       new { Text = "Doctor", Value = 1, Color = "#0095E6" } ,
+                        new { Text = "Patient", Value = 2, Color = "#00FF7D" }
+                      });
+              })
+            .Events(events => events
+                .Add("add")
+                .Save("save")
+                .Move("move")
+                .MoveEnd("moveEnd")
+                .DataBound("dataBound")
+                .Resize("Disable")
+            )
+            .Views(views =>
+            {
+                views.DayView();
+                views.WorkWeekView(workWeekView => workWeekView.Selected(true));
+                views.WeekView();
+                views.MonthView();
+                views.AgendaView();
+                views.TimelineView();
+            })
+                .Timezone("Etc/UTC")
+                .DataSource(d => d
+                    .Model(m =>
+                    {
+                        m.Id(f => f.TaskID);
+                        m.Field(f => f.Title).DefaultValue("No title");
+                        m.Field(f => f.Title).DefaultValue("No title");
+                        m.Field(f => f.DoctorId).DefaultValue(UserManager.GetUserId(User));
+                        m.Field(f => f.Identifier);
+                        m.RecurrenceId(f => f.RecurrenceID);
+                        m.Field(f => f.Color);
+                        m.Field(f => f.Start);
+                        m.Field(f => f.End);
+                    })
+                    .Read("Read", "DoctorScheduler")
+                    .Create("Create", "DoctorScheduler")
+                    .Destroy("Destroy", "DoctorScheduler")
+                    .Update("Update", "DoctorScheduler")
+
+            )
+        )
+
+    <div id="scheduler"></div>
+
+    <script>
+
+    var UserId = "@UserManager.GetUserAsync(User).Result.Id";
+
+    function OnDataChange() {
+        window.location.reload(true);
+    }
+        function Disable(e) {
+            if (e.event.PatientId != UserId && e.event.PatientId != null) {
+                e.preventDefault();
+            }
+        }
+
+
+    function edit(e) {
+        if (e.event.PatientId !=  UserId && e.event.PatientId!="") {
+            // If the event date is in the past then disallow update by blocking the default behavior and showing an alert for the same
+            setTimeout(function () {
+                alert("Cannot edit the event.");
+            }, 0);
+            e.preventDefault();
+        }
+    }
+        function dataBound(e) {
+            let scheduler = e.sender;
+            $(".k-event").each(function () {
+                var uid = $(this).data("uid");
+                var event = scheduler.occurrenceByUid(uid);
+                //if (event.PatientId !=  UserId) {
+                //    // use .k-event-delete,.k-resize-handle if you want to prevent also resizing
+                //    $(this).find(".k-event-delete").hide();
+                //    $(this).find(".k-event-edite").hide();
+
+                //}
+                if (event.DoctorId == UserId && event.PatientId != null) {
+                    $(this).css("background-color", "#ffa200");
+                } if (event.PatientId == null) {
+                    $(this).css("background-color", "#00ff7d");
+                } 
+            });
+        }
+
+    function move(e) {
+        if (!isSlotFree(e.start, e.end, e.event)) {
+            this.wrapper.find(".k-event-drag-hint").addClass("invalid-slot");
+        }
+    };
+
+        function moveEnd(e) {
+
+            if (!isSlotFree(e.start, e.end, e.event)) {
+            e.preventDefault();
+            alert("The slot is taken1");
+        }
+    }
+
+    function add(e) {
+        var end = kendo.date.nextDay(kendo.date.getDate(e.event.end));
+
+        if (!isSlotFree(e.event.start, e.event.end, e.event)) {
+            alert("The slot is taken2");
+            e.preventDefault();
+        }
+    }
+
+    function save(e) {
+        var end = kendo.date.nextDay(kendo.date.getDate(e.event.end));
+
+        if (!isSlotFree(kendo.date.getDate(e.event.start), kendo.date.getDate(e.event.end), e.event)) {
+            alert("The slot is taken3");
+            e.preventDefault();
+        }
+    }
+        function isSlotFree(start, end, event) {
+            var scheduler = $("#scheduler").getKendoScheduler();
+            var occurrences = scheduler.occurrencesInRange(start, end);
+
+            var idx = occurrences.indexOf(event);
+            if (idx > -1) {
+                occurrences.splice(idx, 0);
+            }
+
+            return !occurrences.length;
+        }
+    </script>
+
+    <style>
+        .invalid-slot {
+            background: red !important;
+            cursor: no-drop;
+        }
+    </style>
+
+

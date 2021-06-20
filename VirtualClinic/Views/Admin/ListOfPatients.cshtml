@@ -1,0 +1,54 @@
+﻿@model IQueryable<VirtualClinic.ViewModels.ApplicationUserViewModel>
+
+<link href="~/css/CrudTable/style.css" rel="stylesheet" />
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<div class="Tablecontainer">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-5">
+            <h2 style="font-size:40px;margin-top:20px;" class="heading-section">Liste Des Patients</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-wrap">
+                <table class="table table-responsive-xl">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>LastName</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr class="alert" role="alert">
+                                @*<td class="d-flex align-items-center">
+                                        <div class="img">
+                                            <img class="img" src="data:image/jpeg;base64,@Convert.ToBase64String(item.Image)" />
+                                        </div>
+                                    </td>*@
+                                <td>@item.FirstName</td>
+                                <td>@item.LastName</td
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+          $(".btn-Modifier").on("click", function (evt) {
+            var clicked_button = $(this);
+            window.location.href = '@Url.Action("ActivateDoctor", "Admin", new {email = "Email"})'.replace("Email", clicked_button.attr("value"));
+        });
+
+    @*var Button = document.getElementsByClassName("btn-Modifier");
+    Button.addEventListener('click' , () =>{
+            window.location.href = '@Url.Action("ActivateDoctor", "Admin" , new {id = "ID"})'.replace("ID", this.attr("value"));
+    });*@
+</script>
