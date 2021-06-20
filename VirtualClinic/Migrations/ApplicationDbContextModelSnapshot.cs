@@ -50,21 +50,21 @@ namespace VirtualClinic.Migrations
                         new
                         {
                             Id = "2301D884-221A-4E7D-B509-0113DCC043E1",
-                            ConcurrencyStamp = "28aa92c2-ecd1-4514-8408-b1977fdc7745",
+                            ConcurrencyStamp = "e0f54528-4b05-467c-b198-2c2b60dee241",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "2301D884-221A-4E7D-B509-0113DCC044E2",
-                            ConcurrencyStamp = "5ba84461-93b5-4ef1-be3b-71bcfcd71b33",
+                            ConcurrencyStamp = "9aec606d-1973-4524-a60c-4121de192c0d",
                             Name = "Doctor",
                             NormalizedName = "DOCTOR"
                         },
                         new
                         {
                             Id = "2301D884-221A-4E7D-B509-0113DCC045E3",
-                            ConcurrencyStamp = "98df0a98-8533-4c4c-9cb3-a2efb2b30e4e",
+                            ConcurrencyStamp = "9303b398-0770-41b8-9677-26f71c4a9517",
                             Name = "Patient",
                             NormalizedName = "PATIENT"
                         });
@@ -293,8 +293,8 @@ namespace VirtualClinic.Migrations
                             Id = "B22698B8-42A2-4115-9631-1C2D1E2AC5F7",
                             AccessFailedCount = 0,
                             Birthday = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "03d468d3-fd45-4059-a821-86389f25f059",
-                            CreateDate = new DateTime(2021, 6, 19, 19, 41, 20, 948, DateTimeKind.Local).AddTicks(2036),
+                            ConcurrencyStamp = "2bc082c6-d0dc-49f8-93a3-7dbf5ba0fcad",
+                            CreateDate = new DateTime(2021, 6, 20, 15, 37, 49, 622, DateTimeKind.Local).AddTicks(2681),
                             Email = "Master@Admin.com",
                             EmailConfirmed = true,
                             FirstName = "Master",
@@ -303,7 +303,7 @@ namespace VirtualClinic.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MASTER@ADMIN.COM",
                             NormalizedUserName = "MASTERADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDcSXn/HFR5yHnRtGhDOahG38haXaL9kMoUn3aqjhKeNKydnp4FVP/tGm+YWsJBWbw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEASwjLmWXZlxyGksWqBq1JjicukWTOrq2vAj+PSvibcPuxoxmOkUhOGFlrogMl5vrw==",
                             PhoneNumber = "XXXXXXXXXXXXX",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "00000000-0000-0000-0000-000000000000",

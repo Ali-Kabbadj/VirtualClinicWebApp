@@ -1,7 +1,4 @@
-
         
-    
-    
     //==== progress design
     gsap.registerPlugin(ScrollTrigger);
 
@@ -10,12 +7,6 @@
         scrollTrigger: { scrub: 2 }
     });
 
- 
-
-    
-    
-    
-    
-    
+  
     
     

@@ -79,9 +79,6 @@ namespace VirtualClinic.Controllers
             return View(register);
         }
 
-
-
-
         // Log IN 
         [HttpGet]
         public IActionResult Login()

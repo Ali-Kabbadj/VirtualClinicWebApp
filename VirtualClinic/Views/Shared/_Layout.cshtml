@@ -11,25 +11,19 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-    <!-- ******************** BootStrap Links ************************--
-
-
-    <!-- ******************* Jquery Links ************************** -->
-    <!-- ******************** fontawsome Links ***********************-->
-    <!-- ********************* Gsap links **************************-->
-    <!-- ********************** Other Links (CSS)*********************-->
-    <!-- ********************** Other scripts (JS)*********************-->
     <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script defer src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js'></script>
+    <script defer src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js'></script>
     <link href="/Layout/css/LayoutStyle.css" rel="stylesheet" />
 
 </head>
 <body>
+    <progress class="prog" max="100" value="70"></progress>
     <nav class="navbar navbar-inverse navbar-expand-xl navbar-dark">
         <div class="navbar-header">
             <a class="navbar-brand" href="#"><i class="fa"><img src="/Images/Logos/logo.png" alt="Alternate Text" /></i>Virtual<b>Clinic</b></a>
@@ -81,15 +75,7 @@
         <div class="main"></div>
         <div class="footer">
             <div class="bubbles">
-                <div class="bubble" style="--size:5.179217591929747rem; --distance:9.136590995738917rem; --position:74.97845409810463%; --time:3.1348271107941623s; --delay:-3.08320203588662s;"></div>
-                <div class="bubble" style="--size:2.9420672202142866rem; --distance:9.026011689151307rem; --position:103.59115011425389%; --time:2.057328278446564s; --delay:-3.0218461688111438s;"></div>
-                <div class="bubble" style="--size:4.747506220433599rem; --distance:8.583859697458054rem; --position:90.02897890273775%; --time:3.4087445252989306s; --delay:-2.797729268098901s;"></div>
-                <div class="bubble" style="--size:5.566526513632732rem; --distance:7.452334818730686rem; --position:29.178986099901664%; --time:2.733146502343706s; --delay:-2.170592076645196s;"></div>
-                <div class="bubble" style="--size:2.7565491058130753rem; --distance:7.950339483889951rem; --position:84.16839795028103%; --time:2.994157981209322s; --delay:-3.9027224213651888s;"></div>
-                <div class="bubble" style="--size:5.221715575056173rem; --distance:6.535440504494796rem; --position:72.42158031030985%; --time:2.253045728464499s; --delay:-3.1286690274351368s;"></div>
-                <div class="bubble" style="--size:4.012308211662661rem; --distance:9.29980838951876rem; --position:17.468106098086878%; --time:2.5326494307653564s; --delay:-3.697145142927084s;"></div>
-                <div class="bubble" style="--size:5.714781494224618rem; --distance:6.394980039023482rem; --position:84.60550256462965%; --time:2.8725444435909187s; --delay:-2.9900586024041194s;"></div>
-                <div class="bubble" style="--size:5.822735260604917rem; --distance:6.3483017018832655rem; --position:93.95981931598021%; --time:3.4253671825534227s; --delay:-2.2636421783944103s;"></div>
+
                 <div class="bubble" style="--size:5.785058688279755rem; --distance:7.1223762414013825rem; --position:20.405805272707415%; --time:2.1790565048513395s; --delay:-3.757771206283688s;"></div>
                 <div class="bubble" style="--size:2.3664268877329766rem; --distance:7.4145940188746735rem; --position:92.71398604067036%; --time:3.370449563991242s; --delay:-2.1874056719175017s;"></div>
                 <div class="bubble" style="--size:2.0663416337448632rem; --distance:9.425417924258774rem; --position:78.67844257045344%; --time:3.7950363124533504s; --delay:-2.648071160126316s;"></div>
@@ -211,15 +197,9 @@
                 <div class="bubble" style="--size:3.8892880521790536rem; --distance:7.03760121734729rem; --position:15.497267139821364%; --time:3.1597056329879623s; --delay:-3.3981523599510415s;"></div>
             </div>
             <div class="content">
-                <div>
-                    <div><b>Eldew</b><a href="#">Secuce</a><a href="#">Drupand</a><a href="#">Oceash</a><a href="#">Ugefe</a><a href="#">Babed</a></div>
-                    <div><b>Spotha</b><a href="#">Miskasa</a><a href="#">Agithe</a><a href="#">Scesha</a><a href="#">Lulle</a></div>
-                    <div><b>Chashakib</b><a href="#">Chogauw</a><a href="#">Phachuled</a><a href="#">Tiebeft</a><a href="#">Ocid</a><a href="#">Izom</a><a href="#">Ort</a></div>
-                    <div><b>Athod</b><a href="#">Pamuz</a><a href="#">Vapert</a><a href="#">Neesk</a><a href="#">Omemanen</a></div>
-                </div>
-                <div>
-                    <a class="image" href="https://codepen.io/z-" target="_blank" style="background-image: url(&quot;https://s3-us-west-2.amazonaws.com/s.cdpn.io/199011/happy.svg&quot;)"></a>
-                    <p>©2019 Not Really</p>
+                <div class="text-center">
+                    <a class="image" asp-controller="Home" asp-action="Index" style="background-image: url(/Images/Logos/logo.png)"></a>
+                    <p>&copy; 2021 - Virtual Clinic</p>
                 </div>
             </div>
         </div>

@@ -236,16 +236,16 @@ namespace VirtualClinic.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2301D884-221A-4E7D-B509-0113DCC043E1", "28aa92c2-ecd1-4514-8408-b1977fdc7745", "Administrator", "ADMINISTRATOR" },
-                    { "2301D884-221A-4E7D-B509-0113DCC044E2", "5ba84461-93b5-4ef1-be3b-71bcfcd71b33", "Doctor", "DOCTOR" },
-                    { "2301D884-221A-4E7D-B509-0113DCC045E3", "98df0a98-8533-4c4c-9cb3-a2efb2b30e4e", "Patient", "PATIENT" }
+                    { "2301D884-221A-4E7D-B509-0113DCC043E1", "e0f54528-4b05-467c-b198-2c2b60dee241", "Administrator", "ADMINISTRATOR" },
+                    { "2301D884-221A-4E7D-B509-0113DCC044E2", "9aec606d-1973-4524-a60c-4121de192c0d", "Doctor", "DOCTOR" },
+                    { "2301D884-221A-4E7D-B509-0113DCC045E3", "9303b398-0770-41b8-9677-26f71c4a9517", "Patient", "PATIENT" }
                 });
 
             migrationBuilder.InsertData(
                 schema: "VirtualClinic",
                 table: "User",
                 columns: new[] { "Id", "AccessFailedCount", "Adress", "Birthday", "City", "ConcurrencyStamp", "Country", "CreateDate", "Discriminator", "Email", "EmailConfirmed", "FirstName", "Gender", "IdCard", "Image", "IsDoctor", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "State", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "B22698B8-42A2-4115-9631-1C2D1E2AC5F7", 0, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "03d468d3-fd45-4059-a821-86389f25f059", null, new DateTime(2021, 6, 19, 19, 41, 20, 948, DateTimeKind.Local).AddTicks(2036), "ApplicationUser", "Master@Admin.com", true, "Master", null, null, null, false, "Admin", false, null, "MASTER@ADMIN.COM", "MASTERADMIN", "AQAAAAEAACcQAAAAEDcSXn/HFR5yHnRtGhDOahG38haXaL9kMoUn3aqjhKeNKydnp4FVP/tGm+YWsJBWbw==", "XXXXXXXXXXXXX", true, "00000000-0000-0000-0000-000000000000", null, false, "masteradmin" });
+                values: new object[] { "B22698B8-42A2-4115-9631-1C2D1E2AC5F7", 0, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "2bc082c6-d0dc-49f8-93a3-7dbf5ba0fcad", null, new DateTime(2021, 6, 20, 15, 37, 49, 622, DateTimeKind.Local).AddTicks(2681), "ApplicationUser", "Master@Admin.com", true, "Master", null, null, null, false, "Admin", false, null, "MASTER@ADMIN.COM", "MASTERADMIN", "AQAAAAEAACcQAAAAEASwjLmWXZlxyGksWqBq1JjicukWTOrq2vAj+PSvibcPuxoxmOkUhOGFlrogMl5vrw==", "XXXXXXXXXXXXX", true, "00000000-0000-0000-0000-000000000000", null, false, "masteradmin" });
 
             migrationBuilder.InsertData(
                 schema: "VirtualClinic",
