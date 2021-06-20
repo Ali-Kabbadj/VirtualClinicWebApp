@@ -155,14 +155,14 @@ namespace VirtualClinic.Controllers
         
          public JsonResult IdCardExists(string IdCard)
         {
-            //check if any of the UserName matches the UserName specified in the Parameter using the ANY extension method.  
+            //check if any of the IdCard matches the IdCard specified in the Parameter using the ANY extension method.  
             return Json(!_db.Users.Any(x => x.IdCard == IdCard));
         }
 
-        public JsonResult IdCardExists(string IdCard)
+        public JsonResult PhoneExists(string Phone)
         {
-            //check if any of the UserName matches the UserName specified in the Parameter using the ANY extension method.  
-            return Json(!_db.Users.Any(x => x.IdCard == IdCard));
+            //check if any of the phone matches the phone specified in the Parameter using the ANY extension method.  
+            return Json(!_db.Users.Any(x => x.PhoneNumber == Phone));
         }
     }
 
