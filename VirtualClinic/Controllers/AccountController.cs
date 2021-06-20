@@ -66,6 +66,7 @@ namespace VirtualClinic.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UserRegister(RegisterViewModel register,string AsDoctor)
         {
             if (ModelState.IsValid)
@@ -88,9 +89,8 @@ namespace VirtualClinic.Controllers
             return View();
         }
 
-
-
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel login)
         {
             if (ModelState.IsValid)
@@ -104,9 +104,9 @@ namespace VirtualClinic.Controllers
                     {
                         return RedirectToAction("Index", "Home");
                     }
-                    ModelState.AddModelError("", "Invalid Password.");
+                    ModelState.AddModelError("pass", "Invalid Password.");
                 }
-                ModelState.AddModelError("", "Invalid Email.");
+                ModelState.AddModelError("email", "Invalid Email.");
             }
             
             ModelState.AddModelError("", "Invalid login attempt.");
@@ -114,8 +114,6 @@ namespace VirtualClinic.Controllers
                         
         }
    
-
-
         public IActionResult ConfirmEmailPage(ApplicationUserViewModel User)
         {
             return View(User);

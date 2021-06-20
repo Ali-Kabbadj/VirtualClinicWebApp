@@ -39,9 +39,10 @@ namespace VirtualClinic.Services.IdentityService
             _signInManager = signInManager;
         }
 
+        // this Method create a user(patient or doctor) and add it to database
         public async Task<IdentityResult> CreateUser(RegisterViewModel register, string AsDoctor)
         {
-            if (AsDoctor == "true")
+            if (AsDoctor.ToLower() == "true")
                 register.IsDoctor = true;
             else
                 register.IsDoctor = false;
@@ -50,10 +51,12 @@ namespace VirtualClinic.Services.IdentityService
             byte[] Image = null;
             if (register.Image != null)
             {
+                // Upload its an action on Upload Service that that convert file .png /... to Array of byte
                 Image = Upload.Upload(register.Image);
             }
             else
             {
+                // here we take image from wwwroot as default if the user thasn't upload any image.
                 var path = _environment.WebRootFileProvider.GetFileInfo("Images/Img/NoImage.jpg")?.PhysicalPath;
                 Image = File.ReadAllBytes(path);
             }
@@ -75,7 +78,7 @@ namespace VirtualClinic.Services.IdentityService
             await _db.SaveChangesAsync();
             return result;
         }
-
+        // LoginUser Method : it's an action that look if user have authorisation to use the we app. 
         public async Task<SignInResult> LoginUser(LoginViewModel login, bool RememberMe, bool lockoutOnFailure)
         {
             var user = await _userManager.FindByEmailAsync(login.Email);
@@ -87,10 +90,10 @@ namespace VirtualClinic.Services.IdentityService
             }
             return null;
         }
-
-      
+        // we use this Method to send confirmation email to users 
         public void SendConfirmationEmail(ApplicationUser user)
         {
+            // path of temlate that send to users
             string FilePath = _environment.WebRootFileProvider.GetFileInfo("Templates/HtmlMailConfirmationPageModel.html")?.PhysicalPath; ;
             StreamReader str = new StreamReader(FilePath);
             string MailText = str.ReadToEnd();
@@ -105,13 +108,11 @@ namespace VirtualClinic.Services.IdentityService
             builder.HtmlBody = MailText;
             mailRequest.Body = builder.ToMessageBody();
             _mailService.SendEmailAsync(mailRequest);
-        }
-
+        }        
         public async void Logout()
         {
             await _signInManager.SignOutAsync();
-        }
-
+        }        
         public async void AddUserRole(string userId ,string RoleId)
         {
             var userrole = new IdentityUserRole<string>();
@@ -120,6 +121,7 @@ namespace VirtualClinic.Services.IdentityService
             await _db.UserRoles.AddAsync(userrole);  
         }
 
+        // using this method to get all users 
         public IQueryable<ApplicationUserViewModel> GetAll()
         {
 
@@ -144,31 +146,28 @@ namespace VirtualClinic.Services.IdentityService
             var UsersViewModel = ModelsToViewModels(Users);
             return UsersViewModel;
         }
-
+        // using this method to get users by their id
         public async Task<ApplicationUserViewModel> GetUserById(string id)
         {
             var User = await _userManager.FindByIdAsync(id);
             var userModel = ModelToViewModel(User);
             return userModel;
         }
-
+        // ...... by their email
         public async Task<ApplicationUserViewModel> GetUserByEmail(string email)
         {
             var User = await _userManager.FindByEmailAsync(email);
             var userModel = ModelToViewModel(User);
             return userModel;
         }
-
+        // .... by their user name
         public async Task<ApplicationUserViewModel> GetUserByUserName(string userName)
         {
             var User = await _userManager.FindByNameAsync(userName);
             var userModel = ModelToViewModel(User);
             return userModel;
         }
-        public void LogOutUser()
-        {
-            throw new NotImplementedException();
-        }
+        // using this method to convert all users ApplicationUser class to ApplicationUserViewModel (model to view model)
         public IQueryable<ApplicationUserViewModel> ModelsToViewModels(IQueryable<ApplicationUser> Users)
         {
             IQueryable<ApplicationUserViewModel> UsersViewModel = Users.Select(UserViewModel => new ApplicationUserViewModel()
@@ -188,7 +187,7 @@ namespace VirtualClinic.Services.IdentityService
             });
             return UsersViewModel;
         }
-
+        // using this method to convert ApplicationUser class to ApplicationUserViewModel (model to view model)
         public ApplicationUserViewModel ModelToViewModel(ApplicationUser User)
         {
             ApplicationUserViewModel UsersViewModel = new ApplicationUserViewModel(_environment)

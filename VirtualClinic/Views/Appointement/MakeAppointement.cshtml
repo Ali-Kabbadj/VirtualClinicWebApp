@@ -42,7 +42,7 @@
     @(Html.Kendo().Scheduler<VirtualClinic.Models.TaskViewModel>()
             .Name("scheduler")
             .Date(DateTime.Now.Date)
-            .StartTime(DateTime.Now.Date)
+            .StartTime(DateTime.Now)
             .Height(600)
             .AllDaySlot(false)
             .Events(e =>

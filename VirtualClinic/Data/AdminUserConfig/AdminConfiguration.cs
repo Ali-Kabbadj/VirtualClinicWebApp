@@ -11,6 +11,7 @@ namespace WebApplication1.Data.AdminUserConfig
 {
     public class AdminConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
+        
         private const string adminId = "B22698B8-42A2-4115-9631-1C2D1E2AC5F7";
 
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
@@ -39,7 +40,7 @@ namespace WebApplication1.Data.AdminUserConfig
         public string PassGenerate(ApplicationUser user)
         {
             var passHash = new PasswordHasher<ApplicationUser>();
-            return passHash.HashPassword(user, "0668882287_Ali");
+            return passHash.HashPassword(user, "VirtualClinic_2021");
         }
     }
 }

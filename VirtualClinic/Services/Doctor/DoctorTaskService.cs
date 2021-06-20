@@ -66,27 +66,12 @@ namespace VirtualClinic.Services.Doctor
         }
         
 
-
-        public virtual void Insert(DoctorViewModel doctor, ModelStateDictionary modelState)
-        {
-            if (ValidateModel(doctor, modelState))
-            {
-                var entity = doctor.ToEntityDoctor();
-                db.Doctors.Add(entity);
-                db.SaveChanges();
-
-            }
-        }
-
         public virtual void Update(DoctorViewModel doctor, ModelStateDictionary modelState)
-        {
-            if (ValidateModel(doctor, modelState))
-            {
+        {            
                 var entity = doctor.ToEntityDoctor();
                 db.Doctors.Attach(entity);
                 db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();
-            }
         }
 
         public virtual void Delete(DoctorViewModel doctor, ModelStateDictionary modelState)
@@ -106,20 +91,9 @@ namespace VirtualClinic.Services.Doctor
             db.SaveChanges();
         }
 
-        private bool ValidateModel(DoctorViewModel doctor, ModelStateDictionary modelState)
-        {
-            //Test Doctor model state here
-            return true;
-        }
-
         public DoctorViewModel One(Func<DoctorViewModel, bool> predicate)
         {
             return GetAllDoctors().FirstOrDefault(predicate);
-        }
-
-        public void Dispose()
-        {
-            db.Dispose();
         }
     }
 }

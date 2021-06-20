@@ -18,6 +18,7 @@ namespace VirtualClinic.Services.EmailService
         {
             _mailSettings = mailSettings.Value;
         }
+        // this method sends emails
         public async Task SendEmailAsync(MailRequest mailRequest)
         {
             var email = new MimeMessage();
@@ -35,7 +36,7 @@ namespace VirtualClinic.Services.EmailService
                     {
                         using (var ms = new MemoryStream())
                         {
-                            file.CopyTo(ms);
+                            await file.CopyToAsync(ms);
                             fileBytes = ms.ToArray();
                         }
                         builder.Attachments.Add(file.FileName, fileBytes, ContentType.Parse(file.ContentType));
@@ -44,10 +45,10 @@ namespace VirtualClinic.Services.EmailService
             }
             email.Body = mailRequest.Body;
             using var smtp = new SmtpClient();
-             smtp.Connect(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
-            smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
-            smtp.Send(email);
-            smtp.Disconnect(true);
+            await smtp.ConnectAsync(_mailSettings.Host, _mailSettings.Port, SecureSocketOptions.StartTls);
+            await smtp.AuthenticateAsync(_mailSettings.Mail, _mailSettings.Password);
+            await smtp.SendAsync(email);
+            await smtp.DisconnectAsync(true);
 
         }
     }

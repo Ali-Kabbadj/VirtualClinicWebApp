@@ -43,8 +43,7 @@ namespace VirtualClinic.Controllers.Scheduler
         }
 
         public virtual JsonResult Read([DataSourceRequest] DataSourceRequest request)
-        {
-            //return Json(taskService.GetRangebyid(GetCurrentUserId().Result).ToDataSourceResult(request));
+        {            
             return Json(taskService.GetAll().Where(Task => (Task.DoctorId == GetCurrentUserId().Result && Task.PatientId==null) || (Task.DoctorId == GetCurrentUserId().Result && Task.state=="Confirmed")).ToDataSourceResult(request)); ;
         }
 
@@ -96,7 +95,7 @@ namespace VirtualClinic.Controllers.Scheduler
                 taskService.Insert(task, ModelState);
             }
             var normalreturn = taskService.GetAll().Where(Doctor => Doctor.DoctorId == GetCurrentUserId().Result).OrderBy(task => task.TaskID).Last();
-            //return Json(new[] { taskService.GetAll().Where(Doctor => Doctor.DoctorId == GetCurrentUserId().Result).Last() }.ToDataSourceResult(request, ModelState));
+           
             return Json(new[] { normalreturn }.ToDataSourceResult(request, ModelState));
         }
 

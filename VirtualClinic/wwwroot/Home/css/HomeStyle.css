@@ -62,7 +62,7 @@ p {
     position: fixed;
     height: 100vh;
     width: 100%;
-    background: url("/Home/HomePage.jpg") center center no-repeat;
+    background: url("/Home/img/HomePage.jpg") center center no-repeat;
     background-color: rgb(33,14,61);
     background-size: cover;
     z-index: 99;

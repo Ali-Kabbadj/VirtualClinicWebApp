@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +12,30 @@ namespace VirtualClinic.ViewModels
     public class PatientViewModel 
     {
         public string Id { get; set; }
+        [PersonalData]
         public byte[] Image { get; set; }
+        [PersonalData]
         public string FirstName { get; set; }
+        [PersonalData]
         public string LastName { get; set; }
+        [PersonalData]
         public DateTime BirthDate { get; set; }
+        [PersonalData]
         public string IdCard { get; set; }
+        [PersonalData]
         public string Country { get; set; }
+        [PersonalData]
         public string State { get; set; }
+        [PersonalData]
         public string City { get; set; }
+        [PersonalData]
         public string Adress { get; set; }
+        [PersonalData]
         public string Gender { get; set; }
+        [PersonalData]
         public string PhoneNumber { get; set; }
         public List<Task> Appointements { get; set; }
-        public float Price { get; set; }
-        public string Speciality { get; set; }
-        public bool IsDoctor { get; set; }
+        public bool IsDoctor { get; set; } = false;
         public IFormFile IFormImage { get; set; }
 
 

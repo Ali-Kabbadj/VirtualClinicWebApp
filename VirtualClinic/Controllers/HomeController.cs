@@ -29,11 +29,11 @@ namespace VirtualClinic.Controllers
             return View();
         }
 
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        //public IActionResult Error()
-        //{
-        //    return View(new ViewModels.ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        //}
+        [Route("/NotFound")]
+        public IActionResult NotFound()
+        {
+            return View();
+        }
 
      
     }

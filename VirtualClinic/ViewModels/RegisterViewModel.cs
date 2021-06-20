@@ -18,16 +18,17 @@ namespace VirtualClinic.ViewModels
 
         [Required]
         [Column(TypeName = "varchar(100)")]
+        [PersonalData]
         public string FirstName { get; set; }
 
         [Required]
         [Column(TypeName = "varchar(100)")]
+        [PersonalData]
         public string LastName { get; set; }
 
         [Required]
         [PersonalData]
         [DataType(DataType.DateTime)]
-        //[Remote("BirthDateInRage", "Account", ErrorMessage = "Age must be between 26 and 60")]
         public DateTime BirthDate { get; set; }
 
         [PersonalData]
@@ -51,18 +52,21 @@ namespace VirtualClinic.ViewModels
         public string State { get; set; }
 
         [Required(ErrorMessage = "Please choose gender")]
+        [PersonalData]
         public string Gender { get; set; }
 
         [Required]
         [EmailAddress]
         [Remote("EmailExists", "Account",ErrorMessage="Email already in use")]
         [Display(Name = "Email")]
+        [PersonalData]
         public string Email { get; set; }
 
         [Required]
         [StringLength(20, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
+        [PersonalData]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
@@ -74,10 +78,12 @@ namespace VirtualClinic.ViewModels
         [DataType(DataType.PhoneNumber)]
         [Required]
         [Remote("PhoneExists", "Account", ErrorMessage = "Phone Number already in use")]
+        [PersonalData]
         public string PhoneNumber { get; set; }
 
         public bool IsDoctor { get; set; }
-        public string Adress { get; set; }
+        [PersonalData]
+        public string Adress { get; set; }        
         public long Price { get; set; }
         public string Specialist { get; set; }
     }

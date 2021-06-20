@@ -10,11 +10,7 @@ namespace VirtualClinic.Services.Doctor
     public interface IDoctorTaskService<T> where T : class,IDoctor
     {
         IQueryable<T> GetAllDoctors();
-
-        void Insert(T Doctor, ModelStateDictionary modelState);
-
         void Update(T Doctor, ModelStateDictionary modelState);
-
         void Delete(T Doctor, ModelStateDictionary modelState);
     }
 }

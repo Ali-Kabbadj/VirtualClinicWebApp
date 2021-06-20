@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,10 +11,12 @@ namespace VirtualClinic.ViewModels
     {
         [Required]
         [EmailAddress]
+        [PersonalData]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
+        [PersonalData]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]

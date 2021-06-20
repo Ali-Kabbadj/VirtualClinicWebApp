@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VirtualClinic.Data;
@@ -78,13 +76,14 @@ namespace VirtualClinic.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Login(LoginViewModel user)
         {
             if (_signInManager.IsSignedIn(User))
             {
                 _signInManager.SignOutAsync();
             }
-            var resulte = _userService.LoginUser(user ,false ,false).Result;
+            var resulte = _userService.LoginUser(user ,user.RememberMe ,false).Result;
             return RedirectToAction("Index");
         }
     }

@@ -16,7 +16,7 @@ namespace VirtualClinic.Services.Upload
             _environment = Environment;
         }
 
-        // Method UploadFile-- return fileName And Add Image To Profiles Folder -- Profiles Dir is in WWWRoot Folder
+        // this method convert file to byte[]
         public Byte[] Upload(IFormFile Iformimage)
         {
             Byte[] Image = null;
