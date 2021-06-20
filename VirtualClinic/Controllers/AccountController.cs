@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using VirtualClinic.Models.Identity;
 using VirtualClinic.Services.IdentityService;
 using VirtualClinic.Services.EmailService;
+using System.Linq;
 
 namespace VirtualClinic.Controllers
 {
@@ -146,8 +147,23 @@ namespace VirtualClinic.Controllers
             }
         }
 
+        public JsonResult EmailExists(string email)
+        {
+            //check if any of the email matches the email specified in the Parameter using the ANY extension method.  
+            return Json(!_db.Users.Any(x => x.Email == email));
+        }
+        
+         public JsonResult IdCardExists(string IdCard)
+        {
+            //check if any of the UserName matches the UserName specified in the Parameter using the ANY extension method.  
+            return Json(!_db.Users.Any(x => x.IdCard == IdCard));
+        }
 
-
+        public JsonResult IdCardExists(string IdCard)
+        {
+            //check if any of the UserName matches the UserName specified in the Parameter using the ANY extension method.  
+            return Json(!_db.Users.Any(x => x.IdCard == IdCard));
+        }
     }
 
 
