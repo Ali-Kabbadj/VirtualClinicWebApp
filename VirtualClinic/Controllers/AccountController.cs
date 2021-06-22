@@ -5,17 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using VirtualClinic.Data;
 using VirtualClinic.ViewModels;
-using System;
 using System.Threading.Tasks;
 using VirtualClinic.Models.Identity;
 using VirtualClinic.Services.IdentityService;
 using VirtualClinic.Services.EmailService;
 using System.Linq;
-using System.Net.Http;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
-using System.Net.Http.Headers;
 
 
 
@@ -89,8 +83,9 @@ namespace VirtualClinic.Controllers
                     }
                     return View("ConfirmEmailPage", register);
                }
-                return View(register);
+               return View(register);
         }
+
 
         // Log IN 
         [HttpGet]
@@ -106,11 +101,12 @@ namespace VirtualClinic.Controllers
             return View(login);
         }
 
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel login)
         {
-            
                 var user = await _userManager.FindByEmailAsync(login.Email);
                 if (user != null)
                 {
@@ -210,7 +206,5 @@ namespace VirtualClinic.Controllers
         }
 
     }
-
-    
 }
 
