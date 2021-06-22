@@ -1,7 +1,14 @@
 ﻿@model VirtualClinic.ViewModels.ApplicationUserViewModel
 
-    <form action="/" method="post" enctype="multipart/form-data">
-        <input type="email" asp-for="Email" />
-        <input type="password" asp-for="Password" />
-        <button asp-action="Login" asp-controller="Admin" type="submit"></button> />
-    </form>
+
+
+<link rel="stylesheet" href="~/account/css/Login/LoginStyle.css" />
+
+
+<form asp-action="Login" asp-controller="Admin" method="post" class="login" style="background :url(../images/logos/logocolor.png)  no-repeat bottom right">
+    <h1>Admin Login</h1>
+    <input asp-for="Email" type="email" placeholder="Exemple@Email.com">
+    <input asp-for="Password" type="password" placeholder="**********">
+    <p>Remember Me<input style="margin-left:10px;" asp-for="RememberMe" type="checkbox" name="Remember Me" value="" /></p>
+    <button type="submit">Login</button>
+</form>

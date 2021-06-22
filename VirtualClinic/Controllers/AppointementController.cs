@@ -62,7 +62,6 @@ namespace VirtualClinic.Controllers
             var doctor = _db.Doctors.Find(doctorid);
             ViewBag.min = DateTime.Now;
             @ViewBag.Id = doctor.Id;
-            //ViewData["Image"] = doctor.Image;
             ViewData["Name"] = doctor.FirstName + " " + doctor.LastName;
             var doctorViewModel = new DoctorViewModel()
             {

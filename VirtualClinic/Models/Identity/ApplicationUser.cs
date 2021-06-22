@@ -6,6 +6,7 @@ namespace VirtualClinic.Models.Identity
 {
     public class ApplicationUser : IdentityUser
     {
+
         public bool IsDoctor { get; set; } = false;
         [PersonalData]
         public Byte[] Image { get; set; }

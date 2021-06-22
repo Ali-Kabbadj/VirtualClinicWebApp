@@ -3,13 +3,36 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @model List<VirtualClinic.Models.TaskViewModel>
-    <script src="http://cdn.kendostatic.com/2014.1.528/js/jquery.min.js"></script>
-    <script src="http://cdn.kendostatic.com/2014.1.528/js/kendo.all.min.js"></script>
+@{ var kendoVersion = "2021.1.330";}
+<link href="https://kendo.cdn.telerik.com/@kendoVersion/styles/kendo.common-material.min.css" rel="stylesheet" type="text/css" />
+<link href="https://kendo.cdn.telerik.com/@kendoVersion/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+<link href="https://kendo.cdn.telerik.com/@kendoVersion/styles/kendo.material.min.css" rel="stylesheet" type="text/css" />
+
+<script defer src="~/lib/jquery/dist/jquery.min.js"></script>
+<script defer src="~/lib/jquery/dist/jquery.js"></script>
+
+<script defer src="https://kendo.cdn.telerik.com/@kendoVersion/js/jquery.min.js"></script>
+<script defer src="https://kendo.cdn.telerik.com/@kendoVersion/js/jszip.min.js"></script>
+<script defer src="https://kendo.cdn.telerik.com/@kendoVersion/js/kendo.all.min.js"></script>
+<script defer src="https://kendo.cdn.telerik.com/@kendoVersion/js/kendo.aspnetmvc.min.js"></script>
+<script defer src="https://kit.fontawesome.com/dfaaddb7ea.js" crossorigin="anonymous"></script>
+<link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+<link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet" />
+<script src="https://kendo.cdn.telerik.com/2021.2.511/js/jquery.min.js"></script>
+
+@* Add the Kendo UI scripts: *@
+<script src="https://kendo.cdn.telerik.com/2021.2.511/js/kendo.all.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2021.2.511/js/kendo.aspnetmvc.min.js"></script>
+
+
+<h1 style="text-align:center;margin-top:10px;">Doctor Calendar</h1>
+<div style="max-height:95vh;">
+
     @(Html.Kendo().Scheduler<VirtualClinic.Models.TaskViewModel>()
             .Name("scheduler")
             .Date(DateTime.Now.Date)
             .StartTime(DateTime.Now.Date)
-            .Height(1800)
+            .Height(800)
             .AllDaySlot(false)
               .Resources(resource =>
               {
@@ -63,9 +86,10 @@
             )
         )
 
-    <div id="scheduler"></div>
 
-    <script>
+
+</div>
+<script>
 
     var UserId = "@UserManager.GetUserAsync(User).Result.Id";
 
@@ -103,7 +127,7 @@
                     $(this).css("background-color", "#ffa200");
                 } if (event.PatientId == null) {
                     $(this).css("background-color", "#00ff7d");
-                } 
+                }
             });
         }
 
@@ -149,13 +173,17 @@
 
             return !occurrences.length;
         }
-    </script>
+</script>
 
-    <style>
-        .invalid-slot {
-            background: red !important;
-            cursor: no-drop;
-        }
-    </style>
+<style>
+    .invalid-slot {
+        background: red !important;
+        cursor: no-drop;
+    }
+    
+    body {
+        margin-bottom: -6px !important;
+    }
+</style>
 
 

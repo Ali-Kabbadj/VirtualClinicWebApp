@@ -1,5 +1,10 @@
 ﻿@model IQueryable<VirtualClinic.ViewModels.ApplicationUserViewModel>
 
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
 <link href="~/css/CrudTable/style.css" rel="stylesheet" />
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <div class="Tablecontainer">
@@ -29,9 +34,11 @@
                                         </div>
                                     </td>*@
                                 <td>@item.FirstName</td>
-                                <td>@item.LastName</td
-                            </tr>
-                        }
+                                <td>
+                                    @item.LastName
+                            </td>
+                        </tr>
+                    }
 
                     </tbody>
                 </table>

@@ -80,7 +80,7 @@ namespace VirtualClinic.Controllers
                 
                 Amount = long.Parse(Task.Amount.ToString()),
                 Description = "Appointment Payment",
-                Currency = "mad",
+                Currency = "usd",
                 Source = stripeToken,
                 ReceiptEmail = stripeEmail,
                 Metadata = new Dictionary<string, string>()
@@ -107,7 +107,7 @@ namespace VirtualClinic.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            return RedirectToAction("Index");
         }
 
     }

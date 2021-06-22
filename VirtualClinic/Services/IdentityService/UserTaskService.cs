@@ -39,6 +39,10 @@ namespace VirtualClinic.Services.IdentityService
             _signInManager = signInManager;
         }
 
+
+
+
+
         // this Method create a user(patient or doctor) and add it to database
         public async Task<IdentityResult> CreateUser(RegisterViewModel register, string AsDoctor)
         {
@@ -65,19 +69,25 @@ namespace VirtualClinic.Services.IdentityService
             string roleid = "";
             if (register.IsDoctor)
             {
-                user = new Models.Identity.Doctor {Image=Image, State = register.State, FirstName = register.FirstName, LastName = register.LastName, Birthday = register.BirthDate, UserName = register.LastName.ToUpper() + R.Next(0, 9999), Email = register.Email, City = register.City, Country = register.Country, Gender = register.Gender, IdCard = register.IdCard, PhoneNumber = register.PhoneNumber, Speciality = register.Specialist, Price = register.Price, Adress = register.Adress, IsDoctor = true };
+                user = new Models.Identity.Doctor { Image=Image, State = register.State, FirstName = register.FirstName, LastName = register.LastName, Birthday = register.BirthDate, UserName = register.LastName.ToUpper() + R.Next(0, 9999), Email = register.Email, City = register.City, Country = register.Country, Gender = register.Gender, IdCard = register.IdCard, PhoneNumber = register.PhoneNumber, Speciality = register.Specialist, Price = register.Price, Adress = register.Adress, IsDoctor = true };
                 roleid = "2301D884-221A-4E7D-B509-0113DCC044E2";
+                user.UserName = register.UserName;
             }
             else
             {
                 user = new Patient {Image=Image, State = register.State, Adress = register.Adress,FirstName = register.FirstName, LastName = register.LastName, Birthday = register.BirthDate, UserName = register.LastName.ToUpper() +R.Next(0, 9999), Email = register.Email, City = register.City, Country = register.Country, Gender = register.Gender, IdCard = register.IdCard, PhoneNumber = register.PhoneNumber };
                 roleid = "2301D884-221A-4E7D-B509-0113DCC045E3";
+                user.UserName = register.UserName;
             }
             var result = await _userManager.CreateAsync(user, register.Password);
             AddUserRole(user.Id, roleid);
             await _db.SaveChangesAsync();
             return result;
         }
+
+
+
+
         // LoginUser Method : it's an action that look if user have authorisation to use the we app. 
         public async Task<SignInResult> LoginUser(LoginViewModel login, bool RememberMe, bool lockoutOnFailure)
         {

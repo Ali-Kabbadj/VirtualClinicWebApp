@@ -35,7 +35,12 @@ namespace VirtualClinic.Controllers
         {
             if (_signInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
             {
-                return View();
+                AdminDashboardViewModel M = new AdminDashboardViewModel();
+                M.NumberOfDoctors = _context.Doctors.Count();
+                M.NumberOfPatients = _context.Patients.Count();
+                M.NumberOfConfirmeedAppointments = _context.Tasks.Where(t => t.state == "Confirmed").Count();
+                M.NumberOfUnConfirmeedAppointments = _context.Tasks.Where(t => t.state == "Unconfirmed").Count();
+                return View(M);
             }
             else
             {
@@ -84,7 +89,11 @@ namespace VirtualClinic.Controllers
                 _signInManager.SignOutAsync();
             }
             var resulte = _userService.LoginUser(user ,user.RememberMe ,false).Result;
-            return RedirectToAction("Index");
+            if (resulte.Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Login");
         }
     }
 }

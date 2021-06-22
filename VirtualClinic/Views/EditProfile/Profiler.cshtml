@@ -1,0 +1,221 @@
+﻿@model VirtualClinic.ViewModels.EditProfileViewModel
+
+<script defer src="/js/country_state_city.js"></script>
+
+<link href="~/css/Profiler.css" rel="stylesheet" />
+
+<script src="~/lib/jQuery/dist/jQuery.js"></script>
+<script defer src="~/js/country_state_city.js"></script>
+<script defer src="~/lib/jQuery/dist/jQuery.min.js"></script>
+
+
+
+
+<div class="container">
+    <h1 style="text-align:center;">Edit Profile</h1>
+    <hr>
+    <div class="row">
+        <!-- left column -->
+        <form asp-action="Profiler" asp-controller="EditProfile" enctype="multipart/form-data">
+            <div class="col-md-3">
+                <div class="text-center">
+                    <img style="max-width:180px;" id="img" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Image)" class="avatar" alt="avatar">
+                    <h6>Upload a different photo...</h6>
+
+                    <input asp-for="ImageName" onchange="preview_image(event)" type="file" class="form-control">
+                </div>
+            </div>
+
+            <!-- edit form column -->
+            <div class="col-md-9 personal-info">
+
+                <div class="form-horizontal" role="form">
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">First name:</label>
+                        <div class="col-lg-8">
+                            <input asp-for="FirstName" class="form-control" type="text" value="@Model.FirstName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Last name:</label>
+                        <div class="col-lg-8">
+                            <input asp-for="LastName" class="form-control" type="text" value="@Model.LastName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Birthday:</label>
+                        <div class="col-lg-8">
+                            <input asp-for="BirthDate" class="form-control" type="date" value="@Model.BirthDate">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Id Card:</label>
+                        <div class="col-lg-8">
+                            <input asp-for="IdCard" class="form-control" type="text" value="@Model.IdCard">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Country:</label>
+                        <div class="col-lg-8">
+                            <select  class="form-control countries" id="countryId" asp-for="Country">
+                                <option selected="@Model.Country">@Model.Country</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">State:</label>
+                        <div class="col-lg-8">
+                            <select class="form-control states" id="stateId" asp-for="State">
+                                <option selected="@Model.State">@Model.State</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">City:</label>
+                        <div class="col-lg-8">
+                            <select  class="form-control cities" id="cityId" asp-for="City">
+                                <option selected="@Model.City">@Model.City</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Gender:</label>
+                        <div class="col-lg-8">
+                            <select name="gender" class="form-control" id="" asp-for="City">
+                                <option hidden selected="@Model.Gender">@Model.Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Adress:</label>
+                        <div class="col-lg-8">
+                            <input asp-for="Adress" class="form-control" type="text" value="@Model.Adress">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Email:</label>
+                        <div class="col-lg-8">
+                            <input asp-for="Email" class="form-control" type="email" value="@Model.Email">
+                        </div>
+                    </div>
+
+                    @if (Model.IsDoctor)
+                    {
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Speciality:</label>
+            <div class="col-lg-8">
+              
+
+                <select asp-for="Specialist" class="form-control">
+                    <option hidden selected value="@Model.Specialist">@Model.Specialist</option>
+                    <option value="Vascular Surgery">Vascular Surgery</option>
+                    <option value="Urology">Urology</option>
+                    <option value="Thoracic Surgery">Thoracic Surgery</option>
+                    <option value="Rheumatology">Rheumatology</option>
+                    <option value="Radiology">Radiology</option>
+                    <option value="Radiation Oncology">Radiation Oncology</option>
+                    <option value="Pulmonology">SPulmonology</option>
+                    <option value="Psychiatry">Psychiatry</option>
+                    <option value="Plastic Surgery">Plastic Surgery</option>
+                    <option value="Physical Medicine / Rehab">Physical Medicine / Rehab</option>
+                    <option value="Pediatrics">Pediatrics</option>
+                    <option value="Pediatric Infectious Disease">Pediatric Infectious Disease</option>
+                    <option value="Pediatric Hematology/ Oncology">Pediatric Hematology/ Oncology</option>
+                    <option value="Pediatric Gastroenterology">Pediatric Gastroenterology</option>
+                    <option value="Pediatric Endocrinology">Pediatric Endocrinology</option>
+                    <option value="Pediatric Emergency Medicine">Pediatric Emergency Medicine</option>
+                    <option value="Pediatric Cardiology">Pediatric Cardiology</option>
+                    <option value="Otolaryngology (ENT)">Otolaryngology (ENT)</option>
+                    <option value="Orthopaedic Surgery">Orthopaedic Surgery</option>
+                    <option value="Ophthalmology">Ophthalmology</option>
+                    <option value="Oncology">Oncology</option>
+                    <option value="Occupational Medicine">Occupational Medicine</option>
+                    <option value="Obstetrics & Gynecology">Obstetrics & Gynecology</option>
+                    <option value="Neurosurgery">Neurosurgery</option>
+                    <option value="Neurology">Neurology</option>
+                    <option value="Neonat/Perinatology">Neonat/Perinatology</option>
+                    <option value="Medicine/Pediatrics">Medicine/Pediatrics</option>
+                    <option value="Internal Medicine">Internal Medicine</option>
+                    <option value="Infectious Disease">Infectious Disease</option>
+                    <option value="Geriatrics">Geriatrics</option>
+                    <option value="General Surgery">General Surgery</option>
+                    <option value="Gastroenterology">Gastroenterology</option>
+                    <option value="Family Medicine">Family Medicine</option>
+                    <option value="Endocrinology">Endocrinology</option>
+                    <option value="Emergency Medicine">Emergency Medicine</option>
+                    <option value="Dermatology">Dermatology</option>
+                    <option value="Colon & Rectal Surgery">Colon & Rectal Surgery</option>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Anesthesiology">Anesthesiology</option>
+                    <option value="Allergy & Immunology">Allergy & Immunology</option>
+                </select>
+                <span class="select-btn">
+                    <i class="zmdi zmdi-chevron-down"></i>
+                </span>
+                <span asp-validation-for="Specialist" class="text-danger"></span>
+
+            </div>
+        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Price:</label>
+                            <div class="col-lg-8">
+                                <input asp-for="Price" class="form-control" type="number" value="@Model.Price">
+                            </div>
+                        </div>}
+
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Currente Password:</label>
+                        <div class="col-lg-8">
+                            <input asp-for="CurrentPassword" class="form-control" type="password" value="@Model.CurrentPassword">
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">New password:</label>
+                        <div class="col-lg-8">
+                            <input asp-for="NewPassword" class="form-control" type="password">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Confirm new password:</label>
+                        <div class="col-lg-8">
+                            <input asp-for="ConfirmPassword" class="form-control" type="password">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-8">
+                            <input  type="submit" class="btn btn-primary"/>
+                            <span></span>
+                            <input type="reset" class="btn btn-default" value="Cancel">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<hr>
+
+<script type='text/javascript'>
+    function preview_image(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('img');
+            output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+</script>

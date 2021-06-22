@@ -102,7 +102,8 @@ namespace VirtualClinic.Models
                     task.Title = "";
                 }
                 task.Identifier = task.TaskID;
-              
+
+                task.Amount = db.Doctors.Where(t => t.Id == task.DoctorId).First().Price;
                 var entity = task.ToEntity();
                 db.Tasks.Add(entity);
                 db.SaveChanges();

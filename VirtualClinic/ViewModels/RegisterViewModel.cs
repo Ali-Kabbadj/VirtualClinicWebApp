@@ -12,9 +12,20 @@ namespace VirtualClinic.ViewModels
 {
     public class RegisterViewModel
     {
+
+
+
+
+
         [DataType(DataType.Upload)]
         [Display(Name = "Upload Picture")]
         public IFormFile Image { get; set; }
+
+        [Required]
+        [Remote("UserNameExists", "Account", ErrorMessage = "Username already in use")]
+        [Column(TypeName = "varchar(100)")]
+        [PersonalData]
+        public string UserName { get; set; }
 
         [Required]
         [Column(TypeName = "varchar(100)")]

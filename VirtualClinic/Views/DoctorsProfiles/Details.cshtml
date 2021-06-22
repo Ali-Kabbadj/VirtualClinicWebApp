@@ -2,55 +2,78 @@
 @model VirtualClinic.ViewModels.DoctorViewModel
 @inject UserManager<ApplicationUser> UserManager
 @inject SignInManager<ApplicationUser> SignInManager
-<div class="container">
-    <div class="text-center">
-        @*<img class="card-img-top" style="width:18rem;height:18rem" src="~/Profiles/@Model.ImageName" alt="">*@
+
+
+
+<link href="/DoctorsProfiles/css/DoctorDetailsStyle.css" rel="stylesheet" />
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div style="margin-top:150px;" class="container bootstrap snippets bootdey">
+    <div class="row">
+        <div class="profile-nav col-md-3">
+            <div class="panel">
+                <div class="user-heading round">
+                    <a href="#">
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Image)" alt="">
+                    </a>
+                    <h1>@Model.FirstName @Model.LastName</h1>
+                    <p>@Model.Email</p>
+                </div>
+            </div>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                @if (!UserManager.GetUserAsync(User).Result.IsDoctor)
+                {
+                    <a class="btn btn-primary text-uppercase" asp-route-doctorid="@Model.Id" asp-controller="Appointement" asp-action="MakeAppointement">Make Appointement</a>
+                }
+            }
+            else
+            {
+                <a class="btn btn-primary text-uppercase" asp-controller="Account" asp-action="Login">Login To Make An Appointment</a>
+            }
+        </div>
+        <div class="profile-info col-md-9">
+            <div class="panel">
+                <div class="bio-graph-heading">
+                    @Model.Speciality
+                </div>
+                <div class="panel-body bio-graph-info">
+                    <h1>Info</h1>
+
+                    <div class="row">
+                        <div class="bio-row">
+                            <p><span>Country </span>: @Model.Country</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="bio-row">
+                            <p><span>State </span>: @Model.State</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="bio-row">
+                            <p><span>City </span>: @Model.City</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="bio-row">
+                            <p><span>Price </span>: @Model.Price</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="bio-row">
+                            <p><span>Total Appointments </span>: @ViewBag.Totalappointement</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+               
+            </div>
+        </div>
     </div>
-    <table class="table table-sm table-light">
-        <tr>
-            <th scope="row">First Name :</th>
-            <td scope="col"><h5>@Model.FirstName</h5></td>
-        </tr>
-        <tr>
-            <th scope="row">Last Name :</th>
-            <td scope="col"><h5>@Model.LastName</h5></td>
-        </tr>
-        <tr>
-            <th scope="row">Speciality :</th>
-            <td scope="col"><h5>@Model.Speciality</h5></td>
-        </tr>
-        <tr>
-            <th scope="row">Country :</th>
-            <td scope="col"><h5>@Model.Country</h5></td>
-        </tr>
-        <tr>
-            <th scope="row">City :</th>
-            <td scope="col"><h5>@Model.City</h5></td>
-        </tr>
-        <tr>
-            <th scope="row">Adress :</th>
-            <td scope="col"><h5>@Model.Adress</h5></td>
-        </tr>
-        <tr>
-            <th scope="row">Price :</th>
-            <td scope="col"><h5>@Model.Price</h5></td>
-        </tr>
-        <tr>
-            <th scope="row">Total Appointement :</th>
-            <td scope="col"><h5>@ViewBag.Totalappointement</h5></td>
-        </tr>
-    </table>
-    @if (SignInManager.IsSignedIn(User))
-    {
-        @if (!UserManager.GetUserAsync(User).Result.IsDoctor)
-        {
-            <a class="btn btn-primary text-uppercase" asp-route-doctorid="@Model.Id"  asp-controller="Appointement" asp-action="MakeAppointement">Make Appointement</a>
-        }
-    }
-    else
-    {
-        <a class="btn btn-primary text-uppercase" asp-controller="Account" asp-action="Login">Login To Make An Appointment</a>
-    }
-
-
 </div>

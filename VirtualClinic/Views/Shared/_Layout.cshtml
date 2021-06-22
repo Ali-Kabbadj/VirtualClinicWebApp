@@ -43,14 +43,14 @@
                     @if (!UserManager.GetUserAsync(User).Result.IsDoctor)
                     {
                         <li><a asp-action="Index" asp-controller="ManagePatientAppointments"><i class="fa fa-calendar"></i><span>My Appointments</span></a></li>
-                        <li><a asp-action="Index" asp-controller="DoctorsProfiles"><i class="fa fa-hospital"></i><span>Find A Doctor</span></a></li>
+                        <li><a asp-action="Index" asp-controller="DoctorsProfiles"><i class="fa fa-user-md"></i><span>Find A Doctor</span></a></li>
                     }
                     else
                     {
                         <li class="active"><a asp-action="DoctorScheduler" asp-controller="DoctorScheduler"><i class="fa fa-calendar"></i><span>Doctor Calendar</span></a></li>
                     }
                     <li class="dropdown">
-                        <a href="" data-toggle="dropdown" class="dropdown-toggle user-action"><img src="data:image/jpeg;base64,@Convert.ToBase64String(UserManager.GetUserAsync(User).Result.Image)" class="avatar" alt="Avatar"> Hello @User.Identity.Name! <b class="caret"></b></a>
+                        <a href="" data-toggle="dropdown" class="dropdown-toggle user-action"><img src="data:image/jpeg;base64,@Convert.ToBase64String(UserManager.GetUserAsync(User).Result.Image)" class="avatar" alt="Avatar"> Hello @UserManager.GetUserAsync(User).Result.FirstName @UserManager.GetUserAsync(User).Result.LastName! <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a asp-route-id="@UserManager.GetUserId(User)" asp-controller="EditProfile" asp-action="Profiler"><i class="fa fa-sliders"></i>Profile Settings</a></li>
                             <li class="divider"></li>

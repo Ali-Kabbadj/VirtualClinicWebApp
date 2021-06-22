@@ -45,7 +45,7 @@ namespace VirtualClinic
             }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 
-
+          
 
             services.ConfigureApplicationCookie(o =>
             {
@@ -97,15 +97,7 @@ namespace VirtualClinic
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.Use(async (context, next) =>
-            {
-                await next();
-                if (context.Response.StatusCode == 404)
-                {
-                    context.Request.Path = "/NotFound";
-                    await next();
-                }
-            });
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             StripeConfiguration.ApiKey = "sk_test_51J2eC0IUOx2aQmFjXOckwBZiEBe0AauZU0BldD7OBAKYwzBXxNNgGVjeR41KkmexYhT0yMlpPl3sHzFNJZ86UQhX00PqX98gVU";

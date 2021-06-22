@@ -1,29 +1,32 @@
 ﻿@model IEnumerable<VirtualClinic.ViewModels.DoctorViewModel>
-<link href="~/lib/bootstrap/dist/css/open-iconic-bootstrap.css" rel="stylesheet" />
-<div class="container">
-    <form asp-controller="DoctorsProfiles" asp-action="Filter">
-        <input type="text" name="Searcchspeciality" placeholder="search" />
-        <input type="submit" value="search" />
-    </form>
-    <div class="row">
 
-        @foreach (var item in Model)
-        {
-            <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <img style="width:40px;height:40px; object-fit:cover; border-radius:30px" src="data:image/jpeg;base64,@Convert.ToBase64String(item.Image)">
-                    <div class="card-body">
-                        <h3 class="card-title text-center">@item.LastName @item.FirstName</h3>
-                        <h2 class="card-header text-center">@item.Speciality</h2>
-                        <p class="card-text text-center">@item.Country / @item.City </p>
-                        <p class="card-text text-center">@item.PhoneNumber</p>
-                        <a class="btn btn-dark text-uppercase text-light float-right" asp-route-id="@item.Id" asp-controller="DoctorsProfiles" asp-action="Details">more <span class="oi oi-arrow-circle-right"></span></a>
+
+
+
+
+<link href="~/DoctorsProfiles/css/DoctorsProfilesStyle.css" rel="stylesheet" />
+
+
+
+
+<section class="cards-wrapper">
+
+    @foreach (var item in Model)
+    {
+        <div style="align-items:center;" class="card-grid-space">
+            <a asp-action="Details" asp-controller="DoctorsProfiles" asp-route-id="@item.Id" class="card" style="--bg-img: url('data:image/jpeg;base64,@Convert.ToBase64String(item.Image)')">
+                <div style="text-align:center;">
+                    <h1>@item.FirstName<br /></h1>
+                    <br />
+                    <br />
+                    <h1>@item.LastName<br /></h1>
+                    <br />
+                    <br />
+                    <div class="tags">
+                        <div style="padding:15px;" class="tag">@item.Speciality</div>
                     </div>
                 </div>
-                 <a href="C:\Users\ali\Desktop\New folder\VirtualClinic\Views\DoctorsProfiles\Index.cshtml"> </a>
-            </div>
-        }
-
-    </div>
-</div>
-
+            </a>
+        </div>
+    }
+    </section>

@@ -114,7 +114,54 @@
                         @if (ViewBag.IsDoctor)
                         {
                             <div class="form-row" id="lang">
-                                <input asp-for="Specialist" type="text" class="bg-light form-control" placeholder="Your Medical speciality">
+                                
+                                     
+                                <select asp-for="Specialist" >
+                                    <option hidden selected value="">Select your Speciality</option>
+                                    <option value="Vascular Surgery">Vascular Surgery</option>
+                                    <option value="Urology">Urology</option>
+                                    <option value="Thoracic Surgery">Thoracic Surgery</option>
+                                    <option value="Rheumatology">Rheumatology</option>
+                                    <option value="Radiology">Radiology</option>
+                                    <option value="Radiation Oncology">Radiation Oncology</option>
+                                    <option value="Pulmonology">SPulmonology</option>
+                                    <option value="Psychiatry">Psychiatry</option>
+                                    <option value="Plastic Surgery">Plastic Surgery</option>
+                                    <option value="Physical Medicine / Rehab">Physical Medicine / Rehab</option>
+                                    <option value="Pediatrics">Pediatrics</option>
+                                    <option value="Pediatric Infectious Disease">Pediatric Infectious Disease</option>
+                                    <option value="Pediatric Hematology/ Oncology">Pediatric Hematology/ Oncology</option>
+                                    <option value="Pediatric Gastroenterology">Pediatric Gastroenterology</option>
+                                    <option value="Pediatric Endocrinology">Pediatric Endocrinology</option>
+                                    <option value="Pediatric Emergency Medicine">Pediatric Emergency Medicine</option>
+                                    <option value="Pediatric Cardiology">Pediatric Cardiology</option>
+                                    <option value="Otolaryngology (ENT)">Otolaryngology (ENT)</option>
+                                    <option value="Orthopaedic Surgery">Orthopaedic Surgery</option>
+                                    <option value="Ophthalmology">Ophthalmology</option>
+                                    <option value="Oncology">Oncology</option>
+                                    <option value="Occupational Medicine">Occupational Medicine</option>
+                                    <option value="Obstetrics & Gynecology">Obstetrics & Gynecology</option>
+                                    <option value="Neurosurgery">Neurosurgery</option>
+                                    <option value="Neurology">Neurology</option>
+                                    <option value="Neonat/Perinatology">Neonat/Perinatology</option>
+                                    <option value="Medicine/Pediatrics">Medicine/Pediatrics</option>
+                                    <option value="Internal Medicine">Internal Medicine</option>
+                                    <option value="Infectious Disease">Infectious Disease</option>
+                                    <option value="Geriatrics">Geriatrics</option>
+                                    <option value="General Surgery">General Surgery</option>
+                                    <option value="Gastroenterology">Gastroenterology</option>
+                                    <option value="Family Medicine">Family Medicine</option>
+                                    <option value="Endocrinology">Endocrinology</option>
+                                    <option value="Emergency Medicine">Emergency Medicine</option>
+                                    <option value="Dermatology">Dermatology</option>
+                                    <option value="Colon & Rectal Surgery">Colon & Rectal Surgery</option>
+                                    <option value="Cardiology">Cardiology</option>
+                                    <option value="Anesthesiology">Anesthesiology</option>
+                                    <option value="Allergy & Immunology">Allergy & Immunology</option>
+                                </select>
+                                <span class="select-btn">
+                                 <i class="zmdi zmdi-chevron-down"></i>
+                                </span>
                                 <span asp-validation-for="Specialist" class="text-danger"></span>
                             </div>
 
@@ -132,7 +179,7 @@
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="form-row-last">
-                        <input type="submit" value="register">
+                        <input asp-route-AsDoctor="@ViewBag.IsDoctor" type="submit" value="register">
                     </div>
 
                 </div>
