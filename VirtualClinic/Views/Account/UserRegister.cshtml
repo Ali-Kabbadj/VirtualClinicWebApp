@@ -29,11 +29,15 @@
                     </div>
                     <div class="form-group">
                         <div class="form-row form-row-1">
-                            <input asp-for="FirstName" type="text" id="first_name" class="input-text" placeholder="First Name">
+                            <input asp-for="UserName" type="text" class="input-text" placeholder="Username">
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <div class="form-row form-row-1">
+                            <input asp-for="FirstName" type="text" class="input-text" placeholder="First Name">
                             <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
                         <div class="form-row form-row-2">
-                            <input asp-for="LastName" type="text" id="last_name" class="input-text" placeholder="Last Name">
+                            <input asp-for="LastName" type="text" class="input-text" placeholder="Last Name">
                             <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
                     </div>
@@ -49,12 +53,12 @@
                         </span>
                     </div>
                     <div class="form-row form-row-1">
-                        <input asp-for="BirthDate" type="date" name="dob" id="Birthday" placeholder="MM/DD/YYYY">
-                        <span asp-validation-for="BirthDate"  class="text-danger"></span>
+                        <input asp-for="Birthday" type="date" placeholder="MM/DD/YYYY">
+                        <span asp-validation-for="Birthday"  class="text-danger"></span>
                     </div>
 
                     <div class="form-row">
-                        <input asp-for="IdCard" placeholder="EE55555">
+                        <input asp-for="IdCard" placeholder="Card ID">
                         <span asp-validation-for="IdCard" class="text-danger"></span>
                     </div>
 
@@ -64,7 +68,7 @@
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
                         <div class="form-row form-row-2">
-                            <input asp-for="ConfirmPassword" type="password" placeholder="Confirm your password">
+                            <input asp-for="ConfirmPassword" type="password" placeholder="Confirm your password" required oninvalid="this.setCustomValidity('The Confirm Password Field is required')" oninput="setCustomValidity('')">
                             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                         </div>
                     </div>
@@ -113,10 +117,10 @@
                     {
                         @if (ViewBag.IsDoctor)
                         {
-                            <div class="form-row" id="lang">
+                            <div class="form-row">
                                 
                                      
-                                <select asp-for="Specialist" >
+                                <select asp-for="Specialist" required oninvalid="this.setCustomValidity('The Speciality Field is required')" oninput="setCustomValidity('')" >
                                     <option hidden selected value="">Select your Speciality</option>
                                     <option value="Vascular Surgery">Vascular Surgery</option>
                                     <option value="Urology">Urology</option>
@@ -165,9 +169,9 @@
                                 <span asp-validation-for="Specialist" class="text-danger"></span>
                             </div>
 
-                            <div class="form-row" id="lang">
+                            <div class="form-row">
 
-                                <input asp-for="Price" type="number" class="bg-light form-control" placeholder="The amount you charge">
+                                <input asp-for="Price" type="number" class="bg-light form-control" placeholder="The amount you charge" required oninvalid="this.setCustomValidity('Price Field is required')" oninput="setCustomValidity('')">
                                 <span asp-validation-for="Price" class="text-danger"></span>
                             </div>
 
@@ -175,7 +179,7 @@
                     }
 
                     <div class="form-row">
-                        <input asp-for="Email" type="email" id="your_email" class="input-text" placeholder="Email@exemple.com">
+                        <input asp-for="Email" type="email" class="input-text" placeholder="Email@exemple.com">
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="form-row-last">

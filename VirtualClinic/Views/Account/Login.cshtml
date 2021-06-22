@@ -5,12 +5,19 @@
 <link rel="stylesheet" href="~/account/css/Login/LoginStyle.css" />
 
 
+
 <form method="post" class="login" style="background :url(../images/logos/logocolor.png)  no-repeat bottom right">
     <h1> Login</h1>
     <input asp-for="Email" type="email" placeholder="Exemple@Email.com">
+    <span asp-validation-for="Email" class="text-danger"></span>
+
     <input asp-for="Password" type="password" placeholder="**********">
+    <span asp-validation-for="Password" class="text-danger"></span>
+    <div asp-validation-summary="All" class="text-danger"></div>
+
     <p>Remember Me<input style="margin-left:10px;" asp-for="RememberMe" type="checkbox" name="Remember Me" value="" /></p>
     <button asp-action="Login" asp-controller="Account">Login</button>
+
 </form>
 
 

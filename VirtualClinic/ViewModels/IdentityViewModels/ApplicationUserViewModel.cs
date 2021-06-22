@@ -28,7 +28,7 @@ namespace VirtualClinic.ViewModels
         public string Password { get; set; }
         public IFormFile  IFormImage { get; set; }
         public string Email { get; set; }
-        private readonly IWebHostEnvironment hostingEnv;
+        //private readonly IWebHostEnvironment hostingEnv;
         public bool RememberMe { get; set; }
         public string PhoneNumber { get; set; }
         public string ConfirmPassword { get; set; }
@@ -37,16 +37,17 @@ namespace VirtualClinic.ViewModels
         public string Speciality { get; set; }
         public long Price { get; set; }
 
+       
 
 
         public ApplicationUserViewModel()
         {
         }
 
-        public ApplicationUserViewModel(IWebHostEnvironment HostEnv)
-        {
-            this.hostingEnv = HostEnv;
-        }
+        //public ApplicationUserViewModel(IWebHostEnvironment HostEnv)
+        //{
+        //    this.hostingEnv = HostEnv;
+        //}
 
         public ApplicationUser ToEnity()
         {

@@ -10,16 +10,16 @@ namespace VirtualClinic.Services.IdentityService
 {
     public interface IUserTaskService<T> where T : class , IUser
     {
-        IQueryable<T> GetAll();
+        IQueryable<ApplicationUser> GetAll();
         Task<T> GetUserById(string id);
         Task<T> GetUserByEmail(string email);
         Task<T> GetUserByUserName(string userName);
-        Task<IdentityResult> CreateUser(RegisterViewModel User , string isDoctor);
-        Task<SignInResult> LoginUser(LoginViewModel login, bool RememberMe, bool lockoutOnFailure);
+        Task<IdentityResult> CreateUser(RegisterViewModel User , string isDoctor,bool IsValid);
+        Task<SignInResult> LoginUser(LoginViewModel login, bool RememberMe, bool lockoutOnFailure,bool IsValid);
         void AddUserRole(string userId, string RoleId);
         void SendConfirmationEmail(ApplicationUser user);
-        IQueryable<ApplicationUserViewModel> ModelsToViewModels(IQueryable<ApplicationUser> Users);
-        T ModelToViewModel(ApplicationUser User);
+        //IQueryable<ApplicationUserViewModel> ModelsToViewModels(IQueryable<ApplicationUser> Users);
+        //T ModelToViewModel(ApplicationUser User);
 
         //void SendConfirmationEmail(ApplicationUser user);
 

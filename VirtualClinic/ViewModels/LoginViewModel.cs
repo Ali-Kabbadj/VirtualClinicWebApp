@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +13,7 @@ namespace VirtualClinic.ViewModels
         [Required]
         [EmailAddress]
         [PersonalData]
+        [Remote("EmailExist", "Account", ErrorMessage = "No Account is Assigned to this Email")]
         public string Email { get; set; }
 
         [Required]

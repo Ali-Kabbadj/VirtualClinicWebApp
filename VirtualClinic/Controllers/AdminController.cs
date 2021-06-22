@@ -88,7 +88,7 @@ namespace VirtualClinic.Controllers
             {
                 _signInManager.SignOutAsync();
             }
-            var resulte = _userService.LoginUser(user ,user.RememberMe ,false).Result;
+            var resulte = _userService.LoginUser(user ,user.RememberMe ,false,ModelState.IsValid).Result;
             if (resulte.Succeeded)
             {
                 return RedirectToAction("Index");

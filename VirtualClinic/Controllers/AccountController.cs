@@ -79,22 +79,17 @@ namespace VirtualClinic.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UserRegister(RegisterViewModel register,string AsDoctor)
         {
-            if (ModelState.IsValid)
-            {
-               var result = await _userService.CreateUser(register,AsDoctor);
+               var result = await _userService.CreateUser(register,AsDoctor, ModelState.IsValid);
                if (result.Succeeded)
                {
                     IQueryable<ApplicationUser> Users = _db.Users.Where(U => U.Email == register.Email);
                     if (Users.Count()>0)
                     {
-
                         _userService.SendConfirmationEmail(Users.First());
                     }
                     return View("ConfirmEmailPage", register);
                }
-            }
-           
-            return View(register);
+                return View(register);
         }
 
         // Log IN 
@@ -115,12 +110,11 @@ namespace VirtualClinic.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel login)
         {
-            if (ModelState.IsValid)
-            {
+            
                 var user = await _userManager.FindByEmailAsync(login.Email);
                 if (user != null)
                 {
-                    IQueryable<Doctor> ds = _db.Doctors.Where(d => d.Email == login.Email);
+                    IQueryable<Doctor> ds = _db.Doctors.Where(d => d.Email.ToLower() == login.Email.ToLower());
                     if (ds.Count()>0)
                     {
                         if (!ds.First().IsActivated)
@@ -129,7 +123,7 @@ namespace VirtualClinic.Controllers
                         }
                     }
 
-                    IQueryable<ApplicationUser> ds1 = _db.Users.Where(d => d.Email == login.Email);
+                    IQueryable<ApplicationUser> ds1 = _db.Users.Where(d => d.Email.ToLower() == login.Email.ToLower());
                     if (!ds1.First().EmailConfirmed)
                     {
                         RegisterViewModel M=new RegisterViewModel();
@@ -140,21 +134,16 @@ namespace VirtualClinic.Controllers
 
                         return RedirectToAction("ConfirmEmailPage", "Account", M);
                     }
-                    var result = await _userService.LoginUser(login ,login.RememberMe,false);
+                    var result = await _userService.LoginUser(login ,login.RememberMe,false,ModelState.IsValid);
 
                     if (result.Succeeded)
                     {
-                        
                         return RedirectToAction("Index", "Home");
                     }
-                    ModelState.AddModelError("pass", "Invalid Password.");
+                  
                 }
-                ModelState.AddModelError("email", "Invalid Email.");
-            }
-            
-            ModelState.AddModelError("", "Invalid login attempt.");
+            ModelState.AddModelError(string.Empty, "Invalid Password.");
             return View(login);
-                        
         }
    
         public IActionResult ConfirmEmailPage(RegisterViewModel User)
@@ -190,16 +179,16 @@ namespace VirtualClinic.Controllers
             }
         }
 
-        public JsonResult EmailExists(string email)
+        public JsonResult EmailDoesNotExist(string email)
         {
             //check if any of the email matches the email specified in the Parameter using the ANY extension method.  
-            return Json(!_db.Users.Any(x => x.Email == email));
+            return Json(!_db.Users.Any(x => x.Email.ToLower() == email.ToLower()));
         }
         
          public JsonResult IdCardExists(string IdCard)
         {
             //check if any of the IdCard matches the IdCard specified in the Parameter using the ANY extension method.  
-            return Json(!_db.Users.Any(x => x.IdCard == IdCard));
+            return Json(!_db.Users.Any(x => x.IdCard.ToLower() == IdCard.ToLower()));
         }
 
         public JsonResult PhoneExists(string PhoneNumber)
@@ -207,9 +196,19 @@ namespace VirtualClinic.Controllers
             //check if any of the phone matches the phone specified in the Parameter using the ANY extension method.  
             return Json(!_db.Users.Any(x => x.PhoneNumber == PhoneNumber));
         }
-   
 
-       
+        public JsonResult UserNameExists(string UserName)
+        {
+            //check if any of the UserName matches the phone specified in the Parameter using the ANY extension method.  
+            return Json(!_db.Users.Any(x => x.UserName.ToLower() == UserName.ToLower()));
+        }
+
+        public JsonResult EmailExist(string email)
+        {
+            //check if any of the email matches the email specified in the Parameter using the ANY extension method.  
+            return Json(_db.Users.Any(x => x.Email.ToLower() == email.ToLower()));
+        }
+
     }
 
     

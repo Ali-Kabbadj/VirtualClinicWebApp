@@ -10,7 +10,6 @@ namespace VirtualClinic.Models.Identity
         public List<Task> Appointements { get; set; }
         public string Speciality { get; set; }
         public long Price { get; set; }
-        public bool IsActivated { get; set; }
 
 
         public ApplicationUser ToApplicationUser()
