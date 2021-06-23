@@ -76,6 +76,7 @@ namespace VirtualClinic.Controllers
                var result = await _userService.CreateUser(register,AsDoctor, ModelState.IsValid);
                if (result.Succeeded)
                {
+                register.PhoneNumber =  register.DialNumber +register.PhoneNumber;
                     IQueryable<ApplicationUser> Users = _db.Users.Where(U => U.Email == register.Email);
                     if (Users.Count()>0)
                     {
@@ -122,12 +123,12 @@ namespace VirtualClinic.Controllers
                     IQueryable<ApplicationUser> ds1 = _db.Users.Where(d => d.Email.ToLower() == login.Email.ToLower());
                     if (!ds1.First().EmailConfirmed)
                     {
-                        RegisterViewModel M=new RegisterViewModel();
-                        M.Email = login.Email;
-                        M.FirstName = ds1.First().FirstName;
-                        M.LastName = ds1.First().LastName;
-
-
+                        RegisterViewModel M = new RegisterViewModel
+                        {
+                            Email = login.Email,
+                            FirstName = ds1.First().FirstName,
+                            LastName = ds1.First().LastName
+                        };
                         return RedirectToAction("ConfirmEmailPage", "Account", M);
                     }
                     var result = await _userService.LoginUser(login ,login.RememberMe,false,ModelState.IsValid);

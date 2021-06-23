@@ -151,7 +151,7 @@ namespace VirtualClinic.ViewModels
 
 
 
-
+        
         [PersonalData]
         [Required(ErrorMessage ="The Adress Filed is required")]
 
@@ -165,5 +165,10 @@ namespace VirtualClinic.ViewModels
 
 
         public string Specialist { get; set; }
+
+
+        public string DialNumber { get; set; }
+
+
     }
 }
