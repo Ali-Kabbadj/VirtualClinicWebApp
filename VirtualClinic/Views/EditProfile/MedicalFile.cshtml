@@ -73,9 +73,9 @@
                         </div>
                     </div>
                 </div>
-                <input type="submit" value="Edit" class="btn"/>
+                
             </div>
-               
+            <input type="submit" value="Edit" class="btn select-btn" />
             </form>
         </div>
     </div>
@@ -85,7 +85,7 @@
             @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"].Errors.Count > 0)
             {
                 <text>
-                $(document).ready(function() {
+                $('.btn').click(function() {
                     swal('Edit Faild','@ViewData.ModelState["Error"].Errors.First().ErrorMessage',"error");
                 });
                 </text>

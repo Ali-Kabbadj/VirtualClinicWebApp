@@ -19,7 +19,7 @@ namespace VirtualClinic.Controllers
         private readonly ILogger<AccountController> _logger;
         private readonly IWebHostEnvironment _environment;
         private readonly ApplicationDbContext _db;
-        private readonly IPatientService _patentService;
+        private readonly PatientService _patentService;
         public EditProfileController(
                                 UserManager<ApplicationUser> userManager,
                                 SignInManager<ApplicationUser> signInManager,
@@ -154,9 +154,10 @@ namespace VirtualClinic.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> MedicalFile(MedicalFileViewModels medicalFile)
+        public IActionResult MedicalFile(MedicalFileViewModels medicalFile)
         {
-            var isadded = await _patentService.MedicalFile(medicalFile, ModelState.IsValid);
+            var idpatient = _userManager.GetUserAsync(User).Result.Id;
+            var isadded =  _patentService.MedicalFile(medicalFile, ModelState.IsValid,idpatient);
             if(!isadded)
             {
                 ModelState.AddModelError("Error", "Something won't wrong");   

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace VirtualClinic.Models.Patient_ns
 {
     public class MedicalFile
     {
+        [Key]
         public int Id { get; set; }
         public float Weight { get; set; }
         public float height { get; set; }

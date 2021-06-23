@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using VirtualClinic.Data;
+using VirtualClinic.Models.Identity;
 using VirtualClinic.Models.Patient_ns;
 using VirtualClinic.ViewModels.Patient_ns;
 
@@ -30,7 +32,7 @@ namespace VirtualClinic.Services.Patient_ns
             };
         }
 
-        public async Task<bool> MedicalFile(MedicalFileViewModels medicalFile,bool isvalid)
+        public bool MedicalFile(MedicalFileViewModels medicalFile,bool isvalid,string id)
         {
             if(isvalid)
             {
@@ -39,12 +41,12 @@ namespace VirtualClinic.Services.Patient_ns
                 Weight = medicalFile.Weight,
                 blood_type = medicalFile.blood_type,
                 rhesus_factor = medicalFile.rhesus_factor,
-                patientId=medicalFile.patientId,
+                patientId=id,
                 health_history=medicalFile.health_history,
                 temperature=medicalFile.temperature,
                 tension=medicalFile.tension 
                 }; 
-                await _db.MedicalFiles.AddAsync(medicalfile);
+                 _db.MedicalFiles.Add(medicalfile);
                 return true;
             }
             return false;
