@@ -54,7 +54,7 @@ namespace VirtualClinic.Services.IdentityService
 
 
         // this Method create a user(patient or doctor) and add it to database
-        public async Task<IdentityResult> CreateUser(RegisterViewModel register, string AsDoctor,bool IsValid)
+        public async Task<IdentityResult> CreateUser(RegisterViewModel register, string isdoctor,bool IsValid)
         {
             IdentityResult result =new IdentityResult();
             if (IsValid)
@@ -74,14 +74,14 @@ namespace VirtualClinic.Services.IdentityService
                     Image = File.ReadAllBytes(path);
                 }
                 string roleid = "";
-                if (AsDoctor.ToLower() == "true")
+                if (isdoctor.ToLower() == "true")
                 {
                     user = new Models.Identity.Doctor { IsDoctor = true,Image =Image,FirstName =register.FirstName.ToUpper(),LastName =register.LastName.ToUpper(),UserName = register.UserName,Birthday =register.Birthday,Email=register.Email,PhoneNumber=register.PhoneNumber,IdCard =register.IdCard , Country= register.Country.ToUpper(),State =register.State.ToUpper(),City = register.City.ToUpper(),Adress = register.Adress,Gender = register.Gender,Speciality = register.Specialist ,Price = register.Price , IsActivated = false};
                     roleid = "2301D884-221A-4E7D-B509-0113DCC044E2";
                 }
                 else
                 {
-                    user = new Patient { IsDoctor = true, Image = Image, FirstName = register.FirstName.ToUpper(), LastName = register.LastName.ToUpper(), UserName = register.UserName, Birthday = register.Birthday, Email = register.Email, PhoneNumber = register.PhoneNumber, IdCard = register.IdCard, Country = register.Country.ToUpper(), State = register.State.ToUpper(), City = register.City.ToUpper(), Adress = register.Adress, Gender = register.Gender,IsActivated=true};
+                    user = new Patient { IsDoctor = false, Image = Image, FirstName = register.FirstName.ToUpper(), LastName = register.LastName.ToUpper(), UserName = register.UserName, Birthday = register.Birthday, Email = register.Email, PhoneNumber = register.PhoneNumber, IdCard = register.IdCard, Country = register.Country.ToUpper(), State = register.State.ToUpper(), City = register.City.ToUpper(), Adress = register.Adress, Gender = register.Gender,IsActivated=true};
                     roleid = "2301D884-221A-4E7D-B509-0113DCC045E3";
                 }
                 result = await _userManager.CreateAsync(user, register.Password);

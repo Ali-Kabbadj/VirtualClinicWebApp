@@ -48,6 +48,8 @@
     <Compile Remove="Migrations\20210620133750_Init.Designer.cs" />
     <Compile Remove="Migrations\20210621083820_init.cs" />
     <Compile Remove="Migrations\20210621083820_init.Designer.cs" />
+    <Compile Remove="Migrations\20210621094147_AAAA.cs" />
+    <Compile Remove="Migrations\20210621094147_AAAA.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -1852,7 +1854,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\Images\Svg\" />
   </ItemGroup>
 

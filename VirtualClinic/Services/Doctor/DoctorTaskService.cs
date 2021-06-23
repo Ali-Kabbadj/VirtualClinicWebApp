@@ -18,7 +18,7 @@ namespace VirtualClinic.Services.Doctor
         }
 
         public virtual IQueryable<DoctorViewModel> GetAllDoctors()
-        {
+        {            
                 IQueryable<DoctorViewModel> result = db.Doctors.Select(Doctor => new DoctorViewModel
                 {
                     Id = Doctor.Id,

@@ -60,7 +60,7 @@ namespace VirtualClinic.Controllers
             //GetSpecialitiesAsync();
             ViewBag.IsDoctor = false;
             ViewData["Title"] = "Register As Patient";
-            if (AsDoctor == "true")
+            if (AsDoctor== "true")
             {
                 ViewBag.IsDoctor = true;
                 ViewData["Title"] = "Register As Doctor";
@@ -76,7 +76,7 @@ namespace VirtualClinic.Controllers
                var result = await _userService.CreateUser(register,AsDoctor, ModelState.IsValid);
                if (result.Succeeded)
                {
-                register.PhoneNumber =  register.DialNumber +register.PhoneNumber;
+                    register.PhoneNumber =  register.DialNumber +register.PhoneNumber;
                     IQueryable<ApplicationUser> Users = _db.Users.Where(U => U.Email == register.Email);
                     if (Users.Count()>0)
                     {

@@ -7,6 +7,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 using VirtualClinic.Data;
 using VirtualClinic.Models.Identity;
+using VirtualClinic.ViewModels.Patient_ns;
+using VirtualClinic.Services.Patient_ns;
 
 namespace VirtualClinic.Controllers
 {
@@ -17,7 +19,7 @@ namespace VirtualClinic.Controllers
         private readonly ILogger<AccountController> _logger;
         private readonly IWebHostEnvironment _environment;
         private readonly ApplicationDbContext _db;
-
+        private readonly IPatientService _patentService;
         public EditProfileController(
                                 UserManager<ApplicationUser> userManager,
                                 SignInManager<ApplicationUser> signInManager,
@@ -30,6 +32,7 @@ namespace VirtualClinic.Controllers
             _signInManager = signInManager;
             _logger = logger;
             _environment = environment;
+            _patentService = new PatientService(context);
         }
        
 
@@ -93,6 +96,7 @@ namespace VirtualClinic.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Profiler(EditProfileViewModel editprofile, string id, string i)
         {
             var Uploader = new Services.Upload.UploadFile(_environment);
@@ -143,7 +147,22 @@ namespace VirtualClinic.Controllers
             return Profiler(editprofile,_userManager.GetUserId(User) );
         }
 
+        [HttpGet]
+        public IActionResult MedicalFile()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> MedicalFile(MedicalFileViewModels medicalFile)
+        {
+            var isadded = await _patentService.MedicalFile(medicalFile, ModelState.IsValid);
+            if(!isadded)
+            {
+                ModelState.AddModelError("Error", "Something won't wrong");   
+            }
+            return View(medicalFile);
+        }
 
-        
     }
 }

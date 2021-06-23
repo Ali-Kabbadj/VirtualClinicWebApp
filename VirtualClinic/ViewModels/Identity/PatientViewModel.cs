@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using VirtualClinic.Models;
 using VirtualClinic.Models.Identity;
-using VirtualClinic.Services.Doctor;
 
 namespace VirtualClinic.ViewModels
 {

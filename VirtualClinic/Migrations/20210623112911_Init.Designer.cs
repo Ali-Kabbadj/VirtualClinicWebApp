@@ -10,8 +10,8 @@ using VirtualClinic.Data;
 namespace VirtualClinic.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210621094147_AAAA")]
-    partial class AAAA
+    [Migration("20210623112911_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,21 +52,21 @@ namespace VirtualClinic.Migrations
                         new
                         {
                             Id = "2301D884-221A-4E7D-B509-0113DCC043E1",
-                            ConcurrencyStamp = "b6f8f88a-8b08-41e0-9123-f631c1b77db8",
+                            ConcurrencyStamp = "34b96b8e-514c-4f6c-aad7-34e81ed21be2",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "2301D884-221A-4E7D-B509-0113DCC044E2",
-                            ConcurrencyStamp = "21c99912-40e7-48b2-9f42-d1c775c67e03",
+                            ConcurrencyStamp = "3f3248da-bacd-466e-a833-7c37cc90c0df",
                             Name = "Doctor",
                             NormalizedName = "DOCTOR"
                         },
                         new
                         {
                             Id = "2301D884-221A-4E7D-B509-0113DCC045E3",
-                            ConcurrencyStamp = "51709742-44a6-482e-a051-a7c2a17f792d",
+                            ConcurrencyStamp = "323bc930-3ef1-4197-82a7-90e8a03724b7",
                             Name = "Patient",
                             NormalizedName = "PATIENT"
                         });
@@ -233,6 +233,9 @@ namespace VirtualClinic.Migrations
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<bool>("IsActivated")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDoctor")
                         .HasColumnType("bit");
 
@@ -295,23 +298,60 @@ namespace VirtualClinic.Migrations
                             Id = "B22698B8-42A2-4115-9631-1C2D1E2AC5F7",
                             AccessFailedCount = 0,
                             Birthday = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "ed8e7679-8404-42a6-9d36-db70ed03a79d",
-                            CreateDate = new DateTime(2021, 6, 21, 10, 41, 47, 665, DateTimeKind.Local).AddTicks(4734),
+                            ConcurrencyStamp = "24f08246-2052-466d-9572-70bb9e3be032",
+                            CreateDate = new DateTime(2021, 6, 23, 13, 29, 10, 810, DateTimeKind.Local).AddTicks(4624),
                             Email = "Master@Admin.com",
                             EmailConfirmed = true,
                             FirstName = "Master",
+                            IsActivated = false,
                             IsDoctor = false,
                             LastName = "Admin",
                             LockoutEnabled = false,
                             NormalizedEmail = "MASTER@ADMIN.COM",
                             NormalizedUserName = "MASTERADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBYOikzO3HFBud2EfUau182vY/SrKcNk0ynAQNR/E9w58rnFGWvO029rQM3IQHMafA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEhIrupor8dBYaOaW5ojq4Ve/p8OpWd1T7oPgszka+dQWjwq/JL3qxobmD2S+25/RQ==",
                             PhoneNumber = "XXXXXXXXXXXXX",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "00000000-0000-0000-0000-000000000000",
                             TwoFactorEnabled = false,
                             UserName = "masteradmin"
                         });
+                });
+
+            modelBuilder.Entity("VirtualClinic.Models.Patient_ns.MedicalFile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<float>("Weight")
+                        .HasColumnType("real");
+
+                    b.Property<string>("blood_type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("health_history")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("height")
+                        .HasColumnType("real");
+
+                    b.Property<string>("patientId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("rhesus_factor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("temperature")
+                        .HasColumnType("real");
+
+                    b.Property<int>("tension")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MedicalFiles");
                 });
 
             modelBuilder.Entity("VirtualClinic.Models.Task", b =>
@@ -390,9 +430,6 @@ namespace VirtualClinic.Migrations
             modelBuilder.Entity("VirtualClinic.Models.Identity.Doctor", b =>
                 {
                     b.HasBaseType("VirtualClinic.Models.Identity.ApplicationUser");
-
-                    b.Property<bool>("IsActivated")
-                        .HasColumnType("bit");
 
                     b.Property<long>("Price")
                         .HasColumnType("bigint");

@@ -1,0 +1,100 @@
+﻿@model VirtualClinic.ViewModels.Patient_ns.MedicalFileViewModels
+
+<div class="container">
+    <h1 style="text-align:center;">Edit Profile</h1>
+    <hr>
+    <div class="row">
+        <form method="post">
+            <!-- edit form column -->
+            <div class="col-md-9 personal-info">
+
+                <div class="form-horizontal" role="form">
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Height:</label>
+                        <div class="col-lg-8">
+                            <input asp-for="height" min="0" type="number" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Weight:</label>
+                        <div class="col-lg-8">
+                            <input asp-for="Weight" class="form-control" type="number" min="0"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Temperature:</label>
+                        <div class="col-lg-8">
+                            <input asp-for="temperature" class="form-control" type="number" />
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Tension:</label>
+                        <div class="col-lg-8">
+                            <input asp-for="tension" class="form-control" type="number">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Blood Type:</label>
+                        <div class="col-lg-8">
+                            <select asp-for="blood_type" class="form-control">
+                                <option hidden>Blood Type</option>
+                                <option value="AB">AB</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="O">O</option>
+                            </select>
+                            <span class="select-btn">
+                                <i class="zmdi zmdi-chevron-down"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Rhesus Factor:</label>
+                        <div class="col-lg-8">
+                            <select asp-for="rhesus_factor" class="form-control">
+                                <option hidden selected>Rh Factor</option>
+                                <option value="Rh+">Rh+</option>
+                                <option value="Rh-">Rh-</option>
+                            </select>
+                            <span class="select-btn">
+                                <i class="zmdi zmdi-chevron-down"></i>
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Health Historique:</label>
+                        <div class="col-lg-8">
+                            <input asp-for="health_history" class="form-control" type="tel">
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Edit" class="btn"/>
+            </div>
+               
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        import swal from 'sweetalert';
+            @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"].Errors.Count > 0)
+            {
+                <text>
+                $(document).ready(function() {
+                    swal('Edit Faild','@ViewData.ModelState["Error"].Errors.First().ErrorMessage',"error");
+                });
+                </text>
+            } else
+                {
+                     <text>
+                $(document).ready(function() {
+                    swal('Edit Successed',"you edit your medical file.","success");
+                });
+                </text>
+                }
+    </script>

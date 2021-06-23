@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using VirtualClinic.Models;
 using VirtualClinic.Models.Identity;
+using VirtualClinic.Models.Patient_ns;
 using WebApplication1.Data.AdminUserConfig;
 using Task = VirtualClinic.Models.Task;
 
@@ -24,6 +20,7 @@ namespace VirtualClinic.Data
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Task> Tasks { get; set; }
+        public DbSet<MedicalFile> MedicalFiles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -62,6 +59,10 @@ namespace VirtualClinic.Data
             builder.Entity<Task>(entity =>
             {
                 entity.ToTable("Tasks").HasKey(i => i.TaskId);
+            });
+            builder.Entity<MedicalFile>(entity =>
+            {
+                entity.ToTable("MedicalFiles").HasKey(i => i.Id);
             });
 
             builder.ApplyConfiguration(new RoleConfiguration());
