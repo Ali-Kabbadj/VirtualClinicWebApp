@@ -5,7 +5,7 @@ namespace VirtualClinic.Services.Patient_ns
 {
     interface IPatientService
     {
-        bool MedicalFile(MedicalFileViewModels medicalFile,bool isvalid,string idpatient);
+        Task<bool> MedicalFile(MedicalFileViewModels medicalFile,bool isvalid,string idpatient);
         MedicalFileViewModels GetMedicalFile(string patietnId); 
     }
 }

@@ -32,7 +32,7 @@ namespace VirtualClinic.Services.Patient_ns
             };
         }
 
-        public bool MedicalFile(MedicalFileViewModels medicalFile,bool isvalid,string id)
+        public async Task<bool> MedicalFile(MedicalFileViewModels medicalFile,bool isvalid,string id)
         {
             if(isvalid)
             {
@@ -46,7 +46,8 @@ namespace VirtualClinic.Services.Patient_ns
                 temperature=medicalFile.temperature,
                 tension=medicalFile.tension 
                 }; 
-                 _db.MedicalFiles.Add(medicalfile);
+                await _db.MedicalFiles.AddAsync(medicalfile);
+                await _db.SaveChangesAsync();
                 return true;
             }
             return false;

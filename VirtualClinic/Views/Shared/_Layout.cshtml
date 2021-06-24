@@ -54,6 +54,11 @@
                         <ul class="dropdown-menu">
                             <li><a asp-route-id="@UserManager.GetUserId(User)" asp-controller="EditProfile" asp-action="Profiler"><i class="fa fa-sliders"></i>Profile Settings</a></li>
                             <li class="divider"></li>
+                            @if (!UserManager.GetUserAsync(User).Result.IsDoctor)
+                            {
+                                <li><a asp-controller="EditProfile" asp-action="MedicalFile"><i class="fa fa-file-medical"></i>File Medical</a></li>
+                            }
+                            <li class="divider"></li>
                             <li><a asp-action="LogOut" asp-controller="Account"><i class="material-icons">&#xE8AC;</i> Logout</a></li>
                         </ul>
                     </li>

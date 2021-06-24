@@ -60,10 +60,10 @@ namespace VirtualClinic.Data
             {
                 entity.ToTable("Tasks").HasKey(i => i.TaskId);
             });
-            builder.Entity<MedicalFile>(entity =>
-            {
-                entity.ToTable("MedicalFiles").HasKey(m => m.Id);
-            });
+            //builder.Entity<MedicalFile>(entity =>
+            //{
+            //    entity.ToTable("MedicalFiles").HasKey(m => m.Id);
+            //});
 
             builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new AdminConfiguration());

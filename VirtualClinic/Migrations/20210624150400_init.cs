@@ -3,33 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VirtualClinic.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
                 name: "VirtualClinic");
-
-            migrationBuilder.CreateTable(
-                name: "MedicalFiles",
-                schema: "VirtualClinic",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Weight = table.Column<float>(nullable: false),
-                    height = table.Column<float>(nullable: false),
-                    temperature = table.Column<float>(nullable: false),
-                    tension = table.Column<int>(nullable: false),
-                    blood_type = table.Column<string>(nullable: true),
-                    rhesus_factor = table.Column<string>(nullable: true),
-                    health_history = table.Column<string>(nullable: true),
-                    patientId = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MedicalFiles", x => x.Id);
-                });
 
             migrationBuilder.CreateTable(
                 name: "Role",
@@ -109,6 +88,34 @@ namespace VirtualClinic.Migrations
                         principalTable: "Role",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MedicalFiles",
+                schema: "VirtualClinic",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Weight = table.Column<float>(nullable: false),
+                    height = table.Column<float>(nullable: false),
+                    temperature = table.Column<float>(nullable: false),
+                    tension = table.Column<int>(nullable: false),
+                    blood_type = table.Column<string>(nullable: true),
+                    rhesus_factor = table.Column<string>(nullable: true),
+                    health_history = table.Column<string>(nullable: true),
+                    patientId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MedicalFiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MedicalFiles_User_patientId",
+                        column: x => x.patientId,
+                        principalSchema: "VirtualClinic",
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -257,22 +264,28 @@ namespace VirtualClinic.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2301D884-221A-4E7D-B509-0113DCC043E1", "34b96b8e-514c-4f6c-aad7-34e81ed21be2", "Administrator", "ADMINISTRATOR" },
-                    { "2301D884-221A-4E7D-B509-0113DCC044E2", "3f3248da-bacd-466e-a833-7c37cc90c0df", "Doctor", "DOCTOR" },
-                    { "2301D884-221A-4E7D-B509-0113DCC045E3", "323bc930-3ef1-4197-82a7-90e8a03724b7", "Patient", "PATIENT" }
+                    { "2301D884-221A-4E7D-B509-0113DCC043E1", "7b75ebd6-3a8e-480c-b215-ef34048f5592", "Administrator", "ADMINISTRATOR" },
+                    { "2301D884-221A-4E7D-B509-0113DCC044E2", "9b8fe747-7ab3-4590-9ab6-2b12ba63f65b", "Doctor", "DOCTOR" },
+                    { "2301D884-221A-4E7D-B509-0113DCC045E3", "b853c815-f031-4fbb-a215-361aaa20ed60", "Patient", "PATIENT" }
                 });
 
             migrationBuilder.InsertData(
                 schema: "VirtualClinic",
                 table: "User",
                 columns: new[] { "Id", "AccessFailedCount", "Adress", "Birthday", "City", "ConcurrencyStamp", "Country", "CreateDate", "Discriminator", "Email", "EmailConfirmed", "FirstName", "Gender", "IdCard", "Image", "IsActivated", "IsDoctor", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "State", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "B22698B8-42A2-4115-9631-1C2D1E2AC5F7", 0, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "24f08246-2052-466d-9572-70bb9e3be032", null, new DateTime(2021, 6, 23, 13, 29, 10, 810, DateTimeKind.Local).AddTicks(4624), "ApplicationUser", "Master@Admin.com", true, "Master", null, null, null, false, false, "Admin", false, null, "MASTER@ADMIN.COM", "MASTERADMIN", "AQAAAAEAACcQAAAAEEhIrupor8dBYaOaW5ojq4Ve/p8OpWd1T7oPgszka+dQWjwq/JL3qxobmD2S+25/RQ==", "XXXXXXXXXXXXX", true, "00000000-0000-0000-0000-000000000000", null, false, "masteradmin" });
+                values: new object[] { "B22698B8-42A2-4115-9631-1C2D1E2AC5F7", 0, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "5e83aa49-686a-474e-8eea-b89d234b93fb", null, new DateTime(2021, 6, 24, 17, 3, 59, 106, DateTimeKind.Local).AddTicks(1487), "ApplicationUser", "Master@Admin.com", true, "Master", null, null, null, false, false, "Admin", false, null, "MASTER@ADMIN.COM", "MASTERADMIN", "AQAAAAEAACcQAAAAEA+315K4SEgUgZmDkAFHHHr9p7IfQ8qlQO77RuubuLIWgfr93Rg4vN9h3St7AB380w==", "XXXXXXXXXXXXX", true, "00000000-0000-0000-0000-000000000000", null, false, "masteradmin" });
 
             migrationBuilder.InsertData(
                 schema: "VirtualClinic",
                 table: "UserRoles",
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[] { "2301D884-221A-4E7D-B509-0113DCC043E1", "B22698B8-42A2-4115-9631-1C2D1E2AC5F7" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MedicalFiles_patientId",
+                schema: "VirtualClinic",
+                table: "MedicalFiles",
+                column: "patientId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",

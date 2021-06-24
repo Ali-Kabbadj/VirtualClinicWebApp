@@ -18,10 +18,11 @@ namespace VirtualClinic.Services.IdentityService
         Task<SignInResult> LoginUser(LoginViewModel login, bool RememberMe, bool lockoutOnFailure,bool IsValid);
         void AddUserRole(string userId, string RoleId);
         void SendConfirmationEmail(ApplicationUser user);
+        EditProfileViewModel GetProfile(string id);
+        Task<bool> EditProfile(EditProfileViewModel editprofile, string id);
         //IQueryable<ApplicationUserViewModel> ModelsToViewModels(IQueryable<ApplicationUser> Users);
         //T ModelToViewModel(ApplicationUser User);
 
         //void SendConfirmationEmail(ApplicationUser user);
-
     }
 }

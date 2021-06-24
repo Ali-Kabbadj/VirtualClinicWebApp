@@ -204,7 +204,6 @@ namespace VirtualClinic.Services.IdentityService
             return userModel;
         }
 
-
         // using this method to convert all users ApplicationUser class to ApplicationUserViewModel (model to view model)
         //public IQueryable<ApplicationUserViewModel> ModelsToViewModels(IQueryable<ApplicationUser> Users)
         //{
@@ -247,10 +246,106 @@ namespace VirtualClinic.Services.IdentityService
         //}
 
 
+        // get edit profile
+        public EditProfileViewModel GetProfile(string id)
+        {
+            var profile = _db.Users.Find(id);
+            EditProfileViewModel editprofile;
+            if (profile == null)
+            {
+                return null;
+            }
+            if (profile.IsDoctor)
+            {
+                var doctor = (Models.Identity.Doctor)profile;
+                editprofile = new EditProfileViewModel()
+                {
+                    Image = doctor.Image,
+                    BirthDate = doctor.Birthday,
+                    City = doctor.City,
+                    Country = doctor.Country,
+                    Email = doctor.Email,
+                    FirstName = doctor.FirstName,
+                    IdCard = doctor.IdCard,
+                    LastName = doctor.LastName,
+                    PhoneNumber = doctor.PhoneNumber,
+                    Adress = doctor.Adress,
+                    Specialist = doctor.Speciality,
+                    Price = doctor.Price,
+                    State = doctor.State
+                };
+            }
+            else
+            {
+                var patient = (Patient)profile;
+                editprofile = new EditProfileViewModel()
+                {
+                    Image = patient.Image,
+                    BirthDate = patient.Birthday,
+                    City = patient.City,
+                    Country = patient.Country,
+                    Email = patient.Email,
+                    FirstName = patient.FirstName,
+                    IdCard = patient.IdCard,
+                    LastName = patient.LastName,
+                    PhoneNumber = patient.PhoneNumber,
+                    State = patient.State,
+                    Gender=patient.Gender,
+                    Adress=patient.Adress                   
+                };
+            }
+            editprofile.IsDoctor = profile.IsDoctor;
+            return editprofile;
+        }
+
+        public async Task<bool> EditProfile(EditProfileViewModel editprofile, string id)
+        {
+            var Uploader = new Services.Upload.UploadFile(_environment);
+            byte[] ImageFile = Uploader.Upload(editprofile.ImageName);
+            var profile = _db.Users.Find(id);
+            if (profile == null)
+            {
+                return false;
+            }
+            if (editprofile.ImageName == null)
+                ImageFile = profile.Image;
+            if (profile.IsDoctor)
+            {
+                var doctor = (Models.Identity.Doctor)profile;
+                doctor.Image = ImageFile;
+                doctor.Adress = editprofile.Adress;
+                doctor.Birthday = editprofile.BirthDate;
+                doctor.City = editprofile.City;
+                doctor.Country = editprofile.Country;
+                doctor.Email = editprofile.Email;
+                doctor.FirstName = editprofile.FirstName;
+                doctor.IdCard = editprofile.IdCard;
+                doctor.LastName = editprofile.LastName;
+                doctor.Price = editprofile.Price;
+                doctor.PhoneNumber = editprofile.PhoneNumber;
+                doctor.Speciality = editprofile.Specialist;
+                doctor.State = editprofile.State;
+            }
+            else
+            {
+                var patient = (Patient)profile;
+                patient.Adress = editprofile.Adress;
+                patient.Image = ImageFile;
+                patient.Birthday = editprofile.BirthDate;
+                patient.City = editprofile.City;
+                patient.Country = editprofile.Country;
+                patient.Email = editprofile.Email;
+                patient.FirstName = editprofile.FirstName;
+                patient.IdCard = editprofile.IdCard;
+                patient.LastName = editprofile.LastName;
+                patient.PhoneNumber = editprofile.PhoneNumber;
+                patient.Adress = editprofile.Adress;
+            }
+            editprofile.Image = ImageFile;
+            await _userManager.UpdateAsync(profile);
+            await _db.SaveChangesAsync();
+            _db.SaveChanges();
+            return true;
+        }
     }
-
-
-
-
 }
-

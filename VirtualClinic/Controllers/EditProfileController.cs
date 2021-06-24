@@ -9,6 +9,8 @@ using VirtualClinic.Data;
 using VirtualClinic.Models.Identity;
 using VirtualClinic.ViewModels.Patient_ns;
 using VirtualClinic.Services.Patient_ns;
+using Microsoft.AspNetCore.Authorization;
+using VirtualClinic.Services.IdentityService;
 
 namespace VirtualClinic.Controllers
 {
@@ -19,7 +21,8 @@ namespace VirtualClinic.Controllers
         private readonly ILogger<AccountController> _logger;
         private readonly IWebHostEnvironment _environment;
         private readonly ApplicationDbContext _db;
-        private readonly PatientService _patentService;
+        private readonly IPatientService _patentService;
+        private readonly IUserTaskService<ApplicationUserViewModel> _userTaskService;
         public EditProfileController(
                                 UserManager<ApplicationUser> userManager,
                                 SignInManager<ApplicationUser> signInManager,
@@ -32,132 +35,47 @@ namespace VirtualClinic.Controllers
             _signInManager = signInManager;
             _logger = logger;
             _environment = environment;
-            _patentService = new PatientService(context);
+            _patentService = new PatientService(_db);
+            _userTaskService = new UserTaskService(context, userManager, signInManager);
         }
        
 
         // Profile 
         [HttpGet]
-        public IActionResult Profiler(EditProfileViewModel editprofile, string id)
+        public IActionResult Profiler(string id)
         {
-            var profile = _db.Users.Find(id);
-
-            if (profile == null)
-            {
-                return NotFound();
-            }
-
-            
-            if (profile.IsDoctor)
-            {
-                var doctor = (Doctor)profile;
-                editprofile = new EditProfileViewModel()
-                {
-                    
-                    
-                    Image = doctor.Image,
-                    BirthDate = doctor.Birthday,
-                    City = doctor.City,
-                    Country = doctor.Country,
-                    Email = doctor.Email,
-                    FirstName = doctor.FirstName,
-                    IdCard = doctor.IdCard,
-                    LastName = doctor.LastName,
-                    PhoneNumber = doctor.PhoneNumber,
-                    Adress = doctor.Adress,
-                    Specialist = doctor.Speciality,
-                    Price = doctor.Price,
-                    State = doctor.State
-                    
-
-                };
-            }
-            else
-            {
-                var patient = (Patient)profile;
-                editprofile = new EditProfileViewModel()
-                {
-
-                    Image = patient.Image ,
-                    BirthDate = patient.Birthday,
-                    City = patient.City,
-                    Country = patient.Country,
-                    Email = patient.Email,
-                    FirstName = patient.FirstName,
-                    IdCard = patient.IdCard,
-                    LastName = patient.LastName,
-                    PhoneNumber = patient.PhoneNumber,
-                    State = patient.State
-                };
-            }
-
-            editprofile.IsDoctor = profile.IsDoctor;
-            return View(editprofile);
+            var editprofile = _userTaskService.GetProfile(id);
+            if(editprofile != null)
+                return View(editprofile);
+            return NotFound();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Profiler(EditProfileViewModel editprofile, string id, string i)
+        public async Task<IActionResult> EditProfiler(EditProfileViewModel editprofile, string id)
         {
-            var Uploader = new Services.Upload.UploadFile(_environment);
-            byte[] ImageFile = Uploader.Upload(editprofile.ImageName);
-            var profile = _db.Users.Find(id);
-            if (profile == null)
-            {
-                return NotFound();
-            }
-            if (editprofile.ImageName == null)
-                ImageFile = profile.Image;
-            if (profile.IsDoctor)
-            {
-                var doctor = (Doctor)profile;
-                doctor.Image = ImageFile;
-                doctor.Adress = editprofile.Adress;
-                doctor.Birthday = editprofile.BirthDate;
-                doctor.City = editprofile.City;
-                doctor.Country = editprofile.Country;
-                doctor.Email = editprofile.Email;
-                doctor.FirstName = editprofile.FirstName;
-                doctor.IdCard = editprofile.IdCard;
-                doctor.LastName = editprofile.LastName;
-                doctor.Price = editprofile.Price;
-                doctor.PhoneNumber = editprofile.PhoneNumber;
-                doctor.Speciality = editprofile.Specialist;
-                doctor.State = editprofile.State;
-            }
-            else
-            {
-                var patient = (Patient)profile;
-                patient.Adress = editprofile.Adress;
-                patient.Image = ImageFile;
-                patient.Birthday = editprofile.BirthDate;
-                patient.City = editprofile.City;
-                patient.Country = editprofile.Country;
-                patient.Email = editprofile.Email;
-                patient.FirstName = editprofile.FirstName;
-                patient.IdCard = editprofile.IdCard;
-                patient.LastName = editprofile.LastName;
-                patient.PhoneNumber = editprofile.PhoneNumber;
-                patient.Adress = editprofile.Adress;
-            }
-            editprofile.Image = ImageFile;
-            await _userManager.UpdateAsync(profile);
-            await _db.SaveChangesAsync();
-            _db.SaveChanges();
-            return Profiler(editprofile,_userManager.GetUserId(User) );
+            var isedit = await _userTaskService.EditProfile(editprofile, id);
+            if (isedit)
+                return Profiler(_userManager.GetUserId(User));
+            return NotFound();
         }
 
         [HttpGet]
+        [Authorize(Roles ="Patient")]
         public IActionResult MedicalFile()
         {
+            var idpatient = _userManager.GetUserAsync(User).Result.Id;
+            var medicalfile = _patentService.GetMedicalFile(idpatient);
+            if(medicalfile != null)
+                return View(medicalfile);
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult MedicalFile(MedicalFileViewModels medicalFile)
+        public async Task<IActionResult> MedicalFile(MedicalFileViewModels medicalFile)
         {
             var idpatient = _userManager.GetUserAsync(User).Result.Id;
-            var isadded =  _patentService.MedicalFile(medicalFile, ModelState.IsValid,idpatient);
+            var isadded = await _patentService.MedicalFile(medicalFile, ModelState.IsValid,idpatient);
             if(!isadded)
             {
                 ModelState.AddModelError("Error", "Something won't wrong");   

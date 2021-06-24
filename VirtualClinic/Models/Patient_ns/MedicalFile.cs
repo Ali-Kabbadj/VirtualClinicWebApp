@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using VirtualClinic.Models.Identity;
 
 namespace VirtualClinic.Models.Patient_ns
 {
@@ -20,5 +21,6 @@ namespace VirtualClinic.Models.Patient_ns
         public string health_history { get; set; }
         [ForeignKey("Patient")]
         public string patientId { get; set; }
+        public virtual Patient Patient { get; set; }
     }
 }
