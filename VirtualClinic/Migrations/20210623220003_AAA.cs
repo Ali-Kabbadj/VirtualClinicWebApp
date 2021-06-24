@@ -3,12 +3,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VirtualClinic.Migrations
 {
+    /*
 <<<<<<< HEAD:VirtualClinic/Migrations/20210624150400_init.cs
     public partial class init : Migration
 =======
     public partial class AAA : Migration
 >>>>>>> f15c697ff2d9f8b4210ddb9913950e4a13adb78b:VirtualClinic/Migrations/20210623220003_AAA.cs
-    {
+    {*/
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(

@@ -50,21 +50,33 @@ namespace VirtualClinic.Migrations
                         new
                         {
                             Id = "2301D884-221A-4E7D-B509-0113DCC043E1",
+<<<<<<< HEAD
                             ConcurrencyStamp = "7b75ebd6-3a8e-480c-b215-ef34048f5592",
+=======
+                            ConcurrencyStamp = "342627f3-0e3e-4f2f-a2b9-bc6e543d0da6",
+>>>>>>> f15c697ff2d9f8b4210ddb9913950e4a13adb78b
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "2301D884-221A-4E7D-B509-0113DCC044E2",
+<<<<<<< HEAD
                             ConcurrencyStamp = "9b8fe747-7ab3-4590-9ab6-2b12ba63f65b",
+=======
+                            ConcurrencyStamp = "16bef155-351b-4f21-86d4-6017ab8f3c7d",
+>>>>>>> f15c697ff2d9f8b4210ddb9913950e4a13adb78b
                             Name = "Doctor",
                             NormalizedName = "DOCTOR"
                         },
                         new
                         {
                             Id = "2301D884-221A-4E7D-B509-0113DCC045E3",
+<<<<<<< HEAD
                             ConcurrencyStamp = "b853c815-f031-4fbb-a215-361aaa20ed60",
+=======
+                            ConcurrencyStamp = "14c858e5-e168-4acb-bb3f-96fee69ee367",
+>>>>>>> f15c697ff2d9f8b4210ddb9913950e4a13adb78b
                             Name = "Patient",
                             NormalizedName = "PATIENT"
                         });
@@ -296,8 +308,13 @@ namespace VirtualClinic.Migrations
                             Id = "B22698B8-42A2-4115-9631-1C2D1E2AC5F7",
                             AccessFailedCount = 0,
                             Birthday = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+<<<<<<< HEAD
                             ConcurrencyStamp = "5e83aa49-686a-474e-8eea-b89d234b93fb",
                             CreateDate = new DateTime(2021, 6, 24, 17, 3, 59, 106, DateTimeKind.Local).AddTicks(1487),
+=======
+                            ConcurrencyStamp = "2864d99b-cabc-4ce3-8104-a6aa2ece403b",
+                            CreateDate = new DateTime(2021, 6, 23, 23, 0, 2, 912, DateTimeKind.Local).AddTicks(4067),
+>>>>>>> f15c697ff2d9f8b4210ddb9913950e4a13adb78b
                             Email = "Master@Admin.com",
                             EmailConfirmed = true,
                             FirstName = "Master",
@@ -307,13 +324,47 @@ namespace VirtualClinic.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MASTER@ADMIN.COM",
                             NormalizedUserName = "MASTERADMIN",
+<<<<<<< HEAD
                             PasswordHash = "AQAAAAEAACcQAAAAEA+315K4SEgUgZmDkAFHHHr9p7IfQ8qlQO77RuubuLIWgfr93Rg4vN9h3St7AB380w==",
+=======
+                            PasswordHash = "AQAAAAEAACcQAAAAEB8BbZiqxI09bAE4IVpxUUfrEkLjB3xTIj1gr2YeouTOwsYTUrSUkKBJ7+sm9o+qew==",
+>>>>>>> f15c697ff2d9f8b4210ddb9913950e4a13adb78b
                             PhoneNumber = "XXXXXXXXXXXXX",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "00000000-0000-0000-0000-000000000000",
                             TwoFactorEnabled = false,
                             UserName = "masteradmin"
                         });
+                });
+
+            modelBuilder.Entity("VirtualClinic.Models.Identity.Rating", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("DoctorId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("KindoRating")
+                        .HasColumnType("float");
+
+                    b.Property<string>("PatientId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("PatientImage")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("PatientName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("VirtualClinic.Models.Patient_ns.MedicalFile", b =>
@@ -498,11 +549,19 @@ namespace VirtualClinic.Migrations
                         .IsRequired();
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("VirtualClinic.Models.Patient_ns.MedicalFile", b =>
                 {
                     b.HasOne("VirtualClinic.Models.Identity.Patient", "Patient")
                         .WithMany()
                         .HasForeignKey("patientId");
+=======
+            modelBuilder.Entity("VirtualClinic.Models.Identity.Rating", b =>
+                {
+                    b.HasOne("VirtualClinic.Models.Identity.ApplicationUser", null)
+                        .WithMany("Ratings")
+                        .HasForeignKey("ApplicationUserId");
+>>>>>>> f15c697ff2d9f8b4210ddb9913950e4a13adb78b
                 });
 
             modelBuilder.Entity("VirtualClinic.Models.Task", b =>

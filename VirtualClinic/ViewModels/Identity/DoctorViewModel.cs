@@ -44,7 +44,7 @@ namespace VirtualClinic.ViewModels
         public bool IsActivated { get; set; }
         [PersonalData]
         public string Email { get; set; }
-
+        public List<Rating> Ratings { get; set; }
 
 
         public Doctor ToEntityDoctor()
@@ -68,7 +68,8 @@ namespace VirtualClinic.ViewModels
                 Price = Price,
                 Speciality = Speciality,
                 IsActivated =IsActivated,
-                Email =Email
+                Email =Email,
+                Ratings =Ratings
             };
         }
     }

@@ -36,7 +36,7 @@ namespace VirtualClinic.ViewModels
         public List<Task> Appointements { get; set; }
         public bool IsDoctor { get; set; } = false;
         public IFormFile IFormImage { get; set; }
-
+        public List<Rating> Ratings { get; set; }
 
 
         public Patient ToEntityPatient()
@@ -55,7 +55,9 @@ namespace VirtualClinic.ViewModels
                 State = State,
                 City = City,
                 Adress = Adress,
-                Gender = Gender
+                Gender = Gender,
+                Ratings =Ratings
+                
             };
         }
     }

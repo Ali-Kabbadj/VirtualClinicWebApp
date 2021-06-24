@@ -24,7 +24,9 @@ namespace VirtualClinic.Models.Identity
                 Adress = Adress,
                 Gender = Gender,
                 Email = Email,
-                PhoneNumber = PhoneNumber
+                PhoneNumber = PhoneNumber,
+                Ratings = Ratings
+
             };
         }
     }

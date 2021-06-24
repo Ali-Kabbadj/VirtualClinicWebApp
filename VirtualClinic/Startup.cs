@@ -65,7 +65,7 @@ namespace VirtualClinic
                 options.Password = Configuration["MailSettings:Password"];
                 options.Mail = Configuration["MailSettings:Mail"];
             });
-
+            services.AddSignalR();
             services.AddIdentityCore<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.Configure<MailSettings>(Configuration.GetSection("Customer"));
@@ -80,7 +80,7 @@ namespace VirtualClinic
 
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
                     options.SerializerSettings.ContractResolver =
-                       new DefaultContractResolver()); ;
+                       new DefaultContractResolver());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -104,13 +104,15 @@ namespace VirtualClinic
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+          
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+         
         }
     }
 }

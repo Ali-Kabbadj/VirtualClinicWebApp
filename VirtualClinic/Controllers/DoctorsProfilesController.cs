@@ -9,6 +9,7 @@ using VirtualClinic.Services.Doctor;
 using VirtualClinic.Services.IdentityService;
 using Microsoft.AspNetCore.Identity;
 using VirtualClinic.Models.Identity;
+using System.Collections.Generic;
 
 namespace VirtualClinic.Controllers
 {    
@@ -51,6 +52,7 @@ namespace VirtualClinic.Controllers
             if (doctor == null)
                 return NotFound();
             ViewBag.Totalappointement = _db.Tasks.Where(t => t.DoctorId.Equals(id) && t.PatientId!=null).Count();
+            doctor.Ratings.AddRange(_db.Ratings.Where(d => d.DoctorId == id));
             return View(doctor);
         }
         [Authorize(Roles = "Doctor")]
@@ -64,5 +66,38 @@ namespace VirtualClinic.Controllers
             //var appointements = _db.Doctors.Where(user => user.Id.Equals(id));
             return View(doctor);
         }
+
+
+        [HttpPost]
+        public IActionResult Rating(string x , string y)
+        {
+            if (_db.Ratings.Where(R => R.PatientId == _userManager.GetUserAsync(User).Result.Id && R.DoctorId == y).Count()>0)
+            {
+               Rating R = _db.Ratings.Where(R => R.PatientId == _userManager.GetUserAsync(User).Result.Id && R.DoctorId == y).First();
+                R.KindoRating = double.Parse(x);
+                _db.Ratings.Attach(R);
+                _db.Entry(R).State = EntityState.Modified;
+                _db.SaveChanges();
+            }
+            else
+            {
+                Random ran=new Random();
+                Rating R = new Rating()
+                {
+                    Id = ran.Next(1, 999999999).ToString(),
+                    DoctorId = y,
+                    PatientId = _userManager.GetUserAsync(User).Result.Id,
+                    PatientName = _userManager.GetUserAsync(User).Result.UserName,
+                    PatientImage = _userManager.GetUserAsync(User).Result.Image,
+                    KindoRating = double.Parse(x)
+                    
+                };
+                _db.Ratings.Add(R);
+                _db.SaveChanges();
+            }
+
+            return RedirectToAction("Details", "DoctorsProfiles", y);
+        }
+
     }
 }
