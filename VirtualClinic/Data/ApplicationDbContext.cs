@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using VirtualClinic.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using VirtualClinic.Models.Identity;
@@ -21,6 +22,7 @@ namespace VirtualClinic.Data
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<MedicalFile> MedicalFiles { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -63,6 +65,11 @@ namespace VirtualClinic.Data
             builder.Entity<MedicalFile>(entity =>
             {
                 entity.ToTable("MedicalFiles").HasKey(i => i.Id);
+            });
+
+            builder.Entity<Rating>(entity =>
+            {
+                entity.ToTable("Ratings").HasKey(i => i.Id);
             });
 
             builder.ApplyConfiguration(new RoleConfiguration());

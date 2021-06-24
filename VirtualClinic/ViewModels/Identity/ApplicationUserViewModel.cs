@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace VirtualClinic.ViewModels
         public string Speciality { get; set; }
         public long Price { get; set; }
 
-       
+        public List<Rating> Ratings { get; set; }
 
 
         public ApplicationUserViewModel()
@@ -49,9 +50,9 @@ namespace VirtualClinic.ViewModels
         //    this.hostingEnv = HostEnv;
         //}
 
-        public ApplicationUser ToEnity()
+        public Models.Identity.ApplicationUser ToEnity()
         {
-            return new ApplicationUser
+            return new Models.Identity.ApplicationUser
             {
                 Id =Id,
                 IsDoctor = IsDoctor,
@@ -66,7 +67,8 @@ namespace VirtualClinic.ViewModels
                 Adress = Adress,
                 Gender = Gender,
                 Email = Email,
-                PhoneNumber = PhoneNumber
+                PhoneNumber = PhoneNumber,
+                Ratings = Ratings
             };
         }
 

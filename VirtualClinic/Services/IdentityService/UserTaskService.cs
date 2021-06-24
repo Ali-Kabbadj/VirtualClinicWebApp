@@ -172,6 +172,7 @@ namespace VirtualClinic.Services.IdentityService
                 Adress = User.Adress,
                 Gender = User.Gender,
                 Email = User.Email,
+                Ratings = User.Ratings
 
             });
             return Users;

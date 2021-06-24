@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using Kendo.Mvc.UI;
 using System.Collections.Generic;
 using VirtualClinic.ViewModels;
+using System.Linq;
 
 namespace VirtualClinic.Models.Identity
 {
@@ -37,6 +39,7 @@ namespace VirtualClinic.Models.Identity
 
         public DateTime CreateDate { get; set; } = DateTime.Now;
         public bool IsActivated { get; set; }
+        public List<Rating> Ratings { get; set; }
 
         public ApplicationUserViewModel ToViewModel()
         {
@@ -56,7 +59,8 @@ namespace VirtualClinic.Models.Identity
                 Gender = Gender,
                 Email = Email,
                 PhoneNumber = PhoneNumber,
-                IsActivated =IsActivated
+                IsActivated =IsActivated,
+                Ratings =Ratings
             };
         }
     }

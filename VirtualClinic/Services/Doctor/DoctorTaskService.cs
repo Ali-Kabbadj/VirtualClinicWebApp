@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using VirtualClinic.Data;
 using VirtualClinic.Models;
+using VirtualClinic.Models.Identity;
 using VirtualClinic.ViewModels;
 
 namespace VirtualClinic.Services.Doctor
@@ -37,7 +38,8 @@ namespace VirtualClinic.Services.Doctor
                     Price = Doctor.Price,
                     Appointements = db.Tasks.Where(a => a.DoctorId == Doctor.Id).ToList(),
                     IsActivated = Doctor.IsActivated,
-                    Email =Doctor.Email
+                    Email =Doctor.Email,
+                    Ratings = Doctor.Ratings
 
                 });
                 return result;          
@@ -94,6 +96,11 @@ namespace VirtualClinic.Services.Doctor
         public DoctorViewModel One(Func<DoctorViewModel, bool> predicate)
         {
             return GetAllDoctors().FirstOrDefault(predicate);
+        }
+
+        public List<Rating> GetRatings(DoctorViewModel Doctor)
+        {
+            return GetAllDoctors().Where(d => d.Id == Doctor.Id).First().Ratings;
         }
     }
 }

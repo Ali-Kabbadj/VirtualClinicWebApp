@@ -1,6 +1,9 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using VirtualClinic.Models;
+using VirtualClinic.Models.Identity;
 
 namespace VirtualClinic.Services.Doctor
 {
@@ -20,10 +23,11 @@ namespace VirtualClinic.Services.Doctor
          string Gender { get; set; }
          //DateTime CreateDate { get; set; } 
          List<Task> Appointements { get; set; }
-        long Price { get; set; }
-         public string Speciality { get; set; }
-         public bool IsActivated { get; set; }
-        public string Email { get; set; }
-        
+         long Price { get; set; }
+         string Speciality { get; set; }
+         bool IsActivated { get; set; }
+         string Email { get; set; }
+         List<Rating> Ratings { get; set; }
+
     }
 }
