@@ -64,7 +64,7 @@ namespace VirtualClinic.Data
             });
             builder.Entity<MedicalFile>(entity =>
             {
-                entity.ToTable("MedicalFiles").HasKey(i => i.Id);
+                entity.ToTable("MedicalFiles").HasKey(m => m.Id);
             });
 
             builder.Entity<Rating>(entity =>
