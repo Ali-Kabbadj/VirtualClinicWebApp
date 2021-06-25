@@ -2,15 +2,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -23,10 +14,6 @@
 ::-webkit-scrollbar-track-piece {
     display: none;
 }
-
-
-
-
 
 
 * {
@@ -209,8 +196,7 @@ section {
         background: #79edfc;
     }
 
-<<<<<<< HEAD
-=======
+
 #heading {
    
   width: 120px;
@@ -219,7 +205,6 @@ section {
   border-radius: 90px;
   margin-top: 40px;
 }
->>>>>>> 8516f4f43004c4030f073807770fb66fefa6868c
 
 /*** Responsive Menu For Smaller Device ***/
 @media screen and (max-width: 767px) {
@@ -263,14 +248,12 @@ section {
   #head-line {
     transform: scale(0.8);
   }
-<<<<<<< HEAD
+
 
 
 }
-=======
 }
 
->>>>>>> 8516f4f43004c4030f073807770fb66fefa6868c
 
 ::marker {
     unicode-bidi: isolate;
@@ -859,7 +842,6 @@ body {
     background: #F6F8FF;
 }
 
-<<<<<<< HEAD
 #height {
     border: none;
     background-color: transparent;
@@ -872,7 +854,7 @@ body {
     border-bottom: 1px solid #2ea8ee;
     outline: none;
 }
-=======
+
     body .grid {
         display: flex;
         margin: 24px 0;
@@ -882,4 +864,3 @@ body {
             margin: 0 16px;
         }
 
->>>>>>> 8516f4f43004c4030f073807770fb66fefa6868c
