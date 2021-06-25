@@ -8,7 +8,7 @@ using VirtualClinic.ViewModels;
 using System.Threading.Tasks;
 using VirtualClinic.Models.Identity;
 using VirtualClinic.Services.IdentityService;
-using VirtualClinic.Services.EmailService;
+using VirtualClinic.Services.EmailService; 
 using System.Linq;
 
 

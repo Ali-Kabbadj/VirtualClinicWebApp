@@ -37,13 +37,13 @@ namespace VirtualClinic.Controllers
             _environment = environment;
             _patentService = new PatientService(_db);
             _userTaskService = new UserTaskService(context, userManager, signInManager);
-        }
-       
+        }      
 
         // Profile 
         [HttpGet]
-        public IActionResult Profiler(string id)
+        public IActionResult Profiler()
         {
+            var id = _userManager.GetUserAsync(User).Result.Id;
             var editprofile = _userTaskService.GetProfile(id);
             if(editprofile != null)
                 return View(editprofile);
@@ -52,11 +52,12 @@ namespace VirtualClinic.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditProfiler(EditProfileViewModel editprofile, string id)
+        public async Task<IActionResult> EditProfiler(EditProfileViewModel editprofile)
         {
+            var id = _userManager.GetUserAsync(User).Result.Id;
             var isedit = await _userTaskService.EditProfile(editprofile, id);
             if (isedit)
-                return Profiler(_userManager.GetUserId(User));
+                return Profiler();
             return NotFound();
         }
 
