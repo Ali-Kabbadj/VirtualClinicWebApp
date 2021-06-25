@@ -71,7 +71,7 @@ namespace VirtualClinic.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UserRegister(RegisterViewModel register,string AsDoctor)
+        public async Task<IActionResult> UserRegister(RegisterViewModel register,bool AsDoctor)
         {
                var result = await _userService.CreateUser(register,AsDoctor, ModelState.IsValid);
                if (result.Succeeded)

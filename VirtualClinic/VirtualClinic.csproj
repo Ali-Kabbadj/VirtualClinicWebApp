@@ -1857,7 +1857,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\Images\Svg\" />
   </ItemGroup>
 

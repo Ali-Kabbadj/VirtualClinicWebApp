@@ -14,7 +14,7 @@ namespace VirtualClinic.Services.IdentityService
         Task<T> GetUserById(string id);
         Task<T> GetUserByEmail(string email);
         Task<T> GetUserByUserName(string userName);
-        Task<IdentityResult> CreateUser(RegisterViewModel User , string isDoctor,bool IsValid);
+        Task<IdentityResult> CreateUser(RegisterViewModel User , bool isDoctor,bool IsValid);
         Task<SignInResult> LoginUser(LoginViewModel login, bool RememberMe, bool lockoutOnFailure,bool IsValid);
         void AddUserRole(string userId, string RoleId);
         void SendConfirmationEmail(ApplicationUser user);

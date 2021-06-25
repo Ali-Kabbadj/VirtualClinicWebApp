@@ -19,17 +19,21 @@ namespace VirtualClinic.Services.Patient_ns
 
         public MedicalFileViewModels GetMedicalFile(string patietnId)
         {
-            var medicalfile = _db.MedicalFiles.Where(m => m.patientId == patietnId).First();
-            return new MedicalFileViewModels
+            if (_db.MedicalFiles.Count() > 0)
             {
-                height=medicalfile.height,
-                Weight=medicalfile.Weight,
-                blood_type=medicalfile.blood_type,
-                rhesus_factor=medicalfile.rhesus_factor,
-                temperature=medicalfile.temperature,
-                tension=medicalfile.tension,
-                health_history=medicalfile.health_history
-            };
+                var medicalfile = _db.MedicalFiles.Where(m => m.patientId == patietnId).FirstOrDefault();
+                return new MedicalFileViewModels
+                {
+                    height = medicalfile.height,
+                    Weight = medicalfile.Weight,
+                    blood_type = medicalfile.blood_type,
+                    rhesus_factor = medicalfile.rhesus_factor,
+                    temperature = medicalfile.temperature,
+                    tension = medicalfile.tension,
+                    health_history = medicalfile.health_history
+                };
+            }
+            return null;
         }
 
         public async Task<bool> MedicalFile(MedicalFileViewModels medicalFile,bool isvalid,string id)

@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="~/favicon.ico" type="image/png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <script src="https://kit.fontawesome.com/dfaaddb7ea.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,13 +20,14 @@
     <script defer src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js'></script>
     <script defer src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js'></script>
     <link href="/Layout/css/LayoutStyle.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 </head>
 <body>
     <progress class="prog" max="100" value="70"></progress>
     <nav class="navbar navbar-inverse navbar-expand-xl navbar-dark">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#"><i class="fa"><img src="/Images/Logos/logo.png" alt="Alternate Text" /></i>Virtual<b>Clinic</b></a>
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index"><i class="fa"><img src="/Images/Logos/logo.png" alt="Alternate Text" /></i>Virtual<b>Clinic</b></a>
             <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                 <span class="navbar-toggler-icon"></span>
                 <span class="icon-bar"></span>
@@ -56,7 +57,7 @@
                             <li class="divider"></li>
                             @if (!UserManager.GetUserAsync(User).Result.IsDoctor)
                             {
-                                <li><a asp-controller="EditProfile" asp-action="MedicalFile"><i class="fa fa-file-medical"></i>File Medical</a></li>
+                                <li><a asp-controller="EditProfile" asp-action="MedicalFile"><i class="fas fa-file-medical-alt"></i> File Medical</a></li>
                             }
                             <li class="divider"></li>
                             <li><a asp-action="LogOut" asp-controller="Account"><i class="material-icons">&#xE8AC;</i> Logout</a></li>
