@@ -58,7 +58,10 @@ namespace VirtualClinic.Controllers
         public IActionResult UserRegister(string AsDoctor)
         {
             //GetSpecialitiesAsync();
-            ViewBag.IsDoctor = false;
+            if (!_signInManager.IsSignedIn(User))
+            {
+
+             ViewBag.IsDoctor = false;
             ViewData["Title"] = "Register As Patient";
             if (AsDoctor== "true")
             {
@@ -66,6 +69,8 @@ namespace VirtualClinic.Controllers
                 ViewData["Title"] = "Register As Doctor";
             }
             return View();
+            }
+            return RedirectToAction("LogOut");
         }
 
 
@@ -73,18 +78,19 @@ namespace VirtualClinic.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UserRegister(RegisterViewModel register,bool AsDoctor)
         {
-               var result = await _userService.CreateUser(register,AsDoctor, ModelState.IsValid);
-               if (result.Succeeded)
-               {
-                    register.PhoneNumber =  register.DialNumber +register.PhoneNumber;
+            var result = await _userService.CreateUser(register, AsDoctor, ModelState.IsValid);
+                if (result.Succeeded)
+                {
+                    register.PhoneNumber = register.DialNumber + register.PhoneNumber;
                     IQueryable<ApplicationUser> Users = _db.Users.Where(U => U.Email == register.Email);
-                    if (Users.Count()>0)
+                    if (Users.Count() > 0)
                     {
                         _userService.SendConfirmationEmail(Users.First());
                     }
                     return View("ConfirmEmailPage", register);
-               }
-               return View(register);
+                }
+                return View(register);
+           
         }
 
 
@@ -92,8 +98,13 @@ namespace VirtualClinic.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            ViewData["Title"] = "Log in";
-            return View();
+            if (!_signInManager.IsSignedIn(User))
+            {
+            
+                ViewData["Title"] = "Log in";
+                return View();
+            }
+            return RedirectToAction("LogOut");
         }
 
 

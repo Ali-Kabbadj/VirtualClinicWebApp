@@ -1,5 +1,6 @@
 ﻿@model VirtualClinic.ViewModels.Patient_ns.MedicalFileViewModels
 
+
 <div class="container">
     <h1 style="text-align:center;">Edit File Medical</h1>
     <hr>
@@ -10,29 +11,31 @@
 
                 <div class="form-horizontal" role="form">
 
+
+
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Height:</label>
                         <div class="col-lg-8">
-                            <input asp-for="height" min="0" type="number" class="form-control">
+                            <input asp-for="height" min="0" type="number" class="form-control" placeholder="@@ cm">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Weight:</label>
                         <div class="col-lg-8">
-                            <input asp-for="Weight" class="form-control" type="number" min="0"/>
+                            <input asp-for="Weight" class="form-control" type="number" step="0.01" min="0" placeholder="@@ kg" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Temperature:</label>
                         <div class="col-lg-8">
-                            <input asp-for="temperature" class="form-control" type="number" />
+                            <input asp-for="temperature" class="form-control" type="number" step="0.01" placeholder="@@ °C" />
 
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Tension:</label>
+                        <label class="col-lg-3 control-label">Blood Pressure:</label>
                         <div class="col-lg-8">
-                            <input asp-for="tension" class="form-control" type="number">
+                            <input asp-for="tension" class="form-control" type="number" placeholder="@@ mmHg" />
                         </div>
                     </div>
 
@@ -68,19 +71,18 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Health Historique:</label>
                         <div class="col-lg-8">
-                            <input asp-for="health_history" class="form-control" type="tel">
+                            <input asp-for="health_history" class="form-control" />
                         </div>
                     </div>
+
+                    <input style="padding: 5px 30px; margin: 10px 0px 30px 350px; background-color: #3d1275;color:#fff; " type="submit" value="Edit" />
                 </div>
                 
-            </div>
-            <div class="btn">
-                <input type="submit" value="Edit" />
-            </div>
+            </div>               
             </form>
         </div>
     </div>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         import swal from 'sweetalert';
             @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"].Errors.Count > 0)
