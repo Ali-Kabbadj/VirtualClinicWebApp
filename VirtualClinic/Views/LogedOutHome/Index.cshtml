@@ -16,12 +16,20 @@
     @*<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />*@
    
 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/LogedOutHome/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/LogedOutHome/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/LogedOutHome/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/LogedOutHome/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/LogedOutHome/swiper/swiper-bundle.min.css" rel="stylesheet">
 </head>
 
 
 <body>
-    <header>
-        <nav>
+    <header style="align-content:center;">
+        <nav >
             <div id="brand">
                 <img class="logo" style="width:55px ; height:60px;" src="/Images/Logos/logo.png" alt="Alternate Text" />
                 <h2 style="margin-left:20px;color:white;">VirtualClinic</h2>
@@ -35,14 +43,78 @@
                     </div>
                 </div>
                 <ul>
+<<<<<<< HEAD
                     <li><a href="#home"></a></li>
                     <li><a href="#bmi"></a></li>
                     <li><a href="#quote"></a></li>
+=======
+                    <li><a href="#hero"></a></li>
+                    <li><a href="#section02"></a></li>
+                    <li><a href="#section03"></a></li>
+                    <li><a href="#section04"></a></li>
+>>>>>>> 8516f4f43004c4030f073807770fb66fefa6868c
                 </ul>
             </div>
         </nav>
     </header>
+<<<<<<< HEAD
     <section id="home">     
+=======
+
+    <section id="hero" style="background-color:white;">
+        <div class="container-fluid" data-aos="fade-up">
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-6 pt-3 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                    <h1  style="font-size:66px;margin-left:10px;">VirtalClinic</h1>
+                    <h2 style="margin-top:40px;margin-left:30px;">The Website that cares about your health</h2>
+                    <div style="" class="grid">
+
+                        <button id="Login" class="colorful-button">
+                            <div class="wrapper">
+                                <span>Login</span>
+                                <div class="circle circle-12"></div>
+                                <div class="circle circle-11"></div>
+                                <div class="circle circle-10"></div>
+                                <div class="circle circle-9"></div>
+                                <div class="circle circle-8"></div>
+                                <div class="circle circle-7"></div>
+                                <div class="circle circle-6"></div>
+                                <div class="circle circle-5"></div>
+                                <div class="circle circle-4"></div>
+                                <div class="circle circle-3"></div>
+                                <div class="circle circle-2"></div>
+                                <div class="circle circle-1"></div>
+                            </div>
+                        </button>
+
+                        <button id="Register"   class="colorful-button dark">
+                            <div class="wrapper">
+                                <span>Register</span>
+                                <div class="circle circle-12"></div>
+                                <div class="circle circle-11"></div>
+                                <div class="circle circle-10"></div>
+                                <div class="circle circle-9"></div>
+                                <div class="circle circle-8"></div>
+                                <div class="circle circle-7"></div>
+                                <div class="circle circle-6"></div>
+                                <div class="circle circle-5"></div>
+                                <div class="circle circle-4"></div>
+                                <div class="circle circle-3"></div>
+                                <div class="circle circle-2"></div>
+                                <div class="circle circle-1"></div>
+                            </div>
+                        </button>
+
+                    </div>
+
+                </div>
+                <div class="col-xl-6 col-lg-7 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="150">
+                    <img src="/Home/img/HomePage.jpg" class="img-fluid animated" alt="">
+                </div>
+            </div>
+        </div>
+        
+>>>>>>> 8516f4f43004c4030f073807770fb66fefa6868c
     </section>
     <section id="bmi">
         <div class="container">
@@ -128,6 +200,7 @@
                 if (bmi < 16) result.innerHTML =
                     `Severe Thinness : <span>${bmi}</span>`;
 
+<<<<<<< HEAD
                 else if (bmi >= 16 && bmi < 17)
                     result.innerHTML =
                         `Moderate Thinness : <span>${bmi}</span>`;
@@ -146,6 +219,9 @@
                 else if (bmi >= 35 && bmi < 40)
                     result.innerHTML =
                         `Obese Class II : <span>${bmi}</span>`;
+=======
+   
+>>>>>>> 8516f4f43004c4030f073807770fb66fefa6868c
 
                 else result.innerHTML =
                     `Obese Class III : <span>${bmi}</span>`;
@@ -158,3 +234,16 @@
 </body>
 
 </html>
+
+
+<script>
+      $("#Login").on("click", function (evt) {
+            var clicked_button = $(this);
+            window.location.href = '@Url.Action("Login", "Account")'
+      });
+
+      $("#Register").on("click", function (evt) {
+            var clicked_button = $(this);
+            window.location.href = '@Url.Action("Register", "Account")'
+        });
+</script>
