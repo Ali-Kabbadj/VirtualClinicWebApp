@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace WebApplication1.Data.AdminUserConfig
         {
             var admin = new ApplicationUser
             {
+
                 Id = adminId,
                 UserName = "masteradmin",
                 NormalizedUserName = "MASTERADMIN",

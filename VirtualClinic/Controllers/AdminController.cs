@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VirtualClinic.Data;
@@ -40,6 +43,7 @@ namespace VirtualClinic.Controllers
                 M.NumberOfPatients = _context.Patients.Count();
                 M.NumberOfConfirmeedAppointments = _context.Tasks.Where(t => t.state == "Confirmed").Count();
                 M.NumberOfUnConfirmeedAppointments = _context.Tasks.Where(t => t.state == "Unconfirmed").Count();
+                ViewBag.Current = "Index";
                 return View(M);
             }
             else
@@ -52,12 +56,15 @@ namespace VirtualClinic.Controllers
         public IActionResult listOfDoctors()
         {
             var Doctors = _doctorTaskService.GetAllDoctors();
+            ViewBag.Current = "listOfDoctors";
             return View(Doctors);
         }
+
         [Authorize(Roles = "Administrator")]
         public IActionResult listOfPatients()
         {
             var Patients =  _userService.GetAll().Where(User => User.IsDoctor == false && User.FirstName != "Master");
+            ViewBag.Current = "listOfPatients";
             return View(Patients);
         }
         [Authorize(Roles = "Administrator")]
@@ -88,12 +95,26 @@ namespace VirtualClinic.Controllers
             {
                 _signInManager.SignOutAsync();
             }
-            var resulte = _userService.LoginUser(user ,user.RememberMe ,false,ModelState.IsValid).Result;
-            if (resulte.Succeeded)
+            if (user.Email.ToLower() == "Master@Admin.com".ToLower())
             {
-                return RedirectToAction("Index");
+                var resulte = _userService.LoginUser(user ,user.RememberMe ,false,ModelState.IsValid).Result;
+                if (resulte.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
             }
+           
             return RedirectToAction("Login");
         }
+
+
+        [Authorize(Roles = "Administrator")]
+        public IActionResult DeleteDoctor(string id)
+        {
+            _doctorTaskService.Delete(id);
+            return View("listOfDoctors");
+        }
+
+       
     }
 }

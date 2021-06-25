@@ -12,7 +12,7 @@ namespace VirtualClinic.Services.Doctor
     {
         IQueryable<T> GetAllDoctors();
         void Update(T Doctor, ModelStateDictionary modelState);
-        void Delete(T Doctor, ModelStateDictionary modelState);
+        void Delete(string id);
         List<Rating> GetRatings(T Doctor);
     }
 }

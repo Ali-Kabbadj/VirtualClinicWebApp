@@ -45,6 +45,7 @@ namespace VirtualClinic.ViewModels
         [PersonalData]
         public string Email { get; set; }
         public List<Rating> Ratings { get; set; }
+        public DateTime Crationdate { get; set; }
 
 
         public Doctor ToEntityDoctor()
