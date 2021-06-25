@@ -3,7 +3,24 @@
 
 
 
+@media screen and (max-width: 767px) {
+    ul.showMenu{
+        height: 300px !important;
+        margin-right:-50px;
+    }
+    #services {
+        height: 120vh;
+    }
+   
+}
 
+
+/*header{
+    height:80px !important;
+}
+nav {
+    height: 80px !important;
+}*/
 
 
 
@@ -209,8 +226,7 @@ section {
         background: #79edfc;
     }
 
-<<<<<<< HEAD
-=======
+
 #heading {
    
   width: 120px;
@@ -219,7 +235,7 @@ section {
   border-radius: 90px;
   margin-top: 40px;
 }
->>>>>>> 8516f4f43004c4030f073807770fb66fefa6868c
+
 
 /*** Responsive Menu For Smaller Device ***/
 @media screen and (max-width: 767px) {
@@ -263,14 +279,14 @@ section {
   #head-line {
     transform: scale(0.8);
   }
-<<<<<<< HEAD
+
 
 
 }
-=======
-}
 
->>>>>>> 8516f4f43004c4030f073807770fb66fefa6868c
+
+
+
 
 ::marker {
     unicode-bidi: isolate;
@@ -859,7 +875,7 @@ body {
     background: #F6F8FF;
 }
 
-<<<<<<< HEAD
+
 #height {
     border: none;
     background-color: transparent;
@@ -872,7 +888,7 @@ body {
     border-bottom: 1px solid #2ea8ee;
     outline: none;
 }
-=======
+
     body .grid {
         display: flex;
         margin: 24px 0;
@@ -883,3 +899,131 @@ body {
         }
 
 
+
+.root {
+    --red: hsl(0, 78%, 62%);
+    --cyan: hsl(180, 62%, 55%);
+    --orange: hsl(34, 97%, 64%);
+    --blue: hsl(212, 86%, 64%);
+    --varyDarkBlue: hsl(234, 12%, 34%);
+    --grayishBlue: hsl(229, 6%, 66%);
+    --veryLightGray: hsl(0, 0%, 98%);
+    --weight1: 200;
+    --weight2: 400;
+    --weight3: 600;
+}
+        /*serivces*/
+.attribution {
+    font-size: 11px;
+    text-align: center;
+}
+
+    .attribution a {
+        color: hsl(228, 45%, 44%);
+    }
+
+h1:first-of-type {
+    font-weight: var(--weight1);
+    color: var(--varyDarkBlue);
+}
+
+h1:last-of-type {
+    color: var(--varyDarkBlue);
+}
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+
+.header {
+    text-align: center;
+    line-height: 0.8;
+    margin-bottom: 50px;
+    margin-top: 100px;
+}
+
+    .header p {
+        margin: 0 auto;
+        line-height: 2;
+        color: var(--grayishBlue);
+    }
+
+
+.box p {
+    color: var(--grayishBlue);
+}
+
+.box {
+    border-radius: 5px;
+    box-shadow: 0px 30px 40px -20px var(--grayishBlue);
+    padding: 30px;
+    margin: 20px;
+}
+
+img {
+    float: right;
+}
+
+@media (max-width: 450px) {
+    .box {
+        height: 200px;
+    }
+}
+
+@media (max-width: 950px) and (min-width: 450px) {
+    .box {
+        text-align: center;
+        height: 180px;
+    }
+}
+
+.cyan {
+    border-top: 3px solid var(--cyan);
+}
+
+.red {
+    border-top: 3px solid var(--red);
+}
+
+.blue {
+    border-top: 3px solid var(--blue);
+}
+
+.orange {
+    border-top: 3px solid var(--orange);
+}
+
+h2 {
+    color: var(--varyDarkBlue);
+    font-weight: var(--weight3);
+}
+
+
+@media (min-width: 950px) {
+    .row1-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .row2-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .box-down {
+        position: relative;
+        top: 150px;
+    }
+
+    .box {
+        width: 20%;
+    }
+
+    .header p {
+        width: 30%;
+    }
+}
