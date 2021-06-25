@@ -28,6 +28,7 @@ namespace VirtualClinic.Services.Doctor
          bool IsActivated { get; set; }
          string Email { get; set; }
          List<Rating> Ratings { get; set; }
+        DateTime Crationdate { get; set; }
 
     }
 }

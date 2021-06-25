@@ -59,8 +59,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
 
-                        <li class="nav-item">
-                            <a asp-action="Index" asp-controller="Admin" class="nav-link active">
+                        <li class="nav-item ">
+                            <a class="nav-link @(ViewBag.Current == "Index" ? "active" : "")" href="@Url.Action("Index","Admin")" target="_self">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Dashboard
@@ -68,8 +68,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
 
+
                         <li class="nav-item">
-                            <a asp-action="ListOfDoctors" asp-controller="Admin" class="nav-link">
+                            <a class="nav-link @(ViewBag.Current == "listOfDoctors" ? "active" : "")" href="@Url.Action("listOfDoctors","Admin")" target="_self">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Manage Doctors
@@ -78,7 +79,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
 
                         <li class="nav-item">
-                            <a asp-action="ListOfPatients" asp-controller="Admin" class="nav-link">
+                            <a  class="nav-link  @(ViewBag.Current == "listOfPatients" ? "active" : "")" href="@Url.Action("ListOfPatients","Admin")" target="_self">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Manage Patients
@@ -86,14 +87,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a asp-action="LogOut" asp-controller="Account" class="nav-link">
-                                <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <p>
-                                    Logout
-                                </p>
-                            </a>
-                        </li>
+
+
+
+
+
+
+
+                     
 
 
                     </ul>
@@ -107,7 +108,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
 
-            @RenderBody();
+            @RenderBody()
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->

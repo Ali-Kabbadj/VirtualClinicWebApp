@@ -27,6 +27,7 @@ namespace VirtualClinic.Services.IdentityService
         public bool IsActivated { get; set; }
         public string Speciality { get; set; }
         public long Price { get; set; }
+        DateTime CreationDate { get; set; }
 
     }
 }

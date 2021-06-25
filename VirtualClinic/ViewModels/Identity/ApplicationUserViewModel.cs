@@ -39,7 +39,7 @@ namespace VirtualClinic.ViewModels
         public long Price { get; set; }
 
         public List<Rating> Ratings { get; set; }
-
+        public DateTime CreationDate { get; set; }
 
         public ApplicationUserViewModel()
         {
@@ -68,7 +68,8 @@ namespace VirtualClinic.ViewModels
                 Gender = Gender,
                 Email = Email,
                 PhoneNumber = PhoneNumber,
-                Ratings = Ratings
+                Ratings = Ratings,
+                CreateDate = CreationDate
             };
         }
 

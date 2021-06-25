@@ -39,7 +39,8 @@ namespace VirtualClinic.Services.Doctor
                     Appointements = db.Tasks.Where(a => a.DoctorId == Doctor.Id).ToList(),
                     IsActivated = Doctor.IsActivated,
                     Email =Doctor.Email,
-                    Ratings = Doctor.Ratings
+                    Ratings = Doctor.Ratings,
+                    Crationdate =Doctor.CreateDate
 
                 });
                 return result;          
@@ -76,19 +77,11 @@ namespace VirtualClinic.Services.Doctor
                 db.SaveChanges();
         }
 
-        public virtual void Delete(DoctorViewModel doctor, ModelStateDictionary modelState)
+        public virtual void Delete(string id)
         {
 
-            var entity = doctor.ToEntityDoctor();
+            var entity = db.Doctors.Where( d => d.Id == id).First();
             db.Doctors.Attach(entity);
-
-            var recurrenceExceptions = db.Tasks.Where(t => t.DoctorId == doctor.Id);
-
-            foreach (var recurrenceException in recurrenceExceptions)
-            {
-                db.Tasks.Remove(recurrenceException);
-            }
-
             db.Doctors.Remove(entity);
             db.SaveChanges();
         }
