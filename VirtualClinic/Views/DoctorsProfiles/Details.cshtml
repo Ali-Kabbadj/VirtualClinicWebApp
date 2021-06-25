@@ -42,7 +42,7 @@
                     Rate this doctor
                     <form method="post" enctype="multipart/form-data">
                         <input id="id" type="text" value="@Model.Id" hidden />
-                        <fieldset onchange="displayRadioValue()" class="rating">
+                        <fieldset class="rating">
 
                             <input onchange="displayRadioValue()" type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
                             <input onchange="displayRadioValue()" type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
@@ -101,11 +101,11 @@
                 Peaple ratings
                 @foreach (var item in Model.Ratings)
                 {
-                    <img width="15px" height="15px" style="border-radius:50%" src="data:image/jpeg;base64,@Convert.ToBase64String(item.PatientImage)" alt="Alternate Text" /><h2>@item.PatientName</h2>
                     if (item.KindoRating == 0.5)
                     {
+                        <img width="15px" height="15px" style="border-radius:50%" src="data:image/jpeg;base64,@Convert.ToBase64String(item.PatientImage)" alt="Alternate Text" /><h2>@item.PatientName</h2>
 
-                        <fieldset  class="rating">
+                        <fieldset class="rating">
                             <input type="radio" id="star5" name="rating1" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
                             <input type="radio" id="star4half" name="rating1" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
                             <input type="radio" id="star4" name="rating1" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
@@ -117,10 +117,10 @@
                             <input type="radio" id="star1" name="rating1" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
                             <input checked="checked" type="radio" id="starhalf" name="rating1" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                         </fieldset>
-                    }
+                    }else
                     if (item.KindoRating == 1)
                     {
-                        <fieldset  class="rating">
+                        <fieldset class="rating">
                             <input type="radio" id="star5" name="rating1" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
                             <input type="radio" id="star4half" name="rating1" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
                             <input type="radio" id="star4" name="rating1" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
@@ -132,10 +132,10 @@
                             <input checked="checked" type="radio" id="star1" name="rating1" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
                             <input type="radio" id="starhalf" name="rating1" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                         </fieldset>
-                    }
+                    }else
                     if (item.KindoRating == 1.5)
                     {
-                        <fieldset  class="rating">
+                        <fieldset class="rating">
                             <input type="radio" id="star5" name="rating1" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
                             <input type="radio" id="star4half" name="rating1" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
                             <input type="radio" id="star4" name="rating1" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
@@ -147,10 +147,10 @@
                             <input type="radio" id="star1" name="rating1" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
                             <input type="radio" id="starhalf" name="rating1" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                         </fieldset>
-                    }
+                    }else
                     if (item.KindoRating == 2)
                     {
-                        <fieldset  class="rating">
+                        <fieldset class="rating">
                             <input type="radio" id="star5" name="rating1" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
                             <input type="radio" id="star4half" name="rating1" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
                             <input type="radio" id="star4" name="rating1" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
@@ -162,10 +162,10 @@
                             <input type="radio" id="star1" name="rating1" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
                             <input type="radio" id="starhalf" name="rating1" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                         </fieldset>
-                    }
+                    }else
                     if (item.KindoRating == 2.5)
                     {
-                        <fieldset  class="rating">
+                        <fieldset class="rating">
                             <input type="radio" id="star5" name="rating1" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
                             <input type="radio" id="star4half" name="rating1" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
                             <input type="radio" id="star4" name="rating1" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
@@ -177,10 +177,10 @@
                             <input type="radio" id="star1" name="rating1" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
                             <input type="radio" id="starhalf" name="rating1" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                         </fieldset>
-                    }
+                    }else
                     if (item.KindoRating == 3)
                     {
-                        <fieldset  class="rating">
+                        <fieldset class="rating">
                             <input type="radio" id="star5" name="rating1" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
                             <input type="radio" id="star4half" name="rating1" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
                             <input type="radio" id="star4" name="rating1" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
@@ -192,10 +192,10 @@
                             <input type="radio" id="star1" name="rating1" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
                             <input type="radio" id="starhalf" name="rating1" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                         </fieldset>
-                    }
+                    }else
                     if (item.KindoRating == 3.5)
                     {
-                        <fieldset  class="rating">
+                        <fieldset class="rating">
                             <input type="radio" id="star5" name="rating1" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
                             <input type="radio" id="star4half" name="rating1" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
                             <input type="radio" id="star4" name="rating1" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
@@ -207,10 +207,10 @@
                             <input type="radio" id="star1" name="rating1" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
                             <input type="radio" id="starhalf" name="rating1" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                         </fieldset>
-                    }
+                    }else
                     if (item.KindoRating == 4)
                     {
-                        <fieldset  class="rating">
+                        <fieldset class="rating">
                             <input type="radio" id="star5" name="rating1" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
                             <input type="radio" id="star4half" name="rating1" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
                             <input checked="checked" type="radio" id="star4" name="rating1" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
@@ -222,10 +222,10 @@
                             <input type="radio" id="star1" name="rating1" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
                             <input type="radio" id="starhalf" name="rating1" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                         </fieldset>
-                    }
+                    }else
                     if (item.KindoRating == 4.5)
                     {
-                        <fieldset  class="rating">
+                        <fieldset class="rating">
                             <input type="radio" id="star5" name="rating1" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
                             <input checked="checked" type="radio" id="star4half" name="rating1" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
                             <input type="radio" id="star4" name="rating1" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
@@ -237,10 +237,10 @@
                             <input type="radio" id="star1" name="rating1" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
                             <input type="radio" id="starhalf" name="rating1" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                         </fieldset>
-                    }
+                    }else
                     if (item.KindoRating == 5)
                     {
-                        <fieldset  class="rating">
+                        <fieldset class="rating">
                             <input checked="checked" type="radio" id="star5" name="rating1" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
                             <input type="radio" id="star4half" name="rating1" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
                             <input type="radio" id="star4" name="rating1" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
@@ -405,6 +405,7 @@
         }
     }
 
+  /*  $('input[name=rating1').attr("disabled", true);*/
 
 
 </script>

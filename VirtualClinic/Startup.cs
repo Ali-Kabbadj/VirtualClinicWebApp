@@ -78,7 +78,7 @@ namespace VirtualClinic
             services.AddKendo();
             services.Configure<DataProtectionTokenProviderOptions>(opt => opt.TokenLifespan = TimeSpan.FromHours(1));
 
-            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+            services.AddControllersWithViews().AddRazorRuntimeCompilation().AddNewtonsoftJson(options =>
                     options.SerializerSettings.ContractResolver =
                        new DefaultContractResolver());
         }

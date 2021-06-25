@@ -96,7 +96,7 @@ namespace VirtualClinic.Controllers
                 _db.SaveChanges();
             }
 
-            return RedirectToAction("Details", "DoctorsProfiles", y);
+            return Ok();
         }
 
     }
