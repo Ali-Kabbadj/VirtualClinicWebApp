@@ -11,6 +11,10 @@
     #services {
         height: 120vh;
     }
+
+    .imgBMI{
+        margin-top:40px !important;
+    }
    
 }
 
