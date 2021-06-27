@@ -59,8 +59,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="libphonenumber-csharp" Version="8.12.25" />
     <PackageReference Include="MailKit" Version="2.12.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.15" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
@@ -1862,36 +1860,6 @@
     <None Include="wwwroot\LogedOutHome\php-email-form\validate.js" />
     <None Include="wwwroot\LogedOutHome\purecounter\purecounter.js" />
     <None Include="wwwroot\LogedOutHome\swiper\swiper-bundle.min.js" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\less\animated.less" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\less\bordered-pulled.less" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\less\core.less" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\less\fixed-width.less" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\less\font-awesome.less" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\less\icons.less" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\less\larger.less" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\less\list.less" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\less\mixins.less" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\less\path.less" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\less\rotated-flipped.less" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\less\screen-reader.less" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\less\stacked.less" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\less\variables.less" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\scss\font-awesome.scss" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\scss\_animated.scss" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\scss\_core.scss" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\scss\_fixed-width.scss" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\scss\_icons.scss" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\scss\_larger.scss" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\scss\_list.scss" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\scss\_mixins.scss" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\scss\_path.scss" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\scss\_screen-reader.scss" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\scss\_stacked.scss" />
-    <None Include="wwwroot\some_shit\font-awesome-4.7.0\scss\_variables.scss" />
     <None Include="wwwroot\Templates\HtmlMailConfirmationPageModel.html" />
   </ItemGroup>
 
