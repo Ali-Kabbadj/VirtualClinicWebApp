@@ -12,9 +12,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link href="~/LogedOutHome/css/StyleSheet.css" rel="stylesheet" />
     <script src="~/LogedOutHome/js/LogedOutHomeScript.js"></script>
-    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    @*<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />*@
-   
+    @*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -28,14 +28,14 @@
 
 
 <body>
-    <header style="align-content:center !important;">
-        <nav >
+    <header style="align-content:center;">
+        <nav>
             <div id="brand">
-                <img class="logo" style="width:55px ; height:60px; align-self:center;" src="/Images/Logos/logo.png" alt="Alternate Text" />
+                <img class="logo" style="width:55px ; height:60px;" src="/Images/Logos/logo.png" alt="Alternate Text" />
                 <h2 style="margin-left:20px;color:white;">VirtualClinic</h2>
             </div>
-            <div id="menu">
-                <div id="menu-toggle">
+            <div style="background-color:transparent;" id="menu">
+                <div  id="menu-toggle">
                     <div id="menu-icon">
                         <div class="bar"></div>
                         <div class="bar"></div>
@@ -43,23 +43,31 @@
                     </div>
                 </div>
                 <ul>
-                    <li><a href="#home"></a></li>
-                    <li><a href="#bmi"></a></li>
-                    <li><a href="#quote"></a></li>
-<<<<<<< HEAD
-
-=======
->>>>>>> 42d9d8f420de8f5df26df0ead79edac0554985f5
+                    <li>
+                        <a href="#home" style="text-align:center;text-decoration:none;height:40px !important;"><p style="color:black;text-align:center;text-decoration:none;font-weight:bold;padding-top:6px;">Home</p></a>
+                    </li>
+                    <li>
+                        <a href="#services" style="text-align:center;text-decoration:none;height:40px !important;"><p style="color:black;text-align:center;text-decoration:none;font-weight:bold;padding-top:6px;">Services</p></a>
+                    </li>
+                    <li>
+                        <a href="#healthy" style="text-align:center;text-decoration:none;height:40px !important;"><p style="color:black;text-align:center;text-decoration:none;font-weight:bold;padding-top:6px;">Macro</p></a>
+                    </li>
+                    <li>
+                        <a href="#bmi" style="text-align:center;text-decoration:none;height:40px !important;"><p style="color:black;text-align:center;text-decoration:none;font-weight:bold;padding-top:6px;">BMI</p></a>
+                    </li>
+                    <li>
+                        <a href="#quote" style="text-align:center;text-decoration:none;height:40px !important;"><p style="color:black;text-align:center;text-decoration:none;font-weight:bold;padding-top:6px;">Quotes</p></a>
+                    </li>
                 </ul>
             </div>
         </nav>
-    </header>  
+    </header>
 
     <section id="home" style="background-color:white;">
         <div class="container-fluid" data-aos="fade-up">
             <div class="row justify-content-center">
                 <div class="col-xl-5 col-lg-6 pt-3 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                    <h1  style="font-size:66px;margin-left:10px;">VirtalClinic</h1>
+                    <h1 style="font-size:66px;margin-left:10px;">VirtalClinic</h1>
                     <h2 style="margin-top:40px;margin-left:30px;">The Website that cares about your health</h2>
                     <div style="" class="grid">
 
@@ -81,7 +89,7 @@
                             </div>
                         </button>
 
-                        <button id="Register"   class="colorful-button dark">
+                        <button id="Register" class="colorful-button dark">
                             <div class="wrapper">
                                 <span>Register</span>
                                 <div class="circle circle-12"></div>
@@ -107,63 +115,155 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-        
-=======
->>>>>>> 42d9d8f420de8f5df26df0ead79edac0554985f5
     </section>
-    <section id="bmi">
-        <div class="container">
-              <h1 class="text-center pt-2">BMI Calculator</h1>
-              <div class="d-flex justify-content-around mt-5">
-                  <div class="container">
-                      <div style="margin-top:120px;" class="ml-5">
-                          <input type="text" id="height" class="form-control mb-4" placeholder="Height (in cm)">
-                          <input type="text" id="weight" class="form-control mt-4" placeholder="Weight (in kg)">
-                          <div class="mt-3">
-                              <button id="btn" class="btn btn-primary mb-2">Calculate</button>
-                          </div>
 
-                          <div id="result" class="text-success mt-2"></div>
-                      </div>
-                  </div>
-                  <img style="width:650px;" class="mb-2" src="~/Images/img/tablebmi.png" alt="BMI" />
-              </div>
+    <section  id="services" style="background-color:#3d1275">
+       
+        <div class="root" style="margin-top:5px;;">
+            <h1 style="text-align:center;">Our Services</h1>
+            <div style="width:80vw" class="row1-container">
+                <div style="margin:50px;" class="box n cyan">
+                    <h2>Doctors</h2>
+                    <p>We have The pest sertified doctors</p>
+                    <img width="100px" src="/LogedOutHome/doctor.png" alt="">
+                </div>
+
+                <div style="margin:50px;" class="box red">
+                    <h2>Patients</h2>
+                    <p>Get appointments with patients</p>
+                    <img width="100px" src="/LogedOutHome/patient.png" alt="">
+                </div>
+
+              
+            </div>
+            <div style="width:80vw" class="row2-container">
+                <div style="margin:50px;" class="box  blue">
+                    <h2>Calendar</h2>
+                    <p>Easy to use schedular</p>
+                    <img width="100px" src="/LogedOutHome/calendar.png" alt="">
+                </div>
+                <div style="margin:50px;" class="box orange">
+                    <h2>Pay Online</h2>
+                    <p>Easy and secure online payment</p>
+                    <img width="100px" src="/LogedOutHome/pay.png" alt="">
+                </div>
+            </div>
         </div>
-     
     </section>
-    <div id="quote"><h1 class="text-center">Quotes</h1></div>
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col-lg-4 mb-4">
-                    <div class="card">
-                        <img style="height:420px;" src="https://landmarkevents.org/assets/email/2020/02-03-history-highlight/inline-carlyle.jpg" alt="" class="card-img">
-                        <div class="card-body">
-                            <h5 class="card-title">Thomas Carlyle</h5>
-                            <p class="card-text">He who has health, has hope; and he who has hope, has everything.</p> 
+
+
+    <section class="html" id="healthy" style="background-color:#784eb0">
+        <div style="background-color:white;height:85vh;width:60vw;border-radius:30px;margin-top:3vh;" class="container">
+
+            <h1 style="text-align:center;margin:20px">Macro</h1>
+            <div id="bmr-calculator" class="wrapper">
+                <div class="calculator">
+                    <div class="choose-gender">
+                        <div class="segmented-control"><input id="calc-gender-male" type="radio" name="gender" value="male" checked=""><label for="calc-gender-male">Male</label></div>
+                        <div class="segmented-control">
+                            <input id="calc-gender-female" type="radio" name="gender" value="female"><label for="calc-gender-female">Female</label>
+                        </div>
+                    </div>
+                    <label for="calc-age" id="calc-age_value">Age: 25</label>
+                    <input id="calc-age" type="range" value="25" min="13" max="100">
+                    <label for="calc-height" id="calc-height_value">Height: 180cm</label>
+                    <input id="calc-height" type="range" value="180" min="80" max="250">
+                    <label for="calc-weight" id="calc-weight_value">Weight: 80kg</label>
+                    <input id="calc-weight" type="range" value="80" min="40" max="200">
+                    <label for="calc-walking" id="calc-walking_value">Walking: 2 hours per week</label>
+                    <input id="calc-walking" type="range" value="2" min="0" max="50">
+                    <label for="calc-cardio" id="calc-cardio_value">Cardio: 1 hour per week</label>
+                    <input id="calc-cardio" type="range" value="1" min="0" max="50">
+                </div>
+                <div class="results">
+                    <div id="calc-target-gain">
+                        To Gain Weight:<br>
+                        <span>2700 calories</span>
+                    </div>
+                    <div id="calc-target-maintain">
+                        To Maintain:<br>
+                        <span>2400 calories</span>
+                    </div>
+                    <div id="calc-target-lose">
+                        To Lose Weight:<br>
+                        <span>1900 calories</span>
+                    </div>
+                </div>
+            </div>
+
+
+        
+        </div>
+    </section>
+
+
+
+
+    <section class="html" id="bmi">
+        <div class="container" style="background-color:white;height:70vh;width:60vw;border-radius:30px;margin-top:10vh;">
+
+            <h1 style="text-align:center;margin:30px">BMI Calculator</h1>
+            <div class="d-flex justify-content-around mt-5">
+                <div class="container">
+                    <div style="margin-top:30px;" class="ml-5">
+                        <input type="text" id="height" class="form-control mb-4" placeholder="Height (in cm)">
+                        <input type="text" id="weight" class="form-control mt-4" placeholder="Weight (in kg)">
+                        <div class="mt-3">
+                            <button id="btn" class="btn btn-primary mb-2">Calculate</button>
+                        </div>
+
+                        <div id="result" class="text-success mt-2"></div>
+                    </div>
+                </div>
+            </div><img style="width:450px;" class="mb-2 imgBMI" src="~/Images/img/tablebmi.png" alt="BMI" />
+
+        </div>
+    </section>
+    <section id="quote">
+
+        <div>
+            <h1 style="text-align:center;margin:20px;font-size:50px;margin-bottom:30px;">Quotes</h1>
+            <div style="width:85vw;margin-bottom:30px" class="flex flex-wrap -m-3">
+                <div style="height:85vh" class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-1">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+                        <div class="bg-cover h-75" style="background-image: url(https://landmarkevents.org/assets/email/2020/02-03-history-highlight/inline-carlyle.jpg%22);background-size:cover "></div>
+                        <div class="p-4 flex-1 flex flex-col" style="">
+                            <h3 style="font-size:35px" class="mb-4 text-2xl">Thomas Carlyle</h3>
+                            <div class="mb-4 text-grey-darker text-sm flex-1">
+                                <p style="font-size:23px">He who has health, has hope; and he who has hope, has everything.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="card">
-                        <img style="height:400px;" src="https://www.laphamsquarterly.org/sites/default/files/styles/tall_rectangle_custom_user_small_2x/public/images/contributor/496px-philippus_aureolus_theophrastus_paracelsus_0.jpg?itok=uFFAcVb2&timestamp=1525801460" alt="" class="card-img">
-                        <div class="card-body">
-                            <h5 class="card-title">Paracelsus</h5>
-                            <p class="card-text">The art of healing comes from nature, not from the physician. Therefore the physician must start from nature, with an open mind.</p>
+
+                <div style="height:85vh" class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-1">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+                        <div class="bg-cover h-75" style="background-image: url(https://www.laphamsquarterly.org/sites/default/files/styles/tall_rectangle_custom_user_small_2x/public/images/contributor/496px-philippus_aureolus_theophrastus_paracelsus_0.jpg?itok=uFFAcVb2&timestamp=1525801460);background-size:cover"></div>
+                        <div class="p-4 flex-1 flex flex-col" style="">
+                            <h3 style="font-size:35px" class="mb-4 text-2xl">Paracelsus</h3>
+                            <div class="mb-4 text-grey-darker text-sm flex-1">
+                                <p style="font-size:23px">The art of healing comes from nature, not from the physician. Therefore the physician must start from nature, with an open mind.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div  class="col-lg-4 mb-4">
-                    <div class="card">
-                        <img style="height:400px;" src="https://www.zbrushcentral.com/uploads/default/original/4X/f/c/0/fc017868110a5b90981f15662d2d5426e6d0a67e.jpeg" alt="" class="card-img">
-                        <div class="card-body">
-                            <h5 class="card-title">Redd Foxx</h5>
-                            <p class="card-text">Health nuts are going to feel stupid someday, lying in hospitals dying of nothing.</p>
+
+                <div style="height:85vh" class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-1">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+                        <div class="bg-cover h-75" style="background-image: url(https://www.zbrushcentral.com/uploads/default/original/4X/f/c/0/fc017868110a5b90981f15662d2d5426e6d0a67e.jpeg); background-size:cover"></div>
+                        <div class="p-4 flex-1 flex flex-col" style="">
+                            <h3 style="font-size:35px" class="mb-4 text-2xl">Redd Foxx</h3>
+                            <div class="mb-4 text-grey-darker text-sm flex-1">
+                                <p style="font-size:23px">Health nuts are going to feel stupid someday, lying in hospitals dying of nothing.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+    </section>
+
 
 
     <script type="text/javascript">
@@ -196,10 +296,7 @@
                 if (bmi < 16) result.innerHTML =
                     `Severe Thinness : <span>${bmi}</span>`;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 42d9d8f420de8f5df26df0ead79edac0554985f5
                 else if (bmi >= 16 && bmi < 17)
                     result.innerHTML =
                         `Moderate Thinness : <span>${bmi}</span>`;
@@ -241,5 +338,224 @@
       $("#Register").on("click", function (evt) {
             var clicked_button = $(this);
             window.location.href = '@Url.Action("Register", "Account")'
-        });
+      });
+
+
+    $(".calculator input").on("input change", function (event) {
+        var parameterName = $(this).attr("id").split("calc-")[1];
+        var centimeters = $(this).val()
+
+        switch (parameterName) {
+            case "height":
+                $("#calc-height_value").html("Height: " + centimeters + " cm");
+                break;
+            case "weight":
+                var kg = $(this).val();
+                $("#calc-weight_value").html("Weight: " + kg + " kg");
+                break;
+            case "age":
+                $("#calc-age_value").html("Age: " + $(this).val());
+                break;
+            case "cardio":
+                $("#calc-cardio_value").html("Cardio: " + $(this).val() + " hours per week");
+                break;
+            case "walking":
+                $("#calc-walking_value").html("Walking: " + $(this).val() + " hours per week");
+                break;
+        }
+
+        var height = parseInt($("#calc-height").val(), 10);
+        var age = parseInt($("#calc-age").val(), 10);
+        var weight = parseInt($("#calc-weight").val(), 10);
+        var walking = parseInt($("#calc-walking").val(), 10);
+        var cardio = parseInt($("#calc-cardio").val(), 10);
+        var gender = $(".calculator input[name='gender']:checked").val();
+
+        // The Harris–Benedict equations revised by Mifflin and St Jeor in 1990: 'A new predictive equation for resting energy expenditure in healthy individuals'
+        var bmr = parseInt(10 * weight + 6.25 * height - 5 * age, 10) + (gender === "male" ? 5 : -161);
+        bmr = bmr * 1.2;
+        bmr += walking * 60 * (.03 * weight * 1 / 0.45) / 7;
+        bmr += cardio * 60 * (.07 * weight * 1 / 0.45) / 7;
+        bmr = Math.floor(bmr);
+
+        var targetGainWeight = Math.round((bmr + 300) / 100) * 100;
+        var targetMaintain = Math.round((bmr) / 100) * 100;
+        var targetLoseWeight = Math.round((bmr - 500) / 100) * 100;
+
+        $("#calc-target-gain span").html(targetGainWeight + " calories");
+        $("#calc-target-maintain span").html(targetMaintain + " calories");
+        $("#calc-target-lose span").html(targetLoseWeight + " calories");
+    });
 </script>
+
+<style>
+    .html {
+        --primary-color: #435fda;
+        --secondary-color: #d8415c;
+        --body-font-size: 16px;
+        --line-height: 1.5;
+        --content-width: 480px;
+        --background-color: #fff;
+        --background-color-secondary: #f8f8f9;
+        --text-color: #060914;
+        --text-color--muted: #71737f;
+        --line-color: #ededef;
+    }
+
+    .wrapper {
+  max-width: var(--content-width);
+  margin: calc(var(--line-height) * .5em) auto 0 auto;
+}
+
+.results {
+  margin-top: .5em;
+  text-align: center;
+}
+
+.results > div {
+  margin-bottom: .5em;
+}
+
+
+@*@media (min-width: 440px) {
+  :root {
+    --body-font-size: 18px;
+    --line-height: 1.5;
+  }
+
+  .results {
+    margin: 2em 1em 0 2em;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 1em;
+  }
+  .results > div {
+    margin-bottom: 0;
+  }
+}*@
+
+.choose-gender {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 2em;
+}
+
+.segmented-control {
+  flex: 1;
+  text-align: center;
+  line-height: 2em;
+  border: 1px solid var(--line-color);
+}
+
+.segmented-control:first-child {
+  border-radius: 0.5em 0 0 0.5em;
+}
+
+.segmented-control:last-child {
+  border-radius: 0 0.5em 0.5em 0;
+}
+
+.results {
+  color: var(--text-color--muted);
+}
+
+.results span {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* The crazy stuff that needs to be here for the custom input styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  margin: 18px 0;
+  width: 100%;
+  transition: all 0.265ms ease-out;
+}
+
+input[type="range"]:not(:last-of-type) {
+  margin-top: 0;
+  margin-bottom: 2.5em;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: var(--line-color);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  box-shadow: 0 0 8px 1px var(--secondary-color),
+    0 0 16px 4px var(--background-color);
+  border: 3px solid #fff;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: var(--secondary-color);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8px;
+}
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: var(--secondary-color);
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  display: none;
+}
+
+.segmented-control input[type="radio"] + label {
+  border: 1px solid rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+  color: var(--text-color--muted);
+}
+
+.segmented-control input[type="radio"]:checked + label {
+  background-color: var(--line-color);
+  width: 100%;
+  height: 100%;
+  display: block;
+  color: var(--text-color);
+}
+
+.segmented-control input[type="radio"]:focus + label {
+  border: 1px solid var(--secondary-color);
+}
+
+.segmented-control:first-child input[type="radio"]:checked + label {
+  border-radius: 0.5em 0 0 0.5em;
+}
+
+.segmented-control:last-child input[type="radio"]:checked + label {
+  border-radius: 0 0.5em 0.5em 0;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: var(--line-color);
+}
+
+input[type=range]::-moz-range-thumb {
+    box-shadow: 0 0 8px 1px var(--secondary-color),
+    0 0 16px 4px var(--background-color);
+  border: 3px solid #fff;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: var(--secondary-color);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8px;
+}
+
+</style>

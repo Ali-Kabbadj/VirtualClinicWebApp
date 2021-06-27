@@ -146,6 +146,11 @@ namespace VirtualClinic.Controllers
 
                     if (result.Succeeded)
                     {
+                        if (login.Email.ToLower() == "Master@Admin.com".ToLower())
+                        {
+                            await _signInManager.SignOutAsync();
+                            return View();
+                        }
                         return RedirectToAction("Index", "Home");
                     }
                   
