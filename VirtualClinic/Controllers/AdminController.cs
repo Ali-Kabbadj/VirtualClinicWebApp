@@ -100,7 +100,7 @@ namespace VirtualClinic.Controllers
                 var resulte = _userService.LoginUser(user ,user.RememberMe ,false,ModelState.IsValid).Result;
                 if (resulte.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Admin");
                 }
             }
            
@@ -109,6 +109,7 @@ namespace VirtualClinic.Controllers
 
 
         [Authorize(Roles = "Administrator")]
+        [HttpDelete]
         public IActionResult DeleteDoctor(string id)
         {
             _doctorTaskService.Delete(id);

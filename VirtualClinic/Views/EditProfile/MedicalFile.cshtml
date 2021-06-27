@@ -1,6 +1,8 @@
 ﻿@model VirtualClinic.ViewModels.Patient_ns.MedicalFileViewModels
 
 
+<link href="~/Profiler/css/MedicalFile.css" rel="stylesheet" />
+
 <div class="container">
     <h1 style="text-align:center;">Edit File Medical</h1>
     <hr>
@@ -10,8 +12,6 @@
             <div class="col-md-9 personal-info">
 
                 <div class="form-horizontal" role="form">
-
-
 
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Height:</label>
@@ -75,29 +75,11 @@
                         </div>
                     </div>
 
-                    <input style="padding: 5px 30px; margin: 10px 0px 30px 350px; background-color: #3d1275;color:#fff; " type="submit" value="Edit" />
+                    <input class="edit-btn" type="submit" value="Edit" />
                 </div>
                 
             </div>               
             </form>
         </div>
     </div>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script type="text/javascript">
-        import swal from 'sweetalert';
-            @if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"].Errors.Count > 0)
-            {
-                <text>
-                $('.btn').click(function() {
-                    swal('Edit Faild','@ViewData.ModelState["Error"].Errors.First().ErrorMessage',"error");
-                });
-                </text>
-            } else
-                {
-                     <text>
-                $(document).ready(function() {
-                    swal('Edit Successed',"you edit your medical file.","success");
-                });
-                </text>
-                }
-    </script>
+

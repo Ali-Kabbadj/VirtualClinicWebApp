@@ -63,6 +63,7 @@ namespace VirtualClinic.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Processing(string stripeToken, string stripeEmail, int TaskId)
         {
 

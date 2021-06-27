@@ -34,11 +34,6 @@ namespace VirtualClinic.Controllers
             }
             return View();
         }
-        [Authorize]
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
         [Route("/NotFound")]
         public IActionResult NotFound()

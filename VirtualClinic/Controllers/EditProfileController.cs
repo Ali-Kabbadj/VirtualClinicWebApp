@@ -57,7 +57,12 @@ namespace VirtualClinic.Controllers
             var id = _userManager.GetUserAsync(User).Result.Id;
             var isedit = await _userTaskService.EditProfile(editprofile, id);
             if (isedit)
-                return Profiler();
+            {
+                editprofile = _userTaskService.GetProfile(id);
+                return View("Profiler", editprofile);
+            }
+
+                
             return NotFound();
         }
 

@@ -22,7 +22,7 @@
                     <img style="max-width:180px;" id="img" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Image)" class="avatar" alt="avatar">
                     <h6>Upload a different photo...</h6>
 
-                    <input asp-for="ImageName" onchange="preview_image(event)" type="file" class="form-control">
+                    <input asp-for="ImageName" value="@Model.Image" onchange="preview_image(event)" type="file" class="form-control">
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
                         <label class="col-lg-3 control-label">Country:</label>
                         <div class="col-lg-8">
                             <select  class="form-control countries" id="countryId" asp-for="Country">
-                                <option selected="@Model.Country">@Model.Country</option>
+                                <option selected="selected" value="@Model.Country" hidden>@Model.Country</option>
                             </select>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                         <label class="col-lg-3 control-label">State:</label>
                         <div class="col-lg-8">
                             <select class="form-control states" id="stateId" asp-for="State">
-                                <option selected="@Model.State">@Model.State</option>
+                                <option selected="selected" value="@Model.State" hidden>@Model.State</option>
                             </select>
                         </div>
                     </div>
@@ -75,15 +75,15 @@
                         <label class="col-lg-3 control-label">City:</label>
                         <div class="col-lg-8">
                             <select  class="form-control cities" id="cityId" asp-for="City">
-                                <option selected="@Model.City">@Model.City</option>
+                                <option selected="selected" value="@Model.City" hidden>@Model.City</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Gender:</label>
                         <div class="col-lg-8">
-                            <select name="gender" class="form-control" id="" asp-for="City">
-                                <option hidden selected="@Model.Gender">@Model.Gender</option>
+                            <select name="gender" class="form-control" asp-for="Gender">
+                                <option hidden selected="selected" value="@Model.Gender">@Model.Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>

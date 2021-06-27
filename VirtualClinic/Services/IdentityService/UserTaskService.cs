@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Hosting;
 using VirtualClinic.Services.Upload;
 using VirtualClinic.Models.Identity;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace VirtualClinic.Services.IdentityService
 {
@@ -303,6 +304,7 @@ namespace VirtualClinic.Services.IdentityService
         public async Task<bool> EditProfile(EditProfileViewModel editprofile, string id)
         {
             var Uploader = new Services.Upload.UploadFile(_environment);
+
             byte[] ImageFile = Uploader.Upload(editprofile.ImageName);
             var profile = _db.Users.Find(id);
             if (profile == null)
