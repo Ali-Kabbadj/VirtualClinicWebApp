@@ -1,3 +1,5 @@
+This is a Web App devalopped with .Net Core , Entity Framework Core ,ASP.NET Core Identity ,Stripe from online payment , and Telerik schedular
+
 
 
 <a href="https://ibb.co/Lz1Rn65"><img src="https://i.ibb.co/1fTQ8K6/screencapture-localhost-44348-Admin-list-Of-Doctors-2021-07-15-03-12-46.png" alt="screencapture-localhost-44348-Admin-list-Of-Doctors-2021-07-15-03-12-46" border="0" /></a>
