@@ -79,10 +79,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
 
                         <li class="nav-item">
-                            <a  class="nav-link  @(ViewBag.Current == "listOfPatients" ? "active" : "")" href="@Url.Action("ListOfPatients","Admin")" target="_self">
+                            <a class="nav-link  @(ViewBag.Current == "listOfPatients" ? "active" : "")" href="@Url.Action("ListOfPatients","Admin")" target="_self">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Manage Patients
+                                </p>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link  @(ViewBag.Current == "LogOut" ? "active" : "")" href="@Url.Action("LogOut","Account")" target="_self">
+                                <i class="nav-icon fa fa-sign-out"></i>
+                                <p>
+                                    Logout
                                 </p>
                             </a>
                         </li>
@@ -92,9 +102,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-
-
-                     
 
 
                     </ul>

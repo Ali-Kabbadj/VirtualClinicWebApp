@@ -181,6 +181,18 @@ namespace VirtualClinic.Controllers
             ViewBag.Email = Email;
             if (user != null)
             {
+                IQueryable<Doctor> ds = _db.Doctors.Where(d => d.Email.ToLower() == user.Email.ToLower());
+                if (ds.Count() > 0)
+                {
+                    if (!ds.First().IsActivated)
+                    {
+                        LoginViewModel login = new LoginViewModel();
+                        login.Email = user.Email;
+
+                        return RedirectToAction("ActivateAccount", "Account", login);
+                    }
+                }
+
                 user.EmailConfirmed = true;
                 await _userManager.UpdateAsync(user);
                 await _signInManager.SignInAsync(user, isPersistent: false);
